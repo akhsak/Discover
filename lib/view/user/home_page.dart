@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  const Homepage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,7 @@ class Homepage extends StatelessWidget {
           Positioned.fill(
             child: Image.asset(
               'assets/splash1.img.jpeg',
-              height: size.height * 0.9,
-              // Replace with your background image path
+              height: size.height * 0.5,
               fit: BoxFit.fill,
             ),
           ),
@@ -21,53 +20,94 @@ class Homepage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 150),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Explore the world today',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
                       SizedBox(height: 4),
                       Text(
                         'Discover - take your travel to the next level',
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Search destination',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                            Icon(Icons.search),
+                          ],
+                        ),
+                      ),
+                      //  SizedBox(height: 20,),
+                      // Padding(
+                      //   padding: EdgeInsets.symmetric(horizontal: 24),
+                      //   child: Row(
+                      //     children: [
+                      //       Container(
+                      //         height: 40,
+                      //         width: size.width*0.3,
+                      //         decoration: BoxDecoration(
+                      //           color: Colors.white,
+                      //           borderRadius: BorderRadius.circular(16),
+                      //         ),
+                      //         alignment: Alignment.center,
+
+                      //         child: Text(
+                      //           'hotel',
+                      //           style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black),
+                      //         ),
+                      //       )
+//                           ],
+//                         ),
+//                       )
+
+                      SizedBox(height: 20),
+                      SizedBox(
+                        height: 70,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: const [
+                            CategoryCard(
+                                categoryName: 'Hotel', iconData: Icons.abc),
+                            CategoryCard(
+                                categoryName: 'Message', iconData: Icons.home),
+                            CategoryCard(
+                                categoryName: 'Oversea', iconData: Icons.face),
+                            CategoryCard(
+                                categoryName: 'Hotel', iconData: Icons.abc),
+                            CategoryCard(
+                                categoryName: 'Message', iconData: Icons.home),
+                            CategoryCard(
+                                categoryName: 'Oversea', iconData: Icons.face),
+                            // Add more categories as needed
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search destination',
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.8),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-                ),
-                // SizedBox(
-                //   height: 50, // Height of the horizontal categories scroll
-                //   child: ListView(
-                //     scrollDirection: Axis.horizontal,
-                //     children: const [
-                //       CategoryCard(categoryName: 'Hotel'),
-                //       CategoryCard(categoryName: 'Message'),
-                //       CategoryCard(categoryName: 'Oversea'),
-                //       // Add more categories as needed
-                //     ],
-                //   ),
-                // ),
-                // // Add more content below if needed
               ],
             ),
           ),
@@ -79,21 +119,28 @@ class Homepage extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   final String categoryName;
+  final IconData iconData;
 
-  const CategoryCard({super.key, required this.categoryName});
+  const CategoryCard(
+      {Key? key, required this.categoryName, required this.iconData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 3),
       color: Colors.white.withOpacity(0.8),
       child: Padding(
-        padding: const EdgeInsets.all(3),
-        child: Center(
-          child: Text(
-            categoryName,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(iconData),
+            SizedBox(width: 8),
+            Text(
+              categoryName,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
     );
