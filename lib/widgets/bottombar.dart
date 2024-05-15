@@ -66,11 +66,11 @@
 import 'package:flutter/material.dart';
 import 'package:discover/view/user/home_page.dart';
 import 'package:discover/view/user/notification_page.dart';
-import 'package:discover/view/user/profile.dart';
+import 'package:discover/view/user/profile/profile.dart';
 import 'package:discover/view/user/wishlist.dart';
 
 class BottomScreen extends StatefulWidget {
-  BottomScreen({Key? key}) : super(key: key);
+  const BottomScreen({super.key});
 
   @override
   _BottomScreenState createState() => _BottomScreenState();
@@ -80,10 +80,10 @@ class _BottomScreenState extends State<BottomScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    Homepage(),
-    WishList(),
-    NotificationPage(),
-    Profile(),
+    const Homepage(),
+    const WishList(),
+    const NotificationPage(),
+    const UserProfileScreen(),
   ];
 
   void _onTap(int index) {
