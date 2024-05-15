@@ -1,7 +1,8 @@
+import 'package:discover/view/user/search/search.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({Key? key});
+  const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,10 +10,11 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(
+          Positioned(
             child: Image.asset(
               'assets/splash1.img.jpeg',
-              height: size.height * 0.5,
+              height: size.height * 0.6,
+              width: double.infinity,
               fit: BoxFit.fill,
             ),
           ),
@@ -21,42 +23,46 @@ class Homepage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 150),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 150),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Explore the world today',
                         style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      SizedBox(height: 4),
-                      Text(
+                      const SizedBox(height: 4),
+                      const Text(
                         'Discover - take your travel to the next level',
                         style: TextStyle(fontSize: 17, color: Colors.white),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Container(
                         height: 60,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: TextField(
-                                decoration: InputDecoration(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const SearchPage()));
+                                },
+                                decoration: const InputDecoration(
+                                  
                                   hintText: 'Search destination',
                                   border: InputBorder.none,
                                 ),
                               ),
                             ),
-                            Icon(Icons.search),
+                            const Icon(Icons.search),
                           ],
                         ),
                       ),
@@ -83,7 +89,7 @@ class Homepage extends StatelessWidget {
 //                         ),
 //                       )
 
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       SizedBox(
                         height: 70,
                         child: ListView(
@@ -122,8 +128,7 @@ class CategoryCard extends StatelessWidget {
   final IconData iconData;
 
   const CategoryCard(
-      {Key? key, required this.categoryName, required this.iconData})
-      : super(key: key);
+      {super.key, required this.categoryName, required this.iconData});
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +140,7 @@ class CategoryCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(iconData),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               categoryName,
               style: const TextStyle(fontWeight: FontWeight.bold),

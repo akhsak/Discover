@@ -121,7 +121,17 @@ class UserProfileScreen extends StatelessWidget {
                   // );
                 },
               ),
-             
+              SizedBox(height: 20),
+              SizedBox(width: size.width*0.9,
+              height: 60,
+                child: ElevatedButton(style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.white,
+                   side: BorderSide(color: Color.fromARGB(255, 238, 236, 236)),
+                ),onPressed: (){}, child: Text('Logout',style: TextStyle(decoration: TextDecoration.underline ),),),
+              ),
+              SizedBox(height: 30,),
+            Text(''),
             ],
           ),
         ),
