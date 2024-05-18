@@ -1,5 +1,6 @@
-import 'package:discover/view/user/search/search.dart';
 import 'package:flutter/material.dart';
+import 'package:discover/view/user/search/search.dart';
+import 'package:discover/widgets/category_card.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -52,11 +53,13 @@ class Homepage extends StatelessWidget {
                           children: [
                             Expanded(
                               child: TextField(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const SearchPage()));
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const SearchPage()));
                                 },
                                 decoration: const InputDecoration(
-                                  
                                   hintText: 'Search destination',
                                   border: InputBorder.none,
                                 ),
@@ -66,49 +69,58 @@ class Homepage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      //  SizedBox(height: 20,),
-                      // Padding(
-                      //   padding: EdgeInsets.symmetric(horizontal: 24),
-                      //   child: Row(
-                      //     children: [
-                      //       Container(
-                      //         height: 40,
-                      //         width: size.width*0.3,
-                      //         decoration: BoxDecoration(
-                      //           color: Colors.white,
-                      //           borderRadius: BorderRadius.circular(16),
-                      //         ),
-                      //         alignment: Alignment.center,
-
-                      //         child: Text(
-                      //           'hotel',
-                      //           style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black),
-                      //         ),
-                      //       )
-//                           ],
-//                         ),
-//                       )
-
+                     // const SizedBox(height: 20),
+                      
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 70,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: const [
-                            CategoryCard(
-                                categoryName: 'Hotel', iconData: Icons.abc),
-                            CategoryCard(
-                                categoryName: 'Message', iconData: Icons.home),
-                            CategoryCard(
-                                categoryName: 'Oversea', iconData: Icons.face),
-                            CategoryCard(
-                                categoryName: 'Hotel', iconData: Icons.abc),
-                            CategoryCard(
-                                categoryName: 'Message', iconData: Icons.home),
-                            CategoryCard(
-                                categoryName: 'Oversea', iconData: Icons.face),
+                            CategoryCard(categoryName: 'Hotel', iconData: Icons.hotel),
+                            CategoryCard(categoryName: 'Message', iconData: Icons.message),
+                            CategoryCard(categoryName: 'Oversea', iconData: Icons.flight),
+                            CategoryCard(categoryName: 'Restaurant', iconData: Icons.restaurant),
                             // Add more categories as needed
                           ],
+                        ),
+                      ),
+                      SizedBox(height: 50,),
+                      SizedBox(
+                        height: size.height*0.1,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 4, // Number of items in the list
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(16),
+                                    // child: Image.asset(
+                                    //   'assets/image${index + 1}.jpg', // Image path
+                                    //   height: 150,
+                                    //   width: 120,
+                                    //   fit: BoxFit.cover,
+                                    // ),
+                                    child: Image.asset('assets/splash1.img.jpeg',
+                                    height: 200,
+                                    width: 100,
+                                    fit: BoxFit.contain,),
+                                  ),
+                                  Positioned(
+                                    top: 8,
+                                    right: 8,
+                                    child: Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -123,31 +135,47 @@ class Homepage extends StatelessWidget {
   }
 }
 
-class CategoryCard extends StatelessWidget {
-  final String categoryName;
-  final IconData iconData;
+// class CategoryCard extends StatelessWidget {
+//   final String categoryName;
+//   final IconData iconData;
 
-  const CategoryCard(
-      {super.key, required this.categoryName, required this.iconData});
+//   const CategoryCard({super.key, required this.categoryName, required this.iconData});
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white.withOpacity(0.8),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(iconData),
-            const SizedBox(width: 8),
-            Text(
-              categoryName,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       color: Colors.white.withOpacity(0.8),
+//       child: Padding(
+//         padding: const EdgeInsets.all(20),
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Icon(iconData),
+//             const SizedBox(width: 8),
+//             Text(
+//               categoryName,
+//               style: const TextStyle(fontWeight: FontWeight.bold),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class SearchPage extends StatelessWidget {
+//   const SearchPage({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Search'),
+//       ),
+//       body: const Center(
+//         child: Text('Search Page Content'),
+//       ),
+//     );
+//   }
+// }
+

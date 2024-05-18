@@ -1,4 +1,6 @@
+import 'package:discover/view/user/booking/booking_page.dart';
 import 'package:discover/view/user/profile/widget_prfl.dart';
+import 'package:discover/view/user/wishlist.dart';
 import 'package:discover/widgets/normal_widget.dart';
 import 'package:discover/widgets/textfield.dart';
 import 'package:flutter/material.dart';
@@ -69,14 +71,19 @@ class UserProfileScreen extends StatelessWidget {
                   ListTile(
                     title: const Text('Booking'),
                     trailing: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.arrow_forward_ios)),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingPage()));
+                        }, icon: const Icon(Icons.arrow_forward_ios)),
                   ),
                 ],
               ),
               ListTile(
                 title: const Text('Wishlist'),
                 trailing: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.arrow_forward_ios)),
+                    onPressed: () {
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>WishList()));
+
+                    }, icon: const Icon(Icons.arrow_forward_ios)),
               ),
               const Divider(
                 color: Color.fromARGB(255, 186, 186, 186),
