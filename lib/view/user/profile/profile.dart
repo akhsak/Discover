@@ -72,7 +72,7 @@ class UserProfileScreen extends StatelessWidget {
                     title: const Text('Booking'),
                     trailing: IconButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingPage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>VacationDetailsScreen()));
                         }, icon: const Icon(Icons.arrow_forward_ios)),
                   ),
                 ],
