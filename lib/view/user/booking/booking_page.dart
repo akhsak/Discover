@@ -6,28 +6,28 @@ class VacationDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Vacation Details'),
+        title: Text('Booking'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             // Go back
           },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share),
-            onPressed: () {
-              // Share functionality
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(Icons.share),
+        //     onPressed: () {
+        //       // Share functionality
+        //     },
+        //   ),
+       // ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              'https://via.placeholder.com/400x200', // Replace with your image URL
+            Image.asset(
+              'assets/splash1.img.jpeg', // Replace with your image URL
               width: double.infinity,
               height: 200,
               fit: BoxFit.cover,
@@ -67,8 +67,8 @@ class VacationDetailsScreen extends StatelessWidget {
                   SizedBox(height: 8),
                   Container(
                     height: 200,
-                    child: Image.network(
-                      'https://via.placeholder.com/400x200', // Replace with your map image URL
+                    child: Image.asset(
+                      'assets/splash1.img.jpeg', // Replace with your map image URL
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
@@ -77,16 +77,16 @@ class VacationDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Image.network(
-                          'https://via.placeholder.com/150', // Replace with your image URL
+                        child: Image.asset(
+                      'assets/splash1.img.jpeg', // Replace with your image URL
                           height: 100,
                           fit: BoxFit.cover,
                         ),
                       ),
                       SizedBox(width: 8),
                       Expanded(
-                        child: Image.network(
-                          'https://via.placeholder.com/150', // Replace with your image URL
+                        child: Image.asset(
+                      'assets/splash1.img.jpeg', // Replace with your image URL
                           height: 100,
                           fit: BoxFit.cover,
                         ),
