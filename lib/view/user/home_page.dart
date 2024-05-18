@@ -1,3 +1,4 @@
+import 'package:discover/view/user/booking/booking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:discover/view/user/search/search.dart';
 import 'package:discover/widgets/category_card.dart';
@@ -94,6 +95,16 @@ class Homepage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
+                               child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => VacationDetailsScreen(),
+                                    ),
+                                  );
+                               
+                                },
                               child: Stack(
                                 children: [
                                   ClipRRect(
@@ -119,6 +130,7 @@ class Homepage extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                               ),
                             );
                           },
                         ),
@@ -134,48 +146,4 @@ class Homepage extends StatelessWidget {
     );
   }
 }
-
-// class CategoryCard extends StatelessWidget {
-//   final String categoryName;
-//   final IconData iconData;
-
-//   const CategoryCard({super.key, required this.categoryName, required this.iconData});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       color: Colors.white.withOpacity(0.8),
-//       child: Padding(
-//         padding: const EdgeInsets.all(20),
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Icon(iconData),
-//             const SizedBox(width: 8),
-//             Text(
-//               categoryName,
-//               style: const TextStyle(fontWeight: FontWeight.bold),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class SearchPage extends StatelessWidget {
-//   const SearchPage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Search'),
-//       ),
-//       body: const Center(
-//         child: Text('Search Page Content'),
-//       ),
-//     );
-//   }
-// }
 
