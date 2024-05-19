@@ -25,6 +25,7 @@ class _SplashScreenState extends State<WelcomeScreen1> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+           
             Container(
                 height: 300,
                 width: 350,

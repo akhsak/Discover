@@ -1,3 +1,4 @@
+import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 
@@ -69,7 +70,7 @@ class _SplashScreenState extends State<WelcomeScreen3> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BottomScreen()));
+                                  builder: (context) => LoginScreen()));
                         },
                         child: Text(
                           'Next',
