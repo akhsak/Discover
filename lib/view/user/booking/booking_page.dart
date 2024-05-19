@@ -127,7 +127,7 @@ import 'package:discover/view/user/booking/date_page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class VacationDetailsScreen extends StatelessWidget {
+class BookingDetailScreen extends StatelessWidget {
   final String imageUrl = 'assets/splash1.img.jpeg'; // Replace with your image URL
   final String mapImageUrl = 'https://maps.googleapis.com/maps/api/staticmap?center=Bora+Bora&zoom=12&size=600x300&maptype=roadmap&markers=color:red%7Clabel:C%7C-16.500412,151.741490'; // Replace with your map image URL
 

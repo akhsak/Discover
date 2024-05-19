@@ -73,7 +73,7 @@ class UserProfileScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    VacationDetailsScreen()));
+                                    BookingDetailScreen()));
                       },
                       icon: const Icon(Icons.arrow_forward_ios)),
                 ),
