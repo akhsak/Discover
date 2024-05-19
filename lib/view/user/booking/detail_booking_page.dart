@@ -1,6 +1,7 @@
 import 'package:discover/view/user/booking/success_booking.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DetalBooking extends StatefulWidget {
   const DetalBooking({super.key});
@@ -89,7 +90,12 @@ class _DetalBookingState extends State<DetalBooking> {
                         decoration: InputDecoration(
                           labelText: 'Phone',
                           border: OutlineInputBorder(),
+                          
                         ),
+                        keyboardType: TextInputType.number,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        readOnly: true,
+                        
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter phone number';

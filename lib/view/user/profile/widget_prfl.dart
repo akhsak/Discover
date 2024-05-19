@@ -1,4 +1,5 @@
 
+import 'package:discover/view/user/profile/pages/edit_profile.dart';
 import 'package:discover/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -27,12 +28,12 @@ Widget userProfileScreenContainer(
         poppinsHeadText(text: 'Account Setting'),
         GestureDetector(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => const FavouriteDoctorsScreen(),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EditProfile(),
+              ),
+            );
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,34 +52,7 @@ Widget userProfileScreenContainer(
             ],
           ),
         ),
-        // Divider(color: Colors.grey, thickness: 1),
-        // poppinsHeadText(text: 'Derleng Legal'),
-        // GestureDetector(
-        //   onTap: () {
-        //     // Navigator.push(
-        //     //   context,
-        //     //   MaterialPageRoute(
-        //     //     builder: (context) => const PrivacySettingsScreen(),
-        //     //   ),
-        //     // );
-        //   },
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //     children: [
-        //       Row(
-        //         children: [
-        //           Icon(Icons.book_sharp),
-        //           SizedBox(width: sizedBoxWidth),
-        //           poppinsSmallText(
-        //             text: "Privacy policy",
-        //           )
-        //         ],
-        //       ),
-        //       const Icon(Icons.arrow_forward_ios_rounded,
-        //           color: Color(0xFF888888))
-        //     ],
-        //   ),
-        // ),
+       
       ],
     ),
   );

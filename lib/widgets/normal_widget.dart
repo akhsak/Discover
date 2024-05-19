@@ -1,3 +1,5 @@
+import 'package:discover/view/user/profile/pages/privacy_policy.dart';
+import 'package:discover/view/user/profile/pages/terms_condition.dart';
 import 'package:discover/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +25,11 @@ Widget profileScreenContainer(context,
         profileContainerListTile(context,
             title: 'Terms and Condition',
             suffixIcon: true,
-                        icon: Icons.book_sharp,
-
-          //  icon: EneftyIcons.info_circle_outline,
+            icon: Icons.book_sharp, onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => TermsCondition()));
+        }
+            //  icon: EneftyIcons.info_circle_outline,
             //iconColor: const Color(0xFF1995AD)
             ),
         isAdmin!
@@ -33,8 +37,10 @@ Widget profileScreenContainer(context,
             : profileContainerListTile(context,
                 title: 'Privacy policy',
                 suffixIcon: true,
-                            icon: Icons.shield_moon_sharp,
-
+                icon: Icons.shield_moon_sharp, onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PrivacyPolicy()));
+              }
                 //icon: EneftyIcons.headphone_outline,
                 //iconColor: const Color(0xFF1995AD)
                 ),
@@ -49,6 +55,7 @@ Widget profileScreenContainer(context,
     ),
   );
 }
+
 Widget profileContainerListTile(BuildContext context,
     {required String title,
     bool? suffixIcon,
@@ -71,10 +78,11 @@ Widget profileContainerListTile(BuildContext context,
             text: title,
           )
         ]),
-        suffixIcon ?? false
-            ? const Icon(Icons.arrow_forward_ios_rounded,
-                color: Color(0xFF888888))
-            : const SizedBox()
+        // suffixIcon ?? false
+        //     ?
+        //     // const Icon(Icons.arrow_forward_ios_rounded,
+        //        // Color: Color(0xFF888888))
+        //    // : const SizedBox()
       ],
     ),
   );
