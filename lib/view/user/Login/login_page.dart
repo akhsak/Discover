@@ -168,6 +168,7 @@
 // }
 
 import 'package:discover/view/user/Login/create_account.dart';
+import 'package:discover/view/user/Login/forget_pswrd/forget.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -271,6 +272,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPasswordScreen()));
+
                       // Navigate to forgot password screen
                     },
                     child: Text(
@@ -330,6 +333,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 30),
                 ElevatedButton.icon(
                   onPressed: () {
+
                     // Handle Google sign-in
                   },
                   icon: Image.asset(

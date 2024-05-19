@@ -13,7 +13,7 @@ class CategoryCard extends StatelessWidget {
     return Card(
       color: Colors.white.withOpacity(0.8),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(23),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

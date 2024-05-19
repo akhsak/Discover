@@ -1,144 +1,23 @@
 
-// import 'package:flutter/material.dart';
-
-// class VacationDetailsScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Booking'),
-//         leading: IconButton(
-//           icon: Icon(Icons.arrow_back),
-//           onPressed: () {
-//             // Go back
-//           },
-//         ),
-//         // actions: [
-//         //   IconButton(
-//         //     icon: Icon(Icons.share),
-//         //     onPressed: () {
-//         //       // Share functionality
-//         //     },
-//         //   ),
-//        // ],
-//       ),
-//       body: SingleChildScrollView(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Image.asset(
-//               'assets/splash1.img.jpeg', // Replace with your image URL
-//               width: double.infinity,
-//               height: 200,
-//               fit: BoxFit.cover,
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.all(16.0),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     'Lovely Vacation Home',
-//                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-//                   ),
-//                   SizedBox(height: 8),
-//                   Text(
-//                     'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
-//                     style: TextStyle(fontSize: 16),
-//                   ),
-//                   SizedBox(height: 16),
-//                   Text(
-//                     'What to expect:',
-//                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                   ),
-//                   SizedBox(height: 8),
-//                   Row(
-//                     children: [
-//                       Icon(Icons.wifi, size: 30),
-//                       SizedBox(width: 16),
-//                       Icon(Icons.king_bed, size: 30),
-//                     ],
-//                   ),
-//                   SizedBox(height: 16),
-//                   Text(
-//                     'Where you\'ll stay:',
-//                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                   ),
-//                   SizedBox(height: 8),
-//                   Container(
-//                     height: 200,
-//                     child: Image.asset(
-//                       'assets/splash1.img.jpeg', // Replace with your map image URL
-//                       width: double.infinity,
-//                       fit: BoxFit.cover,
-//                     ),
-//                   ),
-//                   SizedBox(height: 16),
-//                   Row(
-//                     children: [
-//                       Expanded(
-//                         child: Image.asset(
-//                       'assets/splash1.img.jpeg', // Replace with your image URL
-//                           height: 100,
-//                           fit: BoxFit.cover,
-//                         ),
-//                       ),
-//                       SizedBox(width: 8),
-//                       Expanded(
-//                         child: Image.asset(
-//                       'assets/splash1.img.jpeg', // Replace with your image URL
-//                           height: 100,
-//                           fit: BoxFit.cover,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                   SizedBox(height: 16),
-//                   Text(
-//                     'Reviews:',
-//                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                   ),
-//                   SizedBox(height: 8),
-//                   ListTile(
-//                     leading: CircleAvatar(
-//                       backgroundImage: NetworkImage('https://via.placeholder.com/50'), // Replace with user image URL
-//                     ),
-//                     title: Text('Jane D.'),
-//                     subtitle: Text('Loved the stay! Highly recommend.'),
-//                   ),
-//                   ListTile(
-//                     leading: CircleAvatar(
-//                       backgroundImage: NetworkImage('https://via.placeholder.com/50'), // Replace with user image URL
-//                     ),
-//                     title: Text('John S.'),
-//                     subtitle: Text('A fantastic place with great amenities.'),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 import 'package:discover/view/user/booking/date_page.dart';
+import 'package:discover/view/user/booking/widget/booking_widget.dart';
+import 'package:discover/view/user/booking/widget/review.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BookingDetailScreen extends StatelessWidget {
   final String imageUrl = 'assets/splash1.img.jpeg'; // Replace with your image URL
-  final String mapImageUrl = 'https://maps.googleapis.com/maps/api/staticmap?center=Bora+Bora&zoom=12&size=600x300&maptype=roadmap&markers=color:red%7Clabel:C%7C-16.500412,151.741490'; // Replace with your map image URL
+ // final String mapImageUrl = 'https://maps.googleapis.com/maps/api/staticmap?center=Bora+Bora&zoom=12&size=600x300&maptype=roadmap&markers=color:red%7Clabel:C%7C-16.500412,151.741490'; // Replace with your map image URL
 
-  void _bookNow() async {
-    const url = 'https://booking.example.com';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // void _bookNow() async {
+  //   const url = 'https://booking.example.com';
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -195,92 +74,112 @@ class BookingDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  Container(
-                    height: 200,
-                    child: Image.asset('assets/download.jpg',
-                     // mapImageUrl,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                    
-                  ),
-                  Text('Angkor Mails Hotel\nNR6, Krong Siem Reap Cambodia'),
-                  SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Image.asset(
-                          imageUrl,
-                          height: 100,
+                  SingleChildScrollView(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'View the location on map',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        SizedBox(height: 10),
+                        Image.asset(
+                          'assets/download.jpg', // Placeholder for the map image
                           fit: BoxFit.cover,
                         ),
-                      ),
-                      SizedBox(width: 5),
-                      Expanded(
-                        child: Image.asset(
-                          imageUrl,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        SizedBox(height: 10),
+                        Text(
+                          'Angkor Masti Hotel\nNR6, Krong Siem Reap, Cambodia',
+                          style: TextStyle(fontSize: 16),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 5,),
-                   Row(
-                    children: [
-                      Expanded(
-                        child: Image.asset(
-                          imageUrl,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Image.asset(
+                          'assets/splash1.img.jpeg', // Placeholder for the first photo
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Image.asset(
+                          'assets/splash1.img.jpeg', // Placeholder for the second photo
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(width: 5),
-                      Expanded(
-                        child: Image.asset(
-                          imageUrl,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        SizedBox(height: 10),
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text('See all 20 photos'),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Reviews:',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage('https://via.placeholder.com/50'), // Replace with user image URL
-                    ),
-                    title: Text('Jane D.'),
-                    subtitle: Text('Loved the stay! Highly recommend.'),
-                  ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage('https://via.placeholder.com/50'), // Replace with user image URL
-                    ),
-                    title: Text('John S.'),
-                    subtitle: Text('A fantastic place with great amenities.'),
-                  ),
-                  SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DatePage()));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 15.0), backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Book Now',
-                        style: TextStyle(fontSize: 16.0, color: Colors.white),
-                      ),
+                        SizedBox(height: 20),
+                        Text(
+                          'Reviews',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 5),
+                        Text('4.5 (200 reviews)', style: TextStyle(color: Colors.grey)),
+                        SizedBox(height: 10),
+                        ReviewCard(
+                          name: 'Jack Daniel',
+                          date: 'Dec 2021',
+                          review: 'Good Place',
+                          description: 'Something to review here',
+                        ),
+                        ReviewCard(
+                          name: 'Jack Daniel',
+                          date: 'Dec 2021',
+                          review: 'Good Place',
+                          description:
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisi ipsum, pretium dignissim blandit sed.',
+                        ),
+                        SizedBox(height: 20),
+                        FAQSection(
+                          title: 'People frequently ask',
+                          faqs: [
+                            FAQItem(
+                              question: 'About this place',
+                              answer:
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
+                            ),
+                            FAQItem(
+                              question: 'Term and condition',
+                              answer:
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
+                            ),
+                            FAQItem(
+                              question: 'Cancelation Policy',
+                              answer:
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DatePage()));
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            backgroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Book Now',
+                              style: TextStyle(fontSize: 16.0, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -292,3 +191,110 @@ class BookingDetailScreen extends StatelessWidget {
     );
   }
 }
+
+// class ReviewCard extends StatelessWidget {
+//   final String name;
+//   final String date;
+//   final String review;
+//   final String description;
+
+//   ReviewCard({
+//     required this.name,
+//     required this.date,
+//     required this.review,
+//     required this.description,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       margin: const EdgeInsets.symmetric(vertical: 10),
+//       child: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Row(
+//               children: [
+//                 CircleAvatar(
+//                   child: Icon(Icons.person),
+//                 ),
+//                 SizedBox(width: 10),
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
+//                     Text(date, style: TextStyle(color: Colors.grey)),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//             SizedBox(height: 10),
+//             Text(
+//               review,
+//               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+//             ),
+//             SizedBox(height: 5),
+//             Text(description),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class FAQSection extends StatelessWidget {
+//   final String title;
+//   final List<FAQItem> faqs;
+
+//   FAQSection({required this.title, required this.faqs});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(
+//           title,
+//           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//         ),
+//         SizedBox(height: 10),
+//         ...faqs.map((faq) => FAQCard(faq: faq)).toList(),
+//       ],
+//     );
+//   }
+// }
+
+// class FAQItem {
+//   final String question;
+//   final String answer;
+
+//   FAQItem({required this.question, required this.answer});
+// }
+
+// class FAQCard extends StatelessWidget {
+//   final FAQItem faq;
+
+//   FAQCard({required this.faq});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       margin: const EdgeInsets.symmetric(vertical: 10),
+//       child: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text(
+//               faq.question,
+//               style: TextStyle(fontWeight: FontWeight.bold),
+//             ),
+//             SizedBox(height: 5),
+//             Text(faq.answer),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

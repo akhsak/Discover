@@ -72,22 +72,48 @@ class Homepage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  // const SizedBox(height: 20),
+                  // SizedBox(
+                  //   height: 70,
+                  //   child: ListView.builder(
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemCount: 4,
+                  //     itemBuilder: (context, index) {
+                  //       return Padding(
+                  //         padding: const EdgeInsets.only(right: 10),
+                  //         child: CategoryCard(
+                  //           categoryName: 'Category $index',
+                  //           iconData: Icons.hotel,
+                  //         ),
+                          
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
+                   const SizedBox(height: 20),
                   SizedBox(
                     height: 70,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: CategoryCard(
-                            categoryName: 'Category $index',
+                    child: SingleChildScrollView(scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          CategoryCard(
+                            categoryName: 'Hotel',
                             iconData: Icons.hotel,
                           ),
-                          
-                        );
-                      },
+                          CategoryCard(
+                            categoryName: 'Message',
+                            iconData: Icons.message,
+                          ),
+                          CategoryCard(
+                            categoryName: 'Oversea',
+                            iconData: Icons.flight,
+                          ),
+                          CategoryCard(
+                            categoryName: 'Restaurant',
+                            iconData: Icons.restaurant,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 50),
@@ -224,89 +250,4 @@ class Homepage extends StatelessWidget {
     );
   }
 }
-
-//   Widget popularPackageCard(BuildContext context, title, String imagePath) {
-//     return Container(
-//       width: 160,
-//       margin: const EdgeInsets.only(right: 16),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Expanded(
-//             child: Stack(
-//               children: [
-//                 ClipRRect(
-//                  // borderRadius: BorderRadius.circular(10),
-//                   child: Image.asset(
-//                     imagePath,
-//                     fit: BoxFit.cover,
-//                     width: double.infinity,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           const SizedBox(height: 8),
-//           Text(
-//             title,
-//             style: const TextStyle(fontWeight: FontWeight.bold),
-//           ),
-//           // const Text(
-//           //   'Lorem ipsum dolor sit amet.',
-//           //   style: TextStyle(color: Colors.grey),
-//           // ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget expandedTripCard(BuildContext context,String title, String imagePath) {
-//     return Container(
-//       width: 160,
-//       margin: const EdgeInsets.only(right: 16),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Stack(
-//             children: [
-//               ClipRRect(
-//                 borderRadius: BorderRadius.circular(8),
-//                 child: Image.asset(
-//                   imagePath,
-//                   fit: BoxFit.cover,
-//                 ),
-//               ),
-//                Positioned(
-//               top: 8,
-//               right: 8,
-//               child: Container(
-//                 decoration: BoxDecoration(
-//                   color: Colors.white,
-//                   borderRadius: BorderRadius.circular(20),
-//                 ),
-//                 child: IconButton(
-//                   icon: Icon(Icons.favorite_border),
-//                   onPressed: () {
-//                     Navigator.push(context, MaterialPageRoute(builder: (context)=>WishList()));
-//                   },
-//                 ),
-//               ),
-//             ),
-//             ],
-//           ),
-//           //Positioned(child: IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline_outlined),color: Colors.black,)),
-//          // const SizedBox(height: 8),
-//           Text(
-//             title,
-//             style: const TextStyle(fontWeight: FontWeight.bold),
-//           ),
-//           const Text(
-//             'Lorem ipsum dolor sit amet.',
-//             style: TextStyle(color: Colors.grey),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
