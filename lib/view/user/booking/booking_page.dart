@@ -98,14 +98,14 @@ class BookingDetailScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Image.asset(
-                          'assets/splash1.img.jpeg', // Placeholder for the first photo
+                          'assets/splash1.img.jpeg', 
                                 fit: BoxFit.cover,
                               ),
                             ),
                             SizedBox(width: 10),
                             Expanded(
                               child: Image.asset(
-                          'assets/splash1.img.jpeg', // Placeholder for the second photo
+                          'assets/splash1.img.jpeg', 
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -154,6 +154,7 @@ class BookingDetailScreen extends StatelessWidget {
                                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
                             ),
                             FAQItem(
+                              
                               question: 'Cancelation Policy',
                               answer:
                                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
@@ -161,24 +162,58 @@ class BookingDetailScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DatePage()));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
-                            backgroundColor: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Book Now',
-                              style: TextStyle(fontSize: 16.0, color: Colors.white),
-                            ),
+                        Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '\$600/Person',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blue),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: ElevatedButton(
+                        onPressed: () {
+                        //  if (_formKey.currentState?.validate() ?? false) {}
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DatePage()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
                         ),
+                        child: Text(
+                          'Book Now',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //     Navigator.push(context, MaterialPageRoute(builder: (context) => DatePage()));
+                        //   },
+                        //   style: ElevatedButton.styleFrom(
+                        //     padding: EdgeInsets.symmetric(vertical: 15.0),
+                        //     backgroundColor: Colors.blue,
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(10.0),
+                        //     ),
+                        //   ),
+                        //   child: Center(
+                        //     child: Text(
+                        //       'Book Now',
+                        //       style: TextStyle(fontSize: 16.0, color: Colors.white),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -192,109 +227,3 @@ class BookingDetailScreen extends StatelessWidget {
   }
 }
 
-// class ReviewCard extends StatelessWidget {
-//   final String name;
-//   final String date;
-//   final String review;
-//   final String description;
-
-//   ReviewCard({
-//     required this.name,
-//     required this.date,
-//     required this.review,
-//     required this.description,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       margin: const EdgeInsets.symmetric(vertical: 10),
-//       child: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Row(
-//               children: [
-//                 CircleAvatar(
-//                   child: Icon(Icons.person),
-//                 ),
-//                 SizedBox(width: 10),
-//                 Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
-//                     Text(date, style: TextStyle(color: Colors.grey)),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//             SizedBox(height: 10),
-//             Text(
-//               review,
-//               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-//             ),
-//             SizedBox(height: 5),
-//             Text(description),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class FAQSection extends StatelessWidget {
-//   final String title;
-//   final List<FAQItem> faqs;
-
-//   FAQSection({required this.title, required this.faqs});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Text(
-//           title,
-//           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//         ),
-//         SizedBox(height: 10),
-//         ...faqs.map((faq) => FAQCard(faq: faq)).toList(),
-//       ],
-//     );
-//   }
-// }
-
-// class FAQItem {
-//   final String question;
-//   final String answer;
-
-//   FAQItem({required this.question, required this.answer});
-// }
-
-// class FAQCard extends StatelessWidget {
-//   final FAQItem faq;
-
-//   FAQCard({required this.faq});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       margin: const EdgeInsets.symmetric(vertical: 10),
-//       child: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(
-//               faq.question,
-//               style: TextStyle(fontWeight: FontWeight.bold),
-//             ),
-//             SizedBox(height: 5),
-//             Text(faq.answer),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

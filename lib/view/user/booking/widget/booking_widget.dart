@@ -26,8 +26,9 @@ class FAQSection extends StatelessWidget {
 class FAQItem {
   final String question;
   final String answer;
+  
 
-  FAQItem({required this.question, required this.answer});
+  FAQItem({required this.question, required this.answer,});
 }
 
 class FAQCard extends StatelessWidget {
@@ -50,6 +51,7 @@ class FAQCard extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Text(faq.answer),
+            
           ],
         ),
       ),

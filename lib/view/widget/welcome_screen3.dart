@@ -56,7 +56,7 @@ class _SplashScreenState extends State<WelcomeScreen3> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 0,
                     ),
                     SizedBox(
                       height: 50,

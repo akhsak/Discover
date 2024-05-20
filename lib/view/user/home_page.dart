@@ -100,17 +100,18 @@ class Homepage extends StatelessWidget {
                             categoryName: 'Hotel',
                             iconData: Icons.hotel,
                           ),
-                          CategoryCard(
-                            categoryName: 'Message',
-                            iconData: Icons.message,
-                          ),
+                          
                           CategoryCard(
                             categoryName: 'Oversea',
                             iconData: Icons.flight,
-                          ),
-                          CategoryCard(
+                          ),                      
+                        CategoryCard(
                             categoryName: 'Restaurant',
                             iconData: Icons.restaurant,
+                          ),
+                          CategoryCard(
+                            categoryName: 'Train',
+                            iconData: Icons.train,
                           ),
                         ],
                       ),

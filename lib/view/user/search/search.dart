@@ -1,3 +1,4 @@
+import 'package:discover/view/user/wishlist.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
@@ -33,7 +34,8 @@ class SearchPage extends StatelessWidget {
               // contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
               suffixIcon: Icon(Icons.search),
             ),
-            onSubmitted: (value) {},
+            onSubmitted: (value) {
+            },
           ),
         ),
       ),
@@ -66,10 +68,15 @@ class SearchPage extends StatelessWidget {
               child: ListView(
                 children: [
                   recommendedCard(
+                    context,
                       'Long-Tail Boat Charter', 'assets/splash1.img.jpeg'),
                   recommendedCard(
+                    context,
+
                       'Koh Rong Samloem', 'assets/splash1.img.jpeg'),
-                  recommendedCard('Tokyo, Japan', 'assets/splash1.img.jpeg'),
+                  recommendedCard(
+                    context
+                    ,'Tokyo, Japan', 'assets/splash1.img.jpeg'),
                 ],
               ),
             ),
@@ -79,7 +86,7 @@ class SearchPage extends StatelessWidget {
     );
   }
 
-  Widget recommendedCard(String title, String imagePath) {
+  Widget recommendedCard(BuildContext context,String title, String imagePath) {
     return Container(
       margin: EdgeInsets.only(bottom: 16),
       child: Column(
@@ -106,7 +113,10 @@ class SearchPage extends StatelessWidget {
                   ),
                   child: IconButton(
                     icon: Icon(Icons.favorite_border),
-                    onPressed: () {},
+                    onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder:(context)=> WishList()));
+
+                    },
                   ),
                 ),
               ),
