@@ -1,5 +1,3 @@
-
-
 import 'package:discover/view/user/booking/date_page.dart';
 import 'package:discover/view/user/booking/widget/booking_widget.dart';
 import 'package:discover/view/user/booking/widget/review.dart';
@@ -7,17 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BookingDetailScreen extends StatelessWidget {
-  final String imageUrl = 'assets/splash1.img.jpeg'; // Replace with your image URL
- // final String mapImageUrl = 'https://maps.googleapis.com/maps/api/staticmap?center=Bora+Bora&zoom=12&size=600x300&maptype=roadmap&markers=color:red%7Clabel:C%7C-16.500412,151.741490'; // Replace with your map image URL
-
-  // void _bookNow() async {
-  //   const url = 'https://booking.example.com';
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
+  final String imageUrl =
+      'assets/splash1.img.jpeg'; // Replace with your image URL
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +52,51 @@ class BookingDetailScreen extends StatelessWidget {
                   SizedBox(height: 8),
                   Row(
                     children: [
-                      ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.abc), label: Text('aa')),
-                      ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.abc), label: Text('aa')),
-                                            ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.abc), label: Text('aa'))
+                      ElevatedButton.icon(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(
+                                    color: Color.fromARGB(255, 205, 198, 198),
+                                  ),
+                                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                        ),
+                        icon: Icon(Icons.train),
+                        label: Text('Bus'),
+                      ),
+                      SizedBox(width: 50,),
+                      ElevatedButton.icon(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(
+                                    color: Color.fromARGB(255, 205, 198, 198),
+                                  ),
+                                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                        ),
+                        icon: Icon(Icons.punch_clock),
+                        label: Text('1 day ago'),
+                      ),
+                  SizedBox(width: 50,),
 
-
-                      // Icon(Icons.wifi, size: 30),
-                      // SizedBox(width: 16),
-                      // Icon(Icons.king_bed, size: 30),
+                      ElevatedButton.icon(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(
+                                    color: Color.fromARGB(255, 205, 198, 198),
+                                  ),
+                                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                        ),
+                        icon: Icon(Icons.abc),
+                        label: Text('id'),
+                      ),
                     ],
                   ),
                   SizedBox(height: 16),
@@ -103,14 +129,14 @@ class BookingDetailScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Image.asset(
-                          'assets/splash1.img.jpeg', 
+                                'assets/splash1.img.jpeg',
                                 fit: BoxFit.cover,
                               ),
                             ),
                             SizedBox(width: 10),
                             Expanded(
                               child: Image.asset(
-                          'assets/splash1.img.jpeg', 
+                                'assets/splash1.img.jpeg',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -118,24 +144,78 @@ class BookingDetailScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         Center(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text('See all 20 photos'),
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 170),
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                // padding: EdgeInsets.symmetric(horizontal: 130, ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0),
+                                  side: const BorderSide(
+                                    color: Color.fromARGB(255, 205, 198, 198),
+                                  ),
+                                ),
+                              ),
+                              child: Text(
+                                'See all 20 photos',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 20),
                         Text(
                           'Reviews',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 5),
+                        // SizedBox(height: 5),
                         Row(
                           children: [
-                            Text('4.5 (200 reviews)', style: TextStyle(color: Colors.grey)),
-                            SizedBox(width: 185),
-                            IconButton(onPressed: (){
-                              
-                            }, icon: Icon(Icons.message))
+                            Text('4.5 (200 reviews)',
+                                style: TextStyle(color: Colors.grey)),
+                            Spacer(),
+                            IconButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    TextEditingController reviewController =
+                                        TextEditingController();
+                                    return AlertDialog(
+                                      title: Text('Add a Review'),
+                                      content: TextField(
+                                        controller: reviewController,
+                                        decoration: InputDecoration(
+                                            hintText: 'Write your review here'),
+                                        maxLines: 3,
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            // Handle review submission
+                                            String review =
+                                                reviewController.text;
+                                            print('Review submitted: $review');
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('OK'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(Icons.message),
+                            ),
                           ],
                         ),
                         SizedBox(height: 10),
@@ -150,83 +230,45 @@ class BookingDetailScreen extends StatelessWidget {
                           date: 'Dec 2021',
                           review: 'Good Place',
                           description:
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisi ipsum, pretium dignissim blandit sed.',
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                         ),
                         SizedBox(height: 20),
-                        // FAQSection(
-                        //   title: 'People frequently ask',
-                        //   faqs: [
-                        //     FAQItem(
-                        //       question: 'About this place',
-                        //       answer:
-                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
-                        //     ),
-                        //     FAQItem(
-                        //       question: 'Term and condition',
-                        //       answer:
-                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
-                        //     ),
-                        //     FAQItem(
-                              
-                        //       question: 'Cancelation Policy',
-                        //       answer:
-                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
-                        //     ),
-                        //   ],
-                        // ),
                         SizedBox(height: 16),
                         Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '\$600/Person',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blue),
-                    ),
-                    SizedBox(
-                      width: 200,
-                      child: ElevatedButton(
-                        onPressed: () {
-                        //  if (_formKey.currentState?.validate() ?? false) {}
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DatePage()));
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 20),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '\$600/Person',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue),
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DatePage()));
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blue,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 20),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Book Now',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        child: Text(
-                          'Book Now',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                        // ElevatedButton(
-                        //   onPressed: () {
-                        //     Navigator.push(context, MaterialPageRoute(builder: (context) => DatePage()));
-                        //   },
-                        //   style: ElevatedButton.styleFrom(
-                        //     padding: EdgeInsets.symmetric(vertical: 15.0),
-                        //     backgroundColor: Colors.blue,
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(10.0),
-                        //     ),
-                        //   ),
-                        //   child: Center(
-                        //     child: Text(
-                        //       'Book Now',
-                        //       style: TextStyle(fontSize: 16.0, color: Colors.white),
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -239,4 +281,3 @@ class BookingDetailScreen extends StatelessWidget {
     );
   }
 }
-

@@ -34,7 +34,7 @@ class ReviewCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text(date, style: TextStyle(color: Colors.grey)),
+                    Text(date, style: TextStyle(color: const Color.fromARGB(255, 33, 31, 31))),
                   ],
                 ),
               ],
