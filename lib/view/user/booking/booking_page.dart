@@ -1,18 +1,16 @@
 import 'package:discover/view/user/booking/date_page.dart';
-import 'package:discover/view/user/booking/widget/booking_widget.dart';
 import 'package:discover/view/user/booking/widget/review.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class BookingDetailScreen extends StatelessWidget {
-  final String imageUrl =
-      'assets/splash1.img.jpeg'; // Replace with your image URL
+  // final String imageUrl =
+  //     'assets/splash1.img.jpeg'; // Replace with your image URL
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Booking'),
+        title: Text('Booking',style: TextStyle(fontWeight: FontWeight.bold),),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -25,7 +23,7 @@ class BookingDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              imageUrl,
+              'assets/splash1.img.jpeg',
               width: double.infinity,
               height: 200,
               fit: BoxFit.cover,
@@ -44,7 +42,10 @@ class BookingDetailScreen extends StatelessWidget {
                     'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
                     style: TextStyle(fontSize: 16),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 40),
+                                    Divider(color: Colors.grey,),
+                  SizedBox(height: 40),
+
                   Text(
                     'What is included',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -63,10 +64,11 @@ class BookingDetailScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(0),
                   ),
                         ),
-                        icon: Icon(Icons.train),
-                        label: Text('Bus'),
+                        icon: Icon(Icons.train,color: Colors.black,),
+                        label: Text('Bus\nTransportaion',style: TextStyle(color: Colors.black),),
+                        
                       ),
-                      SizedBox(width: 50,),
+                      SizedBox(width: 30,),
                       ElevatedButton.icon(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -78,33 +80,37 @@ class BookingDetailScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(0),
                   ),
                         ),
-                        icon: Icon(Icons.punch_clock),
-                        label: Text('1 day ago'),
+                        icon: Icon(Icons.punch_clock,color: Colors.black,),
+                        label: Text('2 day ago\n Duration',style: TextStyle(color: Colors.black),),
                       ),
                   SizedBox(width: 50,),
 
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          side: const BorderSide(
-                                    color: Color.fromARGB(255, 205, 198, 198),
-                                  ),
-                                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                        ),
-                        icon: Icon(Icons.abc),
-                        label: Text('id'),
-                      ),
+                  //     ElevatedButton.icon(
+                  //       onPressed: () {},
+                  //       style: ElevatedButton.styleFrom(
+                  //         side: const BorderSide(
+                  //                   color: Color.fromARGB(255, 205, 198, 198),
+                  //                 ),
+                  //                 backgroundColor: Colors.white,
+                  // shape: RoundedRectangleBorder(
+                  //   borderRadius: BorderRadius.circular(0),
+                  // ),
+                  //       ),
+                  //       icon: Icon(Icons.abc),
+                  //       label: Text('id'),
+                  //     ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                                    SizedBox(height: 40),
+
+                                    Divider(color: Colors.grey,),
+
+                  SizedBox(height: 40),
                   Text(
                     'Where will you stay',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 20),
                   SingleChildScrollView(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
