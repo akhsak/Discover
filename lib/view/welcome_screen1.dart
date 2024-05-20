@@ -25,7 +25,14 @@ class _SplashScreenState extends State<WelcomeScreen1> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-           
+              Padding(
+                padding: const EdgeInsets.only(right: 250),
+                child: Container(
+                        height: 150,
+                        width: 100,
+                        decoration:BoxDecoration( image: DecorationImage(image: AssetImage('assets/icon_white.png'))),
+                      ),
+              ),SizedBox(height: 20,),
             Container(
                 height: 300,
                 width: 350,
@@ -35,6 +42,7 @@ class _SplashScreenState extends State<WelcomeScreen1> {
                     border: Border.all(color: Colors.white)),
                 child: Column(
                   children: [
+                 
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: Text(

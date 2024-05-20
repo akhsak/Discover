@@ -57,20 +57,25 @@ class BookingDetailScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'What to expect:',
+                    'What is included',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Row(
                     children: [
-                      Icon(Icons.wifi, size: 30),
-                      SizedBox(width: 16),
-                      Icon(Icons.king_bed, size: 30),
+                      ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.abc), label: Text('aa')),
+                      ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.abc), label: Text('aa')),
+                                            ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.abc), label: Text('aa'))
+
+
+                      // Icon(Icons.wifi, size: 30),
+                      // SizedBox(width: 16),
+                      // Icon(Icons.king_bed, size: 30),
                     ],
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Where you\'ll stay:',
+                    'Where will you stay',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
@@ -124,7 +129,15 @@ class BookingDetailScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 5),
-                        Text('4.5 (200 reviews)', style: TextStyle(color: Colors.grey)),
+                        Row(
+                          children: [
+                            Text('4.5 (200 reviews)', style: TextStyle(color: Colors.grey)),
+                            SizedBox(width: 185),
+                            IconButton(onPressed: (){
+                              
+                            }, icon: Icon(Icons.message))
+                          ],
+                        ),
                         SizedBox(height: 10),
                         ReviewCard(
                           name: 'Jack Daniel',
@@ -140,27 +153,27 @@ class BookingDetailScreen extends StatelessWidget {
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisi ipsum, pretium dignissim blandit sed.',
                         ),
                         SizedBox(height: 20),
-                        FAQSection(
-                          title: 'People frequently ask',
-                          faqs: [
-                            FAQItem(
-                              question: 'About this place',
-                              answer:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
-                            ),
-                            FAQItem(
-                              question: 'Term and condition',
-                              answer:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
-                            ),
-                            FAQItem(
+                        // FAQSection(
+                        //   title: 'People frequently ask',
+                        //   faqs: [
+                        //     FAQItem(
+                        //       question: 'About this place',
+                        //       answer:
+                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
+                        //     ),
+                        //     FAQItem(
+                        //       question: 'Term and condition',
+                        //       answer:
+                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
+                        //     ),
+                        //     FAQItem(
                               
-                              question: 'Cancelation Policy',
-                              answer:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
-                            ),
-                          ],
-                        ),
+                        //       question: 'Cancelation Policy',
+                        //       answer:
+                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non ex, nunc, urna, in odio.',
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(height: 16),
                         Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
