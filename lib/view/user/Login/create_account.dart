@@ -74,7 +74,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       child: TextFormField(
                         controller: _countryCodeController,
                         decoration: InputDecoration(
-                          prefixText: '+91',
+                          labelText: '+91',
                           border: OutlineInputBorder(),
                         ),
                         // validator: (value) {
