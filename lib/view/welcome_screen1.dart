@@ -12,6 +12,7 @@ class WelcomeScreen1 extends StatefulWidget {
 class _SplashScreenState extends State<WelcomeScreen1> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Container(
         height: double.infinity,

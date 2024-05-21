@@ -12,14 +12,31 @@ class DetalBooking extends StatefulWidget {
 
 class _DetalBookingState extends State<DetalBooking> {
   final _formKey = GlobalKey<FormState>();
+  final _guestNameController = TextEditingController();
+  final _guestNumberController = TextEditingController();
+  final _countryCodeController = TextEditingController(text: '+91');
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _idNumberController = TextEditingController();
+  
+  bool _obscureText = true;
 
-  @override
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -44,6 +61,7 @@ class _DetalBookingState extends State<DetalBooking> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  controller: _guestNameController,
                   decoration: InputDecoration(
                     labelText: 'Guest name',
                     border: OutlineInputBorder(),
@@ -57,6 +75,7 @@ class _DetalBookingState extends State<DetalBooking> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  controller: _guestNumberController,
                   decoration: InputDecoration(
                     labelText: 'Guest number',
                     border: OutlineInputBorder(),
@@ -74,8 +93,9 @@ class _DetalBookingState extends State<DetalBooking> {
                     Container(
                       width: 80,
                       child: TextFormField(
+                        controller: _countryCodeController,
                         decoration: InputDecoration(
-                          prefixText: '+91',
+                          prefixText: '',
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
@@ -89,15 +109,15 @@ class _DetalBookingState extends State<DetalBooking> {
                     SizedBox(width: 10),
                     Expanded(
                       child: TextFormField(
+                        controller: _phoneController,
                         decoration: InputDecoration(
                           labelText: 'Phone',
                           border: OutlineInputBorder(),
-                          
                         ),
                         keyboardType: TextInputType.number,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        readOnly: true,
-                        
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter phone number';
@@ -110,6 +130,7 @@ class _DetalBookingState extends State<DetalBooking> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
@@ -123,11 +144,17 @@ class _DetalBookingState extends State<DetalBooking> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  obscureText: true,
+                  controller: _idNumberController,
+                  obscureText: _obscureText,
                   decoration: InputDecoration(
                     labelText: 'ID Number',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.visibility),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: _togglePasswordVisibility,
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -149,12 +176,10 @@ class _DetalBookingState extends State<DetalBooking> {
                       width: 200,
                       child: ElevatedButton(
                         onPressed: () {
-                         // if (_formKey.currentState?.validate() ?? false) {}
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) => BookingSucsess()));
-                       },
+                          if (_formKey.currentState?.validate() ?? false) {
+                            // Perform booking success action
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
                           padding: EdgeInsets.symmetric(

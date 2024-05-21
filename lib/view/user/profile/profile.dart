@@ -1,4 +1,5 @@
 import 'package:discover/view/user/booking/booking_page.dart';
+import 'package:discover/view/user/booking/my_booking.dart';
 import 'package:discover/view/user/profile/widget_prfl.dart';
 import 'package:discover/view/user/wishlist.dart';
 import 'package:discover/widgets/normal_widget.dart';
@@ -73,7 +74,7 @@ class UserProfileScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    BookingDetailScreen()));
+                                   MyBooking()));
                       },
                       icon: const Icon(Icons.arrow_forward_ios)),
                 ),

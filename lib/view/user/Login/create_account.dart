@@ -186,6 +186,7 @@
 //   }
 // }
 
+import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/view/user/Login/success_create.dart';
 import 'package:flutter/material.dart';
 
@@ -365,32 +366,44 @@ class _CreateAccountState extends State<CreateAccount> {
                     ),
                   ),
                 ),
-                //SizedBox(height: 20),
+
+                SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Center(
-                    child: TextButton(
-                      onPressed: () {
-                        // Navigate to create account screen
-                      },
-                      child: Text.rich(
-                        TextSpan(
-                          text: "Already have an account?",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 118, 114, 114),
-                            fontSize: 11,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: 'sign in',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  padding: const EdgeInsets.only(left: 60),
+                  child: Row(
+                    children: [
+                      Text("Already have an account?"),
+                      TextButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                      }, child: Text('sign in',style: TextStyle(color: Colors.black),))
+                    ],
                   ),
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.all(20),
+                //   child: Center(
+                //     child: TextButton(
+                //       onPressed: () {
+                //         // Navigate to create account screen
+                //       },
+                //       child: Text.rich(
+                //         TextSpan(
+                //           text: "Already have an account?",
+                //           style: TextStyle(
+                //             color: Color.fromARGB(255, 118, 114, 114),
+                //             fontSize: 11,
+                //           ),
+                //           children: [
+                //             TextSpan(
+                //               text: 'sign in',
+                //               style: TextStyle(color: Colors.black),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
