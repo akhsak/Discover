@@ -70,7 +70,7 @@ class _DatePageState extends State<DatePage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(17),
                           ),
-                      backgroundColor: Color.fromARGB(255, 215, 208, 208), // Set color for the back button if needed
+                      backgroundColor: Color.fromARGB(255, 215, 208, 208),
                     ),
                     child: const Text('Back',style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                   ),

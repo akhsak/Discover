@@ -1,3 +1,5 @@
+
+
 import 'package:discover/view/widget/welcome_screen3.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +13,13 @@ class WelcomeScreen2 extends StatefulWidget {
 class _SplashScreenState extends State<WelcomeScreen2> {
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
+        height: screenHeight,
+        width: screenWidth,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/splash1.img.jpeg'),
@@ -24,75 +29,82 @@ class _SplashScreenState extends State<WelcomeScreen2> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-             Padding(
-                padding: const EdgeInsets.only(right: 250),
-                child: Container(
-                        height: 150,
-                        width: 100,
-                        decoration:BoxDecoration( image: DecorationImage(image: AssetImage('assets/icon_white.png'))),
-                      ),
-              ),SizedBox(height: 20,),
-            Container(
-                height: 300,
-                width: 350,
+            Padding(
+              padding: EdgeInsets.only(right: screenWidth * 0.50),
+              child: Container(
+                height: screenHeight * 0.15,
+                width: screenWidth * 0.25,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.white)),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10,right: 150,top: 30),
+                  image: DecorationImage(image: AssetImage('assets/icon_white.png'))
+                ),
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.02),
+            Container(
+              height: screenHeight * 0.3,
+              width: screenWidth * 0.9,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: Colors.white),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: screenWidth * 0.03, right: screenWidth * 0.4, top: screenHeight * 0.03),
+                    child: Text(
+                      'Visit tourist \nattractions',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontSize: screenHeight * 0.03,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(screenHeight * 0.02),
+                    child: Text(
+                      'Find thousands of tourist destinations ready for you to visit',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: screenHeight * 0.02,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  SizedBox(
+                    height: screenHeight * 0.05,
+                    width: screenWidth * 0.75,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        minimumSize: Size(screenWidth * 0.75, screenHeight * 0.05),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)
+                        )
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WelcomeScreen3()
+                          )
+                        );
+                      },
                       child: Text(
-                        'Visit tourist \nattractions',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          fontSize: 27,
-                        ),
+                        'Next',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(18),
-                      child: Text(
-                        'Find thousans of tourist destinations ready for you to visit',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 300,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            minimumSize: Size(250, 50),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)) ),
-                            
-                            
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => WelcomeScreen3()));
-                        },
-                        child: Text(
-                          'Next',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    )
-                  ],
-                )),
-            SizedBox(height: 100),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.1),
           ],
         ),
       ),
     );
   }
 }
+

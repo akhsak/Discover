@@ -1,3 +1,4 @@
+import 'package:discover/view/user/booking/conform_payment.dart';
 import 'package:discover/view/user/booking/success_booking.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -176,9 +177,11 @@ class _DetalBookingState extends State<DetalBooking> {
                       width: 200,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            // Perform booking success action
-                          }
+                          // if (_formKey.currentState?.validate() ?? false) {
+                          //   // Perform booking success action
+
+                          // }
+                          Navigator.push(context, MaterialPageRoute(builder:(context)=>ConformPayment()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,

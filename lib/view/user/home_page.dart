@@ -12,19 +12,21 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(scrollDirection: Axis.vertical,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Stack(
           children: [
             Positioned(
               child: Image.asset(
                 'assets/splash1.img.jpeg',
-                height: size.height * 0.6,
+                height: size.height * 0.5,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 150),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10, vertical: 150),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -72,54 +74,7 @@ class Homepage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // const SizedBox(height: 20),
-                  // SizedBox(
-                  //   height: 70,
-                  //   child: ListView.builder(
-                  //     scrollDirection: Axis.horizontal,
-                  //     itemCount: 4,
-                  //     itemBuilder: (context, index) {
-                  //       return Padding(
-                  //         padding: const EdgeInsets.only(right: 10),
-                  //         child: CategoryCard(
-                  //           categoryName: 'Category $index',
-                  //           iconData: Icons.hotel,
-                  //         ),
-                          
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
-                   const SizedBox(height: 20),
-                  SizedBox(
-                    height: 70,
-                    child: SingleChildScrollView(scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          CategoryCard(
-                            categoryName: 'Hotel',
-                            iconData: Icons.hotel,
-                          ),
-                          
-                          CategoryCard(
-                            categoryName: 'Oversea',
-                            iconData: Icons.flight,
-                          ),                      
-                        CategoryCard(
-                            categoryName: 'Restaurant',
-                            iconData: Icons.restaurant,
-                          ),
-                          CategoryCard(
-                            categoryName: 'Train',
-                            iconData: Icons.train,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 50),
-                 
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 100),
                   const Text(
                     'Popular Packages in Asia',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -127,43 +82,49 @@ class Homepage extends StatelessWidget {
                   const SizedBox(height: 16),
                   SizedBox(
                     height: 250,
-                    child: GestureDetector(onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingDetailScreen()));
-                    },
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BookingDetailScreen()));
+                      },
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return expandedTripCard(context,
+                          return expandedTripCard(
+                            context,
                             'Destination $index',
                             'assets/splash1.img.jpeg',
                           );
-                          
                         },
                       ),
-                      
                     ),
                   ),
-                   const Text(
+                  const Text(
                     'Expanding your trip around the world',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
                     height: 200,
-                    child: GestureDetector(onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingDetailScreen()));
-                    },
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BookingDetailScreen()));
+                      },
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return popularPackageCard(context,
+                          return popularPackageCard(
+                            context,
                             '',
                             'assets/splash1.img.jpeg',
-                            
                           );
-                          
                         },
                       ),
                     ),
@@ -173,20 +134,24 @@ class Homepage extends StatelessWidget {
                     'Travel beyond the boundary',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                 const SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   SizedBox(
                     height: 250,
-                    child: GestureDetector(onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingDetailScreen()));
-                    },
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BookingDetailScreen()));
+                      },
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
                         itemBuilder: (context, index) {
                           return Positioned(
-                            
-                           // bottom: IconButton(onPressed: (){}, icon: Icons.favorite),
-                            child: expandedTripCard(context,
+                            // bottom: IconButton(onPressed: (){}, icon: Icons.favorite),
+                            child: expandedTripCard(
+                              context,
                               'City $index',
                               'assets/splash1.img.jpeg',
                             ),
@@ -195,53 +160,6 @@ class Homepage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // const SizedBox(height: 50),
-                  // SizedBox(
-                  //   height: size.height * 0.1,
-                  //   child: ListView.builder(
-                  //     scrollDirection: Axis.horizontal,
-                  //     itemCount: 4,
-                  //     itemBuilder: (context, index) {
-                  //       return Padding(
-                  //         padding: const EdgeInsets.symmetric(horizontal: 10),
-                  //         child: GestureDetector(
-                  //           onTap: () {
-                  //             Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                 builder: (context) =>
-                  //                     BookingDetailScreen(),
-                  //               ),
-                  //             );
-                  //           },
-                  //           child: Stack(
-                  //             children: [
-                  //               Expanded(
-                  //                 child: ClipRRect(
-                  //                   borderRadius: BorderRadius.circular(16),
-                  //                   child: Image.asset(
-                  //                     'assets/splash1.img.jpeg',
-                  //                     height: 200,
-                  //                     width: 100,
-                  //                     fit: BoxFit.cover,
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //               // const Positioned(
-                  //               //   top: 8,
-                  //               //   right: 8,
-                  //               //   child: Icon(
-                  //               //     Icons.favorite_border,
-                  //               //     color: Colors.black,
-                  //               //   ),
-                  //               // ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -251,4 +169,3 @@ class Homepage extends StatelessWidget {
     );
   }
 }
-

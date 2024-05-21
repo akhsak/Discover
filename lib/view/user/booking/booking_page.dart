@@ -81,7 +81,7 @@ class BookingDetailScreen extends StatelessWidget {
                   ),
                         ),
                         icon: Icon(Icons.punch_clock,color: Colors.black,),
-                        label: Text('2 day ago\n Duration',style: TextStyle(color: Colors.black),),
+                        label: Text('2 days\n Duration',style: TextStyle(color: Colors.black),),
                       ),
                   SizedBox(width: 50,),
 
