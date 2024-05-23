@@ -19,7 +19,7 @@ class _DetalBookingState extends State<DetalBooking> {
   final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
   final _idNumberController = TextEditingController();
-  
+
   bool _obscureText = true;
 
   void _togglePasswordVisibility() {
@@ -28,8 +28,12 @@ class _DetalBookingState extends State<DetalBooking> {
     });
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
+    // Get screen size
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -40,7 +44,7 @@ class _DetalBookingState extends State<DetalBooking> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(screenWidth * 0.04),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Form(
@@ -52,15 +56,16 @@ class _DetalBookingState extends State<DetalBooking> {
                   'Detail Booking',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: screenHeight * 0.03,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
                 Text(
                   'Get the best out of derleng by creating an account',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(
+                      color: Colors.grey, fontSize: screenHeight * 0.02),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
                 TextFormField(
                   controller: _guestNameController,
                   decoration: InputDecoration(
@@ -74,7 +79,7 @@ class _DetalBookingState extends State<DetalBooking> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
                 TextFormField(
                   controller: _guestNumberController,
                   decoration: InputDecoration(
@@ -88,11 +93,11 @@ class _DetalBookingState extends State<DetalBooking> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
                 Row(
                   children: [
                     Container(
-                      width: 80,
+                      width: screenWidth * 0.2,
                       child: TextFormField(
                         controller: _countryCodeController,
                         decoration: InputDecoration(
@@ -107,7 +112,7 @@ class _DetalBookingState extends State<DetalBooking> {
                         },
                       ),
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(width: screenWidth * 0.02),
                     Expanded(
                       child: TextFormField(
                         controller: _phoneController,
@@ -129,7 +134,7 @@ class _DetalBookingState extends State<DetalBooking> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
@@ -143,7 +148,7 @@ class _DetalBookingState extends State<DetalBooking> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
                 TextFormField(
                   controller: _idNumberController,
                   obscureText: _obscureText,
@@ -164,29 +169,34 @@ class _DetalBookingState extends State<DetalBooking> {
                     return null;
                   },
                 ),
-                SizedBox(height: 200),
+                SizedBox(height: screenHeight * 0.05),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '\$1200/2 Person',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: screenHeight * 0.025,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
                     ),
                     SizedBox(
-                      width: 200,
+                      width: screenWidth * 0.4,
                       child: ElevatedButton(
                         onPressed: () {
-                          // if (_formKey.currentState?.validate() ?? false) {
-                          //   // Perform booking success action
-
-                          // }
-                          Navigator.push(context, MaterialPageRoute(builder:(context)=>ConformPayment()));
+                          if (_formKey.currentState?.validate() ?? false) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ConformPayment()));
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
                           padding: EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 20),
+                            vertical: screenHeight * 0.02,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),

@@ -51,7 +51,15 @@ class _SplashScreenState extends State<WelcomeScreen3> {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 70,bottom: 30,top: 20),
+                   
+                   padding: EdgeInsets.only(
+                    // right: 70,
+                    // bottom: 30,
+                    // top: 20
+                    left: screenWidth * 0.01,
+                        right: screenWidth * 0.1,
+                        top: screenHeight * 0.02
+                    ),
                     child: Text(
                       'Lets explore the world',
                       style: TextStyle(

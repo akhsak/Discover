@@ -1,4 +1,3 @@
-
 import 'package:discover/view/user/Login/create_account.dart';
 import 'package:discover/view/user/Login/forget_pswrd/forget.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +48,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     // Get the screen size
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Padding(
@@ -194,125 +193,84 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 SizedBox(height: screenHeight * 0.01),
-                // ElevatedButton.icon(
-                //   onPressed: () {
-                //     // Handle Google sign-in
-                //   },
-                //   icon: Image.asset(
-                //     'assets/Google.png', // Replace with Google icon URL
-                //     height: screenHeight * 0.025,
-                //   ),
-                //   label: Text('Sign in with Google'),
-                //   style: ElevatedButton.styleFrom(
-                //     foregroundColor: Colors.black,
-                //     backgroundColor: Colors.white,
-                //     padding: EdgeInsets.symmetric(
-                //         horizontal: screenWidth * 0.15,
-                //         vertical: screenHeight * 0.025),
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(16),
-                //     ),
-                //   ),
-                // ),ElevatedButton.icon(
-                //   onPressed: () {
-                //     // Handle Google sign-in
-                //   },
-                //   icon: Image.asset(
-                //     'assets/phonecall-img.png', // Replace with Google icon URL
-                //     height: screenHeight * 0.025,
-                //   ),
-                //   label: Text('Sign in with phone'),
-                //   style: ElevatedButton.styleFrom(
-                //     foregroundColor: Colors.black,
-                //     backgroundColor: Colors.white,
-                //     padding: EdgeInsets.symmetric(
-                //         horizontal: screenWidth * 0.15,
-                //         vertical: screenHeight * 0.025),
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(16),
-                //     ),
-                //   ),
-                // ),
-              SizedBox(height: screenHeight * 0.02),
-
-                TextButton.icon(
-                  onPressed: () {
-                    // Handle Google sign-in
-                  },
-                  icon: Image.asset(
-                    'assets/Google.png', // Replace with Google icon URL
-                    height: screenHeight * 0.025,
-                  ),
-                  label: Text('Sign in with Google'),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    backgroundColor: Colors.white,
-                    // padding: EdgeInsets.symmetric(
-                    //     horizontal: screenWidth * 0.15,
-                    //     vertical: screenHeight * 0.025),
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(16),
-                    // ),
-                  ),
-                ),
-               // SizedBox(height: screenHeight * 0.02),
-                TextButton.icon(
-                  onPressed: () {
-                    // Handle phone sign-in
-                  },
-                  icon: Image.asset(
-                    'assets/phonecall-img.png', // Replace with phone icon URL
-                    height: screenHeight * 0.025,
-                  ),
-                  label: Text('Sign in with phone'),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    backgroundColor: Colors.white,
-
-                  ),
-                ),
-
-              //  Padding(
-              //     padding: const EdgeInsets.only(left: 120),
-              //     child: Row(
-              //       children: [
-              //         IconButton(
-              //             onPressed: () {}, 
-              //             icon: Image.asset(
-              //               'assets/Google.png',
-              //               height: screenHeight * 0.050,
-              //             )),
-              //             SizedBox(width: 30,),
-              //         IconButton(
-              //             onPressed: () {},
-              //             icon: Image.asset(
-              //               'assets/phonecall-img.png',
-              //               height: screenHeight * 0.050,
-              //             ))
-              //       ],
-              //     ),
-              //   ),
-               // SizedBox(height: screenHeight * 0.2),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Doesn't have an account on Discover?",
-                    ),
-                    TextButton(
+                    ElevatedButton.icon(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CreateAccount()));
+                        // Handle Google sign-in
                       },
-                      child: Text(
-                        'Create Account',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w500),
+                      icon: Image.asset(
+                        'assets/Google.png', // Replace with Google icon URL
+                        height: screenHeight * 0.025,
                       ),
+                      label: Text('Google'),
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          backgroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.04,
+                              vertical: screenHeight * 0.02),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          side: BorderSide(color: Colors.grey)),
+                    ),
+                    SizedBox(
+                        width: screenWidth *
+                            0.02), // Adjust the width to reduce space
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        // Handle phone sign-in
+                      },
+                      icon: Image.asset(
+                        'assets/phonecall-img.png', // Replace with phone icon URL
+                        height: screenHeight * 0.025,
+                      ),
+                      label: Text('Phone'),
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          backgroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.05,
+                              vertical: screenHeight * 0.02),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          side: BorderSide(color: Colors.grey)),
                     ),
                   ],
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      // left: screenWidth * 0.03,
+                      // right: screenWidth * 0.4,
+                      ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Doesn't have an account on Discover?",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateAccount()));
+                        },
+                        child: Text(
+                          'Create Account',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

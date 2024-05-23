@@ -155,15 +155,15 @@ class _CreateAccountState extends State<CreateAccount> {
                     return null;
                   },
                 ),
-                SizedBox(height: 70),
+                SizedBox(height: 50),
                 Center(
                   child: SizedBox(
                     width: 350,
                     child: ElevatedButton(
                       onPressed: () {
-                        // if (_formKey.currentState?.validate() ?? false) {
+                       if (_formKey.currentState?.validate() ?? false) {
                         //   // Handle account creation logic
-                        // }
+                         }
                         Navigator.push(context, MaterialPageRoute(builder: ((context) =>SuccessAccount() )));
                       },
                       style: ElevatedButton.styleFrom(

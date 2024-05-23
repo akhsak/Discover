@@ -64,11 +64,11 @@ class BookingDetailScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(0),
                   ),
                         ),
-                        icon: Icon(Icons.train,color: Colors.black,),
+                        icon: Icon(Icons.train,color: Colors.black),
                         label: Text('Bus\nTransportaion',style: TextStyle(color: Colors.black),),
                         
                       ),
-                      SizedBox(width: 30,),
+                      SizedBox(width: 25,),
                       ElevatedButton.icon(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(

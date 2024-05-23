@@ -1,5 +1,3 @@
-
-
 import 'package:discover/view/widget/welcome_screen3.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +33,8 @@ class _SplashScreenState extends State<WelcomeScreen2> {
                 height: screenHeight * 0.15,
                 width: screenWidth * 0.25,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/icon_white.png'))
-                ),
+                    image: DecorationImage(
+                        image: AssetImage('assets/icon_white.png'))),
               ),
             ),
             SizedBox(height: screenHeight * 0.02),
@@ -51,7 +49,10 @@ class _SplashScreenState extends State<WelcomeScreen2> {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: screenWidth * 0.03, right: screenWidth * 0.4, top: screenHeight * 0.03),
+                    padding: EdgeInsets.only(
+                        left: screenWidth * 0.03,
+                        right: screenWidth * 0.4,
+                        top: screenHeight * 0.01),
                     child: Text(
                       'Visit tourist \nattractions',
                       style: TextStyle(
@@ -77,19 +78,16 @@ class _SplashScreenState extends State<WelcomeScreen2> {
                     width: screenWidth * 0.75,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        minimumSize: Size(screenWidth * 0.75, screenHeight * 0.05),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)
-                        )
-                      ),
+                          backgroundColor: Colors.blue,
+                          minimumSize:
+                              Size(screenWidth * 0.75, screenHeight * 0.05),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16))),
                       onPressed: () {
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WelcomeScreen3()
-                          )
-                        );
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WelcomeScreen3()));
                       },
                       child: Text(
                         'Next',
@@ -107,4 +105,3 @@ class _SplashScreenState extends State<WelcomeScreen2> {
     );
   }
 }
-
