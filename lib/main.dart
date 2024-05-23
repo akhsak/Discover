@@ -1,8 +1,14 @@
+import 'package:discover/controller/bottom.dart';
+import 'package:discover/firebase_options.dart';
 import 'package:discover/view/splash_second.dart';
 import 'package:discover/view/welcome_screen1.dart';
 import 'package:discover/widgets/bottombar.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-void main(){
+import 'package:provider/provider.dart';
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -11,9 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:SplashScreen(),
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context)=>BottomProvider(),),
+    ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:SplashScreen(),
+      ),
     );
   }
 }

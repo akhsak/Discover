@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "398146065972",
+    "project_id": "discover-travel-app",
+    "storage_bucket": "discover-travel-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398146065972:android:ab761ffb963b4f20a3dc61",
+        "android_client_info": {
+          "package_name": "com.example.discover"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398146065972-pou3ugk1nt7kna03mdbrojo54760tkon.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjeTLQcxnT2ne33K1oENA87zpB6NRWO5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398146065972-pou3ugk1nt7kna03mdbrojo54760tkon.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

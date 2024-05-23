@@ -180,7 +180,7 @@ class BookingDetailScreen extends StatelessWidget {
                         // SizedBox(height: 5),
                         Row(
                           children: [
-                            Text('4.5 (200 reviews)',
+                            Text('(200 reviews)',
                                 style: TextStyle(color: Colors.grey)),
                             Spacer(),
                             IconButton(

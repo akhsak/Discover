@@ -3,14 +3,9 @@
 import 'package:discover/view/user/Login/login_page.dart';
 import 'package:flutter/material.dart';
 
-class WelcomeScreen3 extends StatefulWidget {
+class WelcomeScreen3 extends StatelessWidget {
   const WelcomeScreen3({super.key});
 
-  @override
-  State<WelcomeScreen3> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<WelcomeScreen3> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
