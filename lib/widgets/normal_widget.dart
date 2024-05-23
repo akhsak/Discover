@@ -1,3 +1,4 @@
+import 'package:discover/view/user/profile/pages/help_page.dart';
 import 'package:discover/view/user/profile/pages/privacy_policy.dart';
 import 'package:discover/view/user/profile/pages/terms_condition.dart';
 import 'package:discover/widgets/textfield.dart';
@@ -44,13 +45,16 @@ Widget profileScreenContainer(context,
                 //icon: EneftyIcons.headphone_outline,
                 //iconColor: const Color(0xFF1995AD)
                 ),
-        // profileContainerListTile(context,
-        //     title: 'Log Out',
-        //     suffixIcon: false,
-        //     icon: Icons.logout,
-        //     //icon: EneftyIcons.logout_outline,
-        //     iconColor: Colors.red,
-        //     onTap: onTap),
+        profileContainerListTile(context,
+            title: 'Help',
+            suffixIcon: false,
+            icon: Icons.help,
+            //icon: EneftyIcons.logout_outline,
+            iconColor: Colors.black,
+            onTap: (){
+               Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HelpPage()));
+            }),
       ],
     ),
   );

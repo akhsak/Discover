@@ -22,7 +22,7 @@ class ConformPayment extends StatelessWidget {
   Widget build(BuildContext context) {
     // Dummy data for payment confirmation
     final paymentData = {
-      'Name': 'John Doe',
+      'Name': 'Akhsa',
       'Amount': '\$100.00',
       'Date': '21 May 2024',
       'Payment Method': 'Credit Card',
@@ -66,6 +66,12 @@ class ConformPayment extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Go Back'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
                     // Action to confirm the payment
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -76,12 +82,7 @@ class ConformPayment extends StatelessWidget {
                   },
                   child: const Text('Confirm'),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Go Back'),
-                ),
+                
               ],
             ),
           ],

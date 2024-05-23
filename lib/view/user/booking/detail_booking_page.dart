@@ -169,14 +169,14 @@ class _DetalBookingState extends State<DetalBooking> {
                     return null;
                   },
                 ),
-                SizedBox(height: screenHeight * 0.05),
+                SizedBox(height: screenHeight * 0.2),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '\$1200/2 Person',
                       style: TextStyle(
-                        fontSize: screenHeight * 0.025,
+                        fontSize: screenHeight * 0.023,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
                       ),
@@ -185,12 +185,12 @@ class _DetalBookingState extends State<DetalBooking> {
                       width: screenWidth * 0.4,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState?.validate() ?? false) {
+                        //   if (_formKey.currentState?.validate() ?? false) { 
+                        // }
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ConformPayment()));
-                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
