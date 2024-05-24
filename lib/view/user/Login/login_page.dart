@@ -45,6 +45,11 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+signInwithEmailAndPassword()async{
+  
+
+}
+
   @override
   Widget build(BuildContext context) {
     // Get the screen size
