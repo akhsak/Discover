@@ -55,8 +55,8 @@ class AuthenticationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? selectedGender;
-  List<String> genders = ['Male', 'Female'];
+  // String? selectedGender;
+  // List<String> genders = ['Male', 'Female'];
 
   bool signInObscureText = true;
   void signInObscureChange() {
