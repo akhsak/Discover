@@ -126,7 +126,7 @@ signInwithEmailAndPassword()async{
                     _validatePassword(value);
                   },
                 ),
-                SizedBox(height: screenHeight * 0.01),
+               // SizedBox(height: screenHeight * 0.01),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -197,7 +197,7 @@ signInwithEmailAndPassword()async{
                     ),
                   ],
                 ),
-                SizedBox(height: screenHeight * 0.01),
+                SizedBox(height: screenHeight * 0.03),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -209,12 +209,12 @@ signInwithEmailAndPassword()async{
                         'assets/Google.png', // Replace with Google icon URL
                         height: screenHeight * 0.025,
                       ),
-                      label: Text('Google'),
+                      label: Text('   Google   '),
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.black,
                           backgroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.04,
+                              horizontal: screenWidth * 0.09,
                               vertical: screenHeight * 0.02),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
@@ -223,7 +223,7 @@ signInwithEmailAndPassword()async{
                     ),
                     SizedBox(
                         width: screenWidth *
-                            0.02), // Adjust the width to reduce space
+                            0.04), // Adjust the width to reduce space
                     ElevatedButton.icon(
                       onPressed: () {
                         // Handle phone sign-in
@@ -232,12 +232,12 @@ signInwithEmailAndPassword()async{
                         'assets/phonecall-img.png', // Replace with phone icon URL
                         height: screenHeight * 0.025,
                       ),
-                      label: Text('Phone'),
+                      label: Text('    Phone    '),
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.black,
                           backgroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.05,
+                              horizontal: screenWidth * 0.09,
                               vertical: screenHeight * 0.02),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
