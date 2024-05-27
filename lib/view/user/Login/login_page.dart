@@ -1,4 +1,4 @@
-import 'package:discover/controller/authontication_provider.dart';
+import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/authontication/phone.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:discover/widgets/snackbar.dart';
@@ -56,6 +56,7 @@ class LoginScreen extends StatelessWidget {
                         TextFormField(
                           controller: authProvider.createEmailController,
                           decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.email),
                             labelText: 'Email',
                             hintText: 'Enter your email address',
                             border: OutlineInputBorder(
@@ -70,6 +71,7 @@ class LoginScreen extends StatelessWidget {
                           controller: authProvider.createPasswordController,
                           obscureText: authProvider.obscureText,
                           decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock),
                             labelText: 'Password',
                             hintText: 'Enter your password',
                             border: OutlineInputBorder(
@@ -113,28 +115,26 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: screenHeight * 0.01),
                 ElevatedButton(
                   onPressed: () {
+                    if (authProvider.formKey.currentState!.validate()) {
+                      try {
+                        authProvider.loginUser(
+                            authProvider.emailController.text,
+                            authProvider.passwordController.text);
 
-                    if (authProvider.formKey.currentState!
-                              .validate()) {
-                            try {
-                               authProvider.loginUser(
-                                  authProvider.emailController.text,
-                                  authProvider.passwordController.text);
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BottomScreen()),
+                            (route) => false);
+                        SnackBarWidget()
+                            .showSuccessSnackbar(context, 'login successfull');
+                        authProvider.clearLoginControllers();
+                      } catch (e) {
+                        SnackBarWidget().showErrorSnackbar(
+                            context, 'Email or Password is incorrect');
+                      }
+                    }
 
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BottomScreen()),
-                                  (route) => false);
-                              SnackBarWidget().showSuccessSnackbar(
-                                  context, 'login successfull');
-                              authProvider.clearLoginControllers();
-                            } catch (e) {
-                              SnackBarWidget().showErrorSnackbar(
-                                  context, 'Email or Password is incorrect');
-                            }
-                          }
-                        
                     // final authProvider = context.read<AuthenProvider>();
                     // if (authProvider.emailError == null &&
                     //     authProvider.passwordError == null) {

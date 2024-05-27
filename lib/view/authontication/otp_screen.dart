@@ -114,7 +114,7 @@
 // // }
 
 import 'dart:developer';
-import 'package:discover/controller/authontication_provider.dart';
+import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:discover/widgets/button.dart';
 import 'package:discover/widgets/normal_widget.dart';

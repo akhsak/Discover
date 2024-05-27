@@ -272,7 +272,7 @@ class AuthenProvider with ChangeNotifier {
   String? passwordError;
     final otpFormKey = GlobalKey<FormState>();
 
-
+ 
   // TextEditingController get emailController => _emailController;
   // TextEditingController get passwordController => _passwordController;
 
@@ -282,6 +282,8 @@ class AuthenProvider with ChangeNotifier {
   //   adminController.clear();
   //   adminPassController.clear();
   // }
+
+  
 
   void clearPhoneController() {
     phoneController.clear();
@@ -368,7 +370,7 @@ class AuthenProvider with ChangeNotifier {
 
   Future<void> googleSignIn(BuildContext context) async {
     try {
-      await authenticationService.googleSignIn();
+      await authenticationService.googleSignIn(context);
       notifyListeners();
 
       // Navigate to the bottom bar screen

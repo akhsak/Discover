@@ -234,7 +234,7 @@ class AuthenticationService {
     await firebaseAuth.signOut();
   }
 
-  Future<void> googleSignIn() async {
+  Future<void> googleSignIn(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication? googleAuth =
@@ -255,6 +255,7 @@ class AuthenticationService {
 
       final User? guser = userCredential.user;
       log("${guser?.displayName}");
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BottomScreen()));
     } catch (e) {
       log('Google Sign-In Error: $e');
       rethrow;

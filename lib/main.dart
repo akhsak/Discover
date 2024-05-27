@@ -1,6 +1,6 @@
-import 'package:discover/controller/authontication_provider.dart';
+import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
-import 'package:discover/controller/create_account_provider.dart';
+import 'package:discover/controller/login_provider.dart';
 import 'package:discover/firebase_options.dart';
 import 'package:discover/view/splash_second.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (context)=>BottomProvider(),),
       ChangeNotifierProvider(create: (context)=>AuthenProvider()),
-      //ChangeNotifierProvider(create: (context)=>CreateAccountProvider())
+      ChangeNotifierProvider(create: (context)=>LoginProvider())
     ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -2,27 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class EditProfile extends StatefulWidget {
-  const EditProfile({super.key});
+class EditProfile extends StatelessWidget {
+   EditProfile({super.key});
 
-  @override
-  State<EditProfile> createState() => _EditProfileState();
-}
+  final formKey = GlobalKey<FormState>();
 
-class _EditProfileState extends State<EditProfile> {
-  final _formKey = GlobalKey<FormState>();
-  bool _obscureText = true;
-  final _fullNameController = TextEditingController();
-  final _ageController = TextEditingController();
-  final _countryCodeController = TextEditingController(text: '+91');
-  final _phoneController = TextEditingController();
-  final _emailController = TextEditingController();
+  bool obscureText = true;
 
-  void _togglePasswordVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
+  final fullNameController = TextEditingController();
+
+  final ageController = TextEditingController();
+
+  final countryCodeController = TextEditingController(text: '+91');
+
+  final phoneController = TextEditingController();
+
+  final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +34,7 @@ class _EditProfileState extends State<EditProfile> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,7 +48,7 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
-                  controller: _fullNameController,
+                  controller: fullNameController,
                   decoration: InputDecoration(
                     labelText: 'Full name',
                     border: OutlineInputBorder(),
@@ -72,7 +67,7 @@ class _EditProfileState extends State<EditProfile> {
                     Container(
                       width: 60,
                       child: TextFormField(
-                        controller: _countryCodeController,
+                        controller: countryCodeController,
                         decoration: InputDecoration(
                           prefixText: '+91',
                           border: OutlineInputBorder(),
@@ -87,7 +82,7 @@ class _EditProfileState extends State<EditProfile> {
                     SizedBox(width: 10),
                     Expanded(
                       child: TextFormField(
-                        controller: _phoneController,
+                        controller: phoneController,
                         decoration: InputDecoration(
                           labelText: 'Phone',
                           border: OutlineInputBorder(),
@@ -106,7 +101,7 @@ class _EditProfileState extends State<EditProfile> {
                                 SizedBox(height: 10),
 
                  TextFormField(
-                  controller: _ageController,
+                  controller: ageController,
                   decoration: InputDecoration(
                     labelText: 'Age',
                     border: OutlineInputBorder(),
@@ -120,7 +115,7 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
-                  controller: _emailController,
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
@@ -139,7 +134,7 @@ class _EditProfileState extends State<EditProfile> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState?.validate() ?? false) {
+                      if (formKey.currentState?.validate() ?? false) {
                         // Handle account creation logic
                       }
                     },

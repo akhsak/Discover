@@ -1,4 +1,4 @@
-import 'package:discover/controller/authontication_provider.dart';
+import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/user/profile/pages/help_page.dart';
 import 'package:discover/view/user/profile/pages/privacy_policy.dart';
 import 'package:discover/view/user/profile/pages/terms_condition.dart';

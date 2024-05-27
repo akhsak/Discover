@@ -1,5 +1,6 @@
-import 'package:discover/controller/authontication_provider.dart';
-import 'package:discover/controller/create_account_provider.dart';
+import 'package:country_picker/country_picker.dart';
+import 'package:discover/controller/authentication_provider.dart';
+import 'package:discover/controller/login_provider.dart';
 import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/view/user/Login/success_create.dart';
 import 'package:discover/widgets/snackbar.dart';
@@ -11,10 +12,11 @@ class CreateAccount extends StatelessWidget {
 
    CreateAccount({super.key});
 
-  // final formKey = GlobalKey<FormState>();
+   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
       final createprovider=Provider.of<AuthenProvider>(context,listen: false);
+      final provider=Provider.of<LoginProvider>(context,listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -58,22 +60,42 @@ class CreateAccount extends StatelessWidget {
                 SizedBox(height: 10),
                 Row(
                   children: [
-                    // Container(
-                    //   width: 80,
-                    //   child: TextFormField(
-                    //     controller:createprovider.countryCodeController,
-                    //     decoration: InputDecoration(
-                    //       labelText: '+91',
-                    //       border: OutlineInputBorder(),
-                    //     ),
-                    //     // validator: (value) {
-                    //     //   if (value == null || value.isEmpty) {
-                    //     //     return 'Please enter country code';
-                    //     //   }
-                    //     //   return null;
-                    //     // },
-                    //   ),
-                    // ),
+                    Container(
+                      width: 100,
+                      child: Consumer<LoginProvider>(builder: (context, value, child) => 
+                        TextFormField(
+                          decoration: InputDecoration(
+                            prefixIcon: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 12),
+                              child: InkWell(
+                                onTap: () {
+                                  showCountryPicker(context: context, 
+                                  countryListTheme: CountryListThemeData(
+                                    bottomSheetHeight: 500,
+                                  ),
+                                  onSelect:(value) {
+                                    provider.selectCountry = value;
+                                  } );
+                                },
+                                child: Row(
+                                  children: [Text(value.selectCountry.flagEmoji,style: TextStyle(fontSize: 20),),
+                                  SizedBox(width: 10,),
+                                  Text("+${value.selectCountry.phoneCode}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
+                                  ],
+                                ),
+                              ),
+                            ),
+                            border: OutlineInputBorder(),
+                          ),
+                          // validator: (value) {
+                          //   if (value == null || value.isEmpty) {
+                          //     return 'Please enter country code';
+                          //   }
+                          //   return null;
+                          // },
+                        ),
+                      ),
+                    ),
                     SizedBox(width: 10),
                     // Expanded(
                     //   child: TextFormField(

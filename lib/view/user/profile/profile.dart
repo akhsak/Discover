@@ -283,7 +283,7 @@
 // }
 
 
-import 'package:discover/controller/authontication_provider.dart';
+import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
 import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/view/user/booking/my_booking.dart';
