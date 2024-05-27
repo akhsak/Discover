@@ -1,8 +1,7 @@
+import 'package:discover/controller/authontication_provider.dart';
 import 'package:discover/controller/bottom.dart';
 import 'package:discover/firebase_options.dart';
 import 'package:discover/view/splash_second.dart';
-import 'package:discover/view/welcome_screen1.dart';
-import 'package:discover/widgets/bottombar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +18,7 @@ class MyApp extends StatelessWidget {
     
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (context)=>BottomProvider(),),
+      ChangeNotifierProvider(create: (context)=>AuthenProvider())
     ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
