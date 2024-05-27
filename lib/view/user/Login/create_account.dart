@@ -1,32 +1,21 @@
+import 'package:discover/controller/authontication_provider.dart';
+import 'package:discover/controller/create_account_provider.dart';
 import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/view/user/Login/success_create.dart';
+import 'package:discover/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CreateAccount extends StatefulWidget {
-  const CreateAccount({super.key});
+class CreateAccount extends StatelessWidget {
+    bool isLoading = false;
 
-  @override
-  State<CreateAccount> createState() => _CreateAccountState();
-}
+   CreateAccount({super.key});
 
-class _CreateAccountState extends State<CreateAccount> {
-  final _formKey = GlobalKey<FormState>();
-  bool _obscureText = true;
-  final _fullNameController = TextEditingController();
-  final _ageController = TextEditingController();
-  final _countryCodeController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
-
+  // final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+      final createprovider=Provider.of<AuthenProvider>(context,listen: false);
+
     return Scaffold(
       appBar: AppBar(
         
@@ -36,7 +25,7 @@ class _CreateAccountState extends State<CreateAccount> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Form(
-            key: _formKey,
+            key: createprovider.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,7 +42,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: _fullNameController,
+                  controller:createprovider.fullNameController,
                   decoration: InputDecoration(
                     labelText: 'Full name',
                     border: OutlineInputBorder(),
@@ -69,58 +58,59 @@ class _CreateAccountState extends State<CreateAccount> {
                 SizedBox(height: 10),
                 Row(
                   children: [
-                    Container(
-                      width: 80,
-                      child: TextFormField(
-                        controller: _countryCodeController,
-                        decoration: InputDecoration(
-                          labelText: '+91',
-                          border: OutlineInputBorder(),
-                        ),
-                        // validator: (value) {
-                        //   if (value == null || value.isEmpty) {
-                        //     return 'Please enter country code';
-                        //   }
-                        //   return null;
-                        // },
-                      ),
-                    ),
+                    // Container(
+                    //   width: 80,
+                    //   child: TextFormField(
+                    //     controller:createprovider.countryCodeController,
+                    //     decoration: InputDecoration(
+                    //       labelText: '+91',
+                    //       border: OutlineInputBorder(),
+                    //     ),
+                    //     // validator: (value) {
+                    //     //   if (value == null || value.isEmpty) {
+                    //     //     return 'Please enter country code';
+                    //     //   }
+                    //     //   return null;
+                    //     // },
+                    //   ),
+                    // ),
                     SizedBox(width: 10),
-                    Expanded(
-                      child: TextFormField(
-                        controller: _phoneController,
-                        decoration: InputDecoration(
-                          labelText: 'Phone',
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your phone number';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: TextFormField(
+                    //     controller:createprovider.phoneController,
+                    //     decoration: InputDecoration(
+                    //       labelText: 'Phone',
+                    //       border: OutlineInputBorder(),
+                    //     ),
+                    //     validator: (value) {
+                    //       if (value == null || value.isEmpty) {
+                    //         return 'Please enter your phone number';
+                    //       }
+                    //       return null;
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
                  SizedBox(height: 10),
-                TextFormField(
-                  controller: _ageController,
-                  decoration: InputDecoration(
-                    labelText: 'Age',
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your age';
-                    }
-                    return null;
-                  },
-                ),
+                // TextFormField(
+                //   controller:createprovider.ageController,
+                //   decoration: InputDecoration(
+                //     labelText: 'Age',
+                //     border: OutlineInputBorder(),
+                //   ),
+                //   validator: (value) {
+                //     if (value == null || value.isEmpty) {
+                //       return 'Please enter your age';
+                //     }
+                //     return null;
+                //   },
+                // ),
                 SizedBox(height: 10),
                 TextFormField(
-                  controller: _emailController,
+                  controller:createprovider.createEmailController,
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email),
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                   ),
@@ -136,16 +126,18 @@ class _CreateAccountState extends State<CreateAccount> {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
-                  controller: _passwordController,
-                  obscureText: _obscureText,
+                  
+                  controller:createprovider.createPasswordController,
+                  obscureText:createprovider. obscureText,
                   decoration: InputDecoration(
+                    prefixIcon:const Icon(Icons.lock),
                     labelText: 'Password',
                     border: OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                       createprovider. obscureText ? Icons.visibility : Icons.visibility_off,
                       ),
-                      onPressed: _togglePasswordVisibility,
+                      onPressed:createprovider. togglePasswordVisibility,
                     ),
                   ),
                   validator: (value) {
@@ -160,11 +152,37 @@ class _CreateAccountState extends State<CreateAccount> {
                   child: SizedBox(
                     width: 350,
                     child: ElevatedButton(
-                      onPressed: () {
-                       if (_formKey.currentState?.validate() ?? false) {
-                        //   // Handle account creation logic
-                         }
-                        Navigator.push(context, MaterialPageRoute(builder: ((context) =>SuccessAccount() )));
+                      onPressed: () async{
+                         if (createprovider.formKey.currentState!
+                                .validate()) {
+                              try {
+                               {
+                                  await createprovider.signupUser(
+                                      createprovider.createEmailController.text,
+                                      createprovider
+                                          .createPasswordController.text);
+
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SuccessAccount()));
+
+                                  createprovider.clearSignupControllers();
+                                  SnackBarWidget().showSuccessSnackbar(
+                                      context, 'Registration success');
+                                } 
+                              } catch (e) {
+                                SnackBarWidget().showErrorSnackbar(context,
+                                    'Already existed E-mail or invalid E-mail');
+                              }
+                            }
+                       //if (
+                        // createprovider.formKey.currentState?.validate() ?? false
+                        // ) {
+                        // //   // Handle account creation logic
+                        //  }
+                       // Navigator.push(context, MaterialPageRoute(builder: ((context) =>SuccessAccount() )));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
@@ -189,6 +207,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     children: [
                       Text("Already have an account?"),
                       TextButton(onPressed: (){
+                        
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
                       }, child: Text('sign in',style: TextStyle(color: Colors.black),))
                     ],

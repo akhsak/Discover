@@ -252,10 +252,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthenProvider with ChangeNotifier {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final createEmailController = TextEditingController();
+  final createPasswordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController otpController = TextEditingController();
+   final formKey = GlobalKey<FormState>();
+  final fullNameController = TextEditingController();
+  // final ageController = TextEditingController();
+  // final countryCodeController = TextEditingController();
+  // final phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
 
   final AuthenticationService authenticationService = AuthenticationService();
@@ -281,13 +288,14 @@ class AuthenProvider with ChangeNotifier {
   }
 
   void clearLoginControllers() {
-    emailController.clear();
-    passwordController.clear();
+    createEmailController.clear();
+    createPasswordController.clear();
   }
 
   void clearSignupControllers() {
-    emailController.clear();
-    passwordController.clear();
+    fullNameController.clear();
+    createEmailController.clear();
+    createPasswordController.clear();
     //confirmPasswordController.clear();
   }
 
@@ -327,7 +335,7 @@ class AuthenProvider with ChangeNotifier {
 
     try {
       await authenticationService.userEmailLogin(
-          emailController.text, passwordController.text);
+          createEmailController.text, createPasswordController.text);
 
       if (context.mounted) Navigator.pop(context);
 
@@ -383,9 +391,9 @@ class AuthenProvider with ChangeNotifier {
     );
   }
 
-  void clear() {[];
-    emailController.clear();
-    passwordController.clear();
+  void clearCreate() {[];
+    createEmailController.clear();
+    createPasswordController.clear();
   }
 
   
@@ -405,7 +413,26 @@ class AuthenProvider with ChangeNotifier {
   }
 
   void getUserData() {}
-}
-    // Your authentication logic here
 
+  
+
+
+
+   signUp(context) async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+   
+}
+
+Future<UserCredential> signupUser(String email, String password) async {
+    return await authenticationService.userEmailSignup(email, password);
+  }
+
+  Future<UserCredential> loginUser(String email, String password) async {
+    return await authenticationService.userEmailLogin(email, password);
+  }
+    // Your authentication logic here
+}
 
