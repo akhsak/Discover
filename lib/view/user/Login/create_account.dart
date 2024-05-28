@@ -97,21 +97,17 @@ class CreateAccount extends StatelessWidget {
                             ),
                             border: OutlineInputBorder(),
                           ),
-                          // validator: (value) {
-                          //   if (value == null || value.isEmpty) {
-                          //     return 'Please enter country code';
-                          //   }
-                          //   return null;
-                          // },
+                          
                         ),
                       ),
                     ),
                     SizedBox(width: 10),
                     Expanded(
                       child: TextFormField(
+                       // maxLines: 10,
+                       maxLength: 10,
                         controller:createprovider.phoneController,
                         decoration: InputDecoration(
-                         // hintMaxLines: 10,
                           labelText: 'Phone',
                           border: OutlineInputBorder(),
                         ),
@@ -126,19 +122,20 @@ class CreateAccount extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10),
-                // TextFormField(
-                //   controller:createprovider.ageController,
-                //   decoration: InputDecoration(
-                //     labelText: 'Age',
-                //     border: OutlineInputBorder(),
-                //   ),
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return 'Please enter your age';
-                //     }
-                //     return null;
-                //   },
-                // ),
+                TextFormField(
+                  maxLength: 2,
+                  controller:createprovider.ceateageController,
+                  decoration: InputDecoration(
+                    labelText: 'Age',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your age';
+                    }
+                    return null;
+                  },
+                ),
                 SizedBox(height: 10),
                 TextFormField(
                   controller: createprovider.createEmailController,

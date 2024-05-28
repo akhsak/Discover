@@ -523,9 +523,10 @@ class LoginProvider extends ChangeNotifier {
   final createPasswordController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController ceateageController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final otpFormKey = GlobalKey<FormState>();
   String? emailError;
@@ -555,7 +556,10 @@ class LoginProvider extends ChangeNotifier {
     fullNameController.clear();
     createEmailController.clear();
     createPasswordController.clear();
-    //confirmPasswordController.clear();
+    ceateageController.clear();
+    phoneController.clear();
+
+
   }
 
   void clearLoginControllers() {
@@ -661,7 +665,7 @@ class LoginProvider extends ChangeNotifier {
     userNameController.clear();
     emailController.clear();
     passwordController.clear();
-    confirmPasswordController.clear();
+    ceateageController.clear();
     phoneController.clear();
     otpController.clear();
     notifyListeners();
