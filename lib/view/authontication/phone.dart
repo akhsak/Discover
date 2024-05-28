@@ -7,15 +7,13 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-
 class PhoneScreen extends StatelessWidget {
   const PhoneScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final authProvider =
-        Provider.of<AuthenProvider>(context, listen: false);
+    final authProvider = Provider.of<LoginProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
           title: textPoppins(
@@ -28,11 +26,9 @@ class PhoneScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: size.width * .05),
             child: SizedBox(
-              height: size.height * .4,
-              width: size.width * .8,
-              child:
-              Image.asset('assets/phonecall-img.png')
-            ),
+                height: size.height * .4,
+                width: size.width * .8,
+                child: Image.asset('assets/phonecall-img.png')),
           ),
           SizedBox(height: size.height * .07),
           Container(
@@ -50,8 +46,7 @@ class PhoneScreen extends StatelessWidget {
                     onPressed: () async {
                   if (authProvider.otpFormKey.currentState!.validate()) {
                     try {
-                      authProvider.getOtp(
-                          context, authProvider.phoneController.text);
+                      authProvider.getOtp(context);
                       SnackBarWidget().showSuccessSnackbar(
                           context, 'OTP had send successfully');
                       authProvider.clearPhoneController();

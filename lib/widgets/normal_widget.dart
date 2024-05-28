@@ -53,11 +53,10 @@ Widget profileScreenContainer(context,
             suffixIcon: false,
             icon: Icons.help,
             //icon: EneftyIcons.logout_outline,
-            iconColor: Colors.black,
-            onTap: (){
-               Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HelpPage()));
-            }),
+            iconColor: Colors.black, onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HelpPage()));
+        }),
       ],
     ),
   );
@@ -95,81 +94,79 @@ Widget profileContainerListTile(BuildContext context,
   );
 }
 
- Widget phoneTextFormField(context) {
-    final authProvider =
-        Provider.of<AuthenProvider>(context, listen: false);
-    return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'enter a phone number';
-        } else {
-          return null;
-        }
-      },
-      maxLength: 13,
-      controller: authProvider.phoneController,
-      onChanged: (value) {},
-      keyboardType: TextInputType.phone,
-      decoration: const InputDecoration(
-        // prefixText: '+91',
-        suffixIcon: Icon(Icons.phone_android_outlined),
-        labelText: 'phone number',
-        labelStyle: TextStyle(color: Colors.black),
-        fillColor: Colors.white,
-        filled: true,
-        border: InputBorder.none,
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF00246B)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF00246B)),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF00246B)),
-        ),
+Widget phoneTextFormField(context) {
+  final authProvider = Provider.of<LoginProvider>(context, listen: false);
+  return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'enter a phone number';
+      } else {
+        return null;
+      }
+    },
+    maxLength: 13,
+    controller: authProvider.phoneController,
+    onChanged: (value) {},
+    keyboardType: TextInputType.phone,
+    decoration: const InputDecoration(
+      // prefixText: '+91',
+      suffixIcon: Icon(Icons.phone_android_outlined),
+      labelText: 'phone number',
+      labelStyle: TextStyle(color: Colors.black),
+      fillColor: Colors.white,
+      filled: true,
+      border: InputBorder.none,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFF00246B)),
       ),
-    );
-  }
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFF00246B)),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFF00246B)),
+      ),
+    ),
+  );
+}
 
-  Widget otpTextFormField(context) {
-    final authProvider =
-        Provider.of<AuthenProvider>(context, listen: false);
-    return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'otp is empty';
-        } else {
-          return null;
-        }
-      },
-      maxLength: 6,
-      controller: authProvider.otpController,
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-      ],
-      keyboardType: TextInputType.number,
-      decoration: const InputDecoration(
-        suffixIcon: Icon(Icons.phone_android_outlined),
-        labelText: 'Enter otp',
-        labelStyle: TextStyle(color: Colors.black),
-        fillColor: Colors.white,
-        filled: true,
-        border: InputBorder.none,
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF00246B)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF00246B)),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF00246B)),
-        ),
+Widget otpTextFormField(context) {
+  final authProvider = Provider.of<LoginProvider>(context, listen: false);
+  return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'otp is empty';
+      } else {
+        return null;
+      }
+    },
+    maxLength: 6,
+    controller: authProvider.otpController,
+    inputFormatters: [
+      FilteringTextInputFormatter.digitsOnly,
+    ],
+    keyboardType: TextInputType.number,
+    decoration: const InputDecoration(
+      suffixIcon: Icon(Icons.phone_android_outlined),
+      labelText: 'Enter otp',
+      labelStyle: TextStyle(color: Colors.black),
+      fillColor: Colors.white,
+      filled: true,
+      border: InputBorder.none,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFF00246B)),
       ),
-    );
-  }
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFF00246B)),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFF00246B)),
+      ),
+    ),
+  );
+}
