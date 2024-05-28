@@ -132,15 +132,12 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final authProvider = Provider.of<AuthenProvider>(context, listen: false);
-    
+    final authProvider = Provider.of<LoginProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: textPoppins(
-          name: 'Verify OTP', 
-          fontsize: 20, 
-          fontweight: FontWeight.bold
-        ),
+            name: 'Verify OTP', fontsize: 20, fontweight: FontWeight.bold),
         centerTitle: true,
       ),
       body: Form(
@@ -153,9 +150,8 @@ class OtpScreen extends StatelessWidget {
                 height: size.height * .5,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/phonecall-img.png'),
-                    fit: BoxFit.cover
-                  ),
+                      image: AssetImage('assets/phonecall-img.png'),
+                      fit: BoxFit.cover),
                 ),
               ),
               Container(
@@ -167,31 +163,30 @@ class OtpScreen extends StatelessWidget {
                     // Assuming you have a method in your authProvider to get the OTP TextFormField
                     otpTextFormField(context),
                     ButtonWidgets().rectangleButton(size, name: 'V E R I F Y',
-                      onPressed: () async {
-                        if (formKey.currentState!.validate()) {
-                          try {
-                            PhoneAuthCredential credential =
+                        onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        try {
+                          PhoneAuthCredential credential =
                               PhoneAuthProvider.credential(
-                                verificationId: verificationId,
-                                smsCode: authProvider.otpController.text.trim()
-                              );
-                            await FirebaseAuth.instance.signInWithCredential(credential);
-                            Navigator.pushAndRemoveUntil(
+                                  verificationId: verificationId,
+                                  smsCode:
+                                      authProvider.otpController.text.trim());
+                          await FirebaseAuth.instance
+                              .signInWithCredential(credential);
+                          Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => BottomScreen()
-                              ),
-                              (route) => false
-                            );
-                          } catch (e) {
-                            log('Error during OTP verification: $e');
-                            SnackBarWidget().showErrorSnackbar(context, 'Invalid OTP');
-                          }
-                        } else {
-                          log('Form validation failed');
+                                  builder: (context) => BottomScreen()),
+                              (route) => false);
+                        } catch (e) {
+                          log('Error during OTP verification: $e');
+                          SnackBarWidget()
+                              .showErrorSnackbar(context, 'Invalid OTP');
                         }
+                      } else {
+                        log('Form validation failed');
                       }
-                    )
+                    })
                   ],
                 ),
               ),

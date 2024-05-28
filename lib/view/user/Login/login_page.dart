@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthenProvider>(context, listen: false);
+    final authProvider = Provider.of<LoginProvider>(context, listen: false);
     // Get the screen size
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.05),
-                Consumer<AuthenProvider>(
+                Consumer<LoginProvider>(
                   builder: (context, authProvider, child) {
                     return Column(
                       children: [
@@ -117,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     if (authProvider.formKey.currentState!.validate()) {
                       try {
-                        authProvider.loginUser(
+                        authProvider.signInWithEmail(
                             authProvider.emailController.text,
                             authProvider.passwordController.text);
 
@@ -224,7 +224,7 @@ class LoginScreen extends StatelessWidget {
                       },
                       icon: Image.asset(
                         'assets/phonecall-img.png',
-                        height: screenHeight * 0.025,
+                        height: screenHeight * 0.023,
                       ),
                       label: Text('    Phone    '),
                       style: ElevatedButton.styleFrom(

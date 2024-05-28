@@ -1,5 +1,4 @@
-
-
+import 'package:discover/view/authontication/authontication_screen.dart';
 import 'package:discover/view/user/Login/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -30,8 +29,8 @@ class WelcomeScreen3 extends StatelessWidget {
                 height: screenHeight * 0.15,
                 width: screenWidth * 0.25,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/icon_white.png'))
-                ),
+                    image: DecorationImage(
+                        image: AssetImage('assets/icon_white.png'))),
               ),
             ),
             SizedBox(height: screenHeight * 0.02),
@@ -46,15 +45,13 @@ class WelcomeScreen3 extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                   
-                   padding: EdgeInsets.only(
-                    // right: 70,
-                    // bottom: 30,
-                    // top: 20
-                    left: screenWidth * 0.01,
+                    padding: EdgeInsets.only(
+                        // right: 70,
+                        // bottom: 30,
+                        // top: 20
+                        left: screenWidth * 0.01,
                         right: screenWidth * 0.1,
-                        top: screenHeight * 0.02
-                    ),
+                        top: screenHeight * 0.02),
                     child: Text(
                       'Lets explore the world',
                       style: TextStyle(
@@ -66,8 +63,8 @@ class WelcomeScreen3 extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      left: screenWidth * 0.03, 
-                      right: screenWidth * 0.15, 
+                      left: screenWidth * 0.03,
+                      right: screenWidth * 0.15,
                       bottom: screenHeight * 0.03,
                     ),
                     child: Text(
@@ -85,18 +82,16 @@ class WelcomeScreen3 extends StatelessWidget {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
-                        minimumSize: Size(screenWidth * 0.75, screenHeight * 0.05),
+                        minimumSize:
+                            Size(screenWidth * 0.75, screenHeight * 0.05),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)
-                        ),
+                            borderRadius: BorderRadius.circular(16)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen()
-                          )
-                        );
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AuthPage()));
                       },
                       child: Text(
                         'Next',

@@ -1,5 +1,10 @@
+import 'package:discover/controller/authentication_provider.dart';
+import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/view/welcome_screen1.dart';
+import 'package:discover/widgets/bottombar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,8 +16,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    goToLogin(context);
     super.initState();
-    login();
   }
 
   @override
@@ -25,23 +30,30 @@ class _SplashScreenState extends State<SplashScreen> {
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage('assets/splash_icon.png'),
-            
           )),
         ),
       ),
     );
   }
 
-  Future<void> login() async {
-    await Future.delayed(
-      const Duration(seconds: 3),
-    );
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (ctx) {
-          return const WelcomeScreen1();
-        },
-      ),
-    );
+  goToLogin(context) async {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    final UserPrvd = Provider.of<LoginProvider>(context, listen: false);
+
+    if (currentUser == null) {
+      await Future.delayed(
+        Duration(seconds: 2),
+      );
+      return Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    } else {
+      CircularProgressIndicator();
+      await UserPrvd.getUser();
+      await Future.delayed(
+        Duration(seconds: 2),
+      );
+      return Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => BottomScreen()));
+    }
   }
 }

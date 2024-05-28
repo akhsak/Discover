@@ -117,7 +117,7 @@
 // //                 ),
 // //               ),
 // //             ),
-           
+
 // //           ],
 // //         ),
 // //       ),
@@ -149,7 +149,6 @@
 //         final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
 //             final authProvider =
 //         Provider.of<AuthenProvider>(context, listen: false);
-
 
 //     return Scaffold(
 //       backgroundColor: const Color(0xFFF5F5F5),
@@ -282,7 +281,6 @@
 //   }
 // }
 
-
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
 import 'package:discover/view/user/Login/login_page.dart';
@@ -292,6 +290,8 @@ import 'package:discover/view/user/wishlist.dart';
 import 'package:discover/widgets/normal_widget.dart';
 import 'package:discover/widgets/snackbar.dart';
 import 'package:discover/widgets/textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -305,7 +305,7 @@ class UserProfileScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     double circleAvatarRadius = size.shortestSide * circleAvatarRadiusFraction;
     final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
-    final authProvider = Provider.of<AuthenProvider>(context, listen: false);
+    final authProvider = Provider.of<LoginProvider>(context, listen: false);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -355,10 +355,8 @@ class UserProfileScreen extends StatelessWidget {
                   title: const Text('Booking'),
                   trailing: IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyBooking()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MyBooking()));
                     },
                     icon: const Icon(Icons.arrow_forward_ios),
                   ),
@@ -369,10 +367,8 @@ class UserProfileScreen extends StatelessWidget {
                   title: const Text('Wishlist'),
                   trailing: IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WishList()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => WishList()));
                     },
                     icon: const Icon(Icons.arrow_forward_ios),
                   ),
@@ -413,9 +409,10 @@ class UserProfileScreen extends StatelessWidget {
                   alertSheet(
                     context,
                     alertMessage: 'ARE YOU SURE TO LOGOUT ?',
-                    onPressed: () {
+                    onPressed: () async {
                       authProvider.googleSignOut();
-                      authProvider.logOut();
+                      await FirebaseAuth.instance.signOut();
+
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

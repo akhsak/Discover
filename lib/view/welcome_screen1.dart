@@ -1,4 +1,3 @@
-
 import 'package:discover/view/widget/welcome_screen2.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +23,9 @@ class WelcomeScreen1 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsets.only(right: screenWidth * 0.50,),
+              padding: EdgeInsets.only(
+                right: screenWidth * 0.50,
+              ),
               child: Container(
                 height: screenHeight * 0.15,
                 width: screenWidth * 0.25,
@@ -67,32 +68,32 @@ class WelcomeScreen1 extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.03),
-                        
                       ],
-                    ),Positioned(
-                      bottom: 15  ,
+                    ),
+                    Positioned(
+                      bottom: 15,
                       child: SizedBox(
-                            height: screenHeight * 0.05,
-                            width: screenWidth * 0.75,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
-                                  minimumSize:
-                                      Size(screenWidth * 0.75, screenHeight * 0.05),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16))),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => WelcomeScreen2()));
-                              },
-                              child: Text(
-                                'Next',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
+                        height: screenHeight * 0.05,
+                        width: screenWidth * 0.75,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              minimumSize:
+                                  Size(screenWidth * 0.75, screenHeight * 0.05),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16))),
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => WelcomeScreen2()));
+                          },
+                          child: Text(
+                            'Next',
+                            style: TextStyle(color: Colors.white),
                           ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

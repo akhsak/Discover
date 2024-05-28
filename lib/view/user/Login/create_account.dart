@@ -1,6 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:discover/controller/authentication_provider.dart';
-import 'package:discover/controller/login_provider.dart';
+
 import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/view/user/Login/success_create.dart';
 import 'package:discover/widgets/snackbar.dart';
@@ -8,20 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccount extends StatelessWidget {
-    bool isLoading = false;
+  bool isLoading = false;
 
-   CreateAccount({super.key});
+  CreateAccount({super.key});
 
-   final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-      final createprovider=Provider.of<AuthenProvider>(context,listen: false);
-      final provider=Provider.of<LoginProvider>(context,listen: false);
+    final createprovider = Provider.of<LoginProvider>(context, listen: false);
+    final provider = Provider.of<LoginProvider>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(
-        
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -44,7 +42,7 @@ class CreateAccount extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller:createprovider.fullNameController,
+                  controller: createprovider.fullNameController,
                   decoration: InputDecoration(
                     labelText: 'Full name',
                     border: OutlineInputBorder(),
@@ -56,31 +54,43 @@ class CreateAccount extends StatelessWidget {
                     return null;
                   },
                 ),
-               
+
                 SizedBox(height: 10),
                 Row(
                   children: [
                     Container(
                       width: 100,
-                      child: Consumer<LoginProvider>(builder: (context, value, child) => 
-                        TextFormField(
+                      child: Consumer<LoginProvider>(
+                        builder: (context, value, child) => TextFormField(
                           decoration: InputDecoration(
                             prefixIcon: Container(
                               padding: EdgeInsets.symmetric(horizontal: 12),
                               child: InkWell(
                                 onTap: () {
-                                  showCountryPicker(context: context, 
-                                  countryListTheme: CountryListThemeData(
-                                    bottomSheetHeight: 500,
-                                  ),
-                                  onSelect:(value) {
-                                    provider.selectCountry = value;
-                                  } );
+                                  showCountryPicker(
+                                      context: context,
+                                      countryListTheme: CountryListThemeData(
+                                        bottomSheetHeight: 500,
+                                      ),
+                                      onSelect: (value) {
+                                        provider.selectCountry = value;
+                                      });
                                 },
                                 child: Row(
-                                  children: [Text(value.selectCountry.flagEmoji,style: TextStyle(fontSize: 20),),
-                                  SizedBox(width: 10,),
-                                  Text("+${value.selectCountry.phoneCode}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
+                                  children: [
+                                    Text(
+                                      value.selectCountry.flagEmoji,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "+${value.selectCountry.phoneCode}",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )
                                   ],
                                 ),
                               ),
@@ -114,7 +124,7 @@ class CreateAccount extends StatelessWidget {
                     // ),
                   ],
                 ),
-                 SizedBox(height: 10),
+                SizedBox(height: 10),
                 // TextFormField(
                 //   controller:createprovider.ageController,
                 //   decoration: InputDecoration(
@@ -130,7 +140,7 @@ class CreateAccount extends StatelessWidget {
                 // ),
                 SizedBox(height: 10),
                 TextFormField(
-                  controller:createprovider.createEmailController,
+                  controller: createprovider.createEmailController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email),
                     labelText: 'Email',
@@ -148,18 +158,19 @@ class CreateAccount extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
-                  
-                  controller:createprovider.createPasswordController,
-                  obscureText:createprovider. obscureText,
+                  controller: createprovider.createPasswordController,
+                  obscureText: createprovider.obscureText,
                   decoration: InputDecoration(
-                    prefixIcon:const Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     labelText: 'Password',
                     border: OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(
-                       createprovider. obscureText ? Icons.visibility : Icons.visibility_off,
+                        createprovider.obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
-                      onPressed:createprovider. togglePasswordVisibility,
+                      onPressed: createprovider.togglePasswordVisibility,
                     ),
                   ),
                   validator: (value) {
@@ -174,37 +185,34 @@ class CreateAccount extends StatelessWidget {
                   child: SizedBox(
                     width: 350,
                     child: ElevatedButton(
-                      onPressed: () async{
-                         if (createprovider.formKey.currentState!
-                                .validate()) {
-                              try {
-                               {
-                                  await createprovider.signupUser(
-                                      createprovider.createEmailController.text,
-                                      createprovider
-                                          .createPasswordController.text);
+                      onPressed: () async {
+                        if (createprovider.formKey.currentState!.validate()) {
+                          try {
+                            {
+                              await createprovider.signupUser(
+                                  createprovider.createEmailController.text,
+                                  createprovider.createPasswordController.text);
 
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              SuccessAccount()));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SuccessAccount()));
 
-                                  createprovider.clearSignupControllers();
-                                  SnackBarWidget().showSuccessSnackbar(
-                                      context, 'Registration success');
-                                } 
-                              } catch (e) {
-                                SnackBarWidget().showErrorSnackbar(context,
-                                    'Already existed E-mail or invalid E-mail');
-                              }
+                              createprovider.clearSignupControllers();
+                              SnackBarWidget().showSuccessSnackbar(
+                                  context, 'Registration success');
                             }
-                       //if (
+                          } catch (e) {
+                            SnackBarWidget().showErrorSnackbar(context,
+                                'Already existed E-mail or invalid E-mail');
+                          }
+                        }
+                        //if (
                         // createprovider.formKey.currentState?.validate() ?? false
                         // ) {
                         // //   // Handle account creation logic
                         //  }
-                       // Navigator.push(context, MaterialPageRoute(builder: ((context) =>SuccessAccount() )));
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) =>SuccessAccount() )));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
@@ -228,14 +236,20 @@ class CreateAccount extends StatelessWidget {
                   child: Row(
                     children: [
                       Text("Already have an account?"),
-                      TextButton(onPressed: (){
-                        
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
-                      }, child: Text('sign in',style: TextStyle(color: Colors.black),))
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()));
+                          },
+                          child: Text(
+                            'sign in',
+                            style: TextStyle(color: Colors.black),
+                          ))
                     ],
                   ),
                 ),
-             
               ],
             ),
           ),
@@ -244,5 +258,3 @@ class CreateAccount extends StatelessWidget {
     );
   }
 }
-
-
