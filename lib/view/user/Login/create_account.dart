@@ -1,6 +1,6 @@
+// ignore_for_file: must_be_immutable
 import 'package:country_picker/country_picker.dart';
 import 'package:discover/controller/authentication_provider.dart';
-
 import 'package:discover/view/user/Login/login_page.dart';
 import 'package:discover/view/user/Login/success_create.dart';
 import 'package:discover/widgets/snackbar.dart';
@@ -107,21 +107,22 @@ class CreateAccount extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 10),
-                    // Expanded(
-                    //   child: TextFormField(
-                    //     controller:createprovider.phoneController,
-                    //     decoration: InputDecoration(
-                    //       labelText: 'Phone',
-                    //       border: OutlineInputBorder(),
-                    //     ),
-                    //     validator: (value) {
-                    //       if (value == null || value.isEmpty) {
-                    //         return 'Please enter your phone number';
-                    //       }
-                    //       return null;
-                    //     },
-                    //   ),
-                    // ),
+                    Expanded(
+                      child: TextFormField(
+                        controller:createprovider.phoneController,
+                        decoration: InputDecoration(
+                         // hintMaxLines: 10,
+                          labelText: 'Phone',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your phone number';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(height: 10),

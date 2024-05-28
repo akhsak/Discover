@@ -627,8 +627,18 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getOtp(phoneNumber) async {
-    await authService.getOtp(phoneNumber);
+  // Future<void> getOtp(phoneNumber) async {
+  //   await authService.getOtp(phoneNumber,phoneNumber );
+  //   notifyListeners();
+  // }
+
+  // Future<void> verifyOtp(otp, context) async {
+  //   await authService.verifyOtp(otp, context);
+  //   notifyListeners();
+  // }
+
+  Future<void> getOtp(context, phoneCon) async {
+    await authService.getOtp(context, phoneCon);
     notifyListeners();
   }
 

@@ -46,7 +46,7 @@ class PhoneScreen extends StatelessWidget {
                     onPressed: () async {
                   if (authProvider.otpFormKey.currentState!.validate()) {
                     try {
-                      authProvider.getOtp(context);
+                      authProvider.getOtp(context,authProvider.phoneController.text);
                       SnackBarWidget().showSuccessSnackbar(
                           context, 'OTP had send successfully');
                       authProvider.clearPhoneController();
