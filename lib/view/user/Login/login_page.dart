@@ -68,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                     Consumer<LoginProvider>(
                       builder: (context, value, child) => TextFormField(
                         controller: authProvider.passwordController,
-                        obscureText: value.signInVisible,
+                        obscureText: value.loginObscureText,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock),
                           labelText: 'Password',
@@ -76,11 +76,15 @@ class LoginScreen extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
+                          suffixIcon: IconButton(onPressed: (){
+                               value.loginObscureTextchange();
+                          }, icon: Icon(value.loginObscureText?Icons.visibility_off:Icons.visibility)),
+
                           // suffixIcon: IconButton(
-                          //   icon: Icon(value.signInVisible
+                          //   icon: Icon(value.obscureText
                           //       ? Icons.visibility
                           //       : Icons.visibility_off),
-                          //   onPressed: value.signInVisibleChange(),
+                          //   onPressed: value.obscureChange(),
                           // ),
                           errorText: authProvider.passwordError,
                         ),

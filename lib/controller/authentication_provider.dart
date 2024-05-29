@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:country_picker/country_picker.dart';
@@ -21,11 +19,12 @@ class LoginProvider extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
   TextEditingController createAgeController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  
+
   final createFormKey = GlobalKey<FormState>();
 
-
   final otpFormKey = GlobalKey<FormState>();
+  final forgotPasswordFormkey = GlobalKey<FormState>();
+
   String? emailError;
   String? passwordError;
   bool obscureText = true;
@@ -46,27 +45,44 @@ class LoginProvider extends ChangeNotifier {
       e164Key: "");
 
 
+bool loginObscureText=true;
+void loginObscureTextchange(){
+  loginObscureText=!loginObscureText;
+  notifyListeners();
+}
 
-      bool signInVisible=true;
-       signInVisibleChange(){
-        signInVisible=!signInVisible;
-        notifyListeners();
-      }
+bool createObscureText=true;
+void createObscureTextchange(){
+  createObscureText=!createObscureText;
+  notifyListeners();
+}
 
-       bool createVisible=true;
-       createVisibleChange(){
-        createVisible=!createVisible;
-        notifyListeners();
-      }
+
+
+
+  // bool signInVisible=true;
+  //  signInVisibleChange(){
+  //   signInVisible=!signInVisible;
+  //   notifyListeners();
+  // }
+
+  //  bool createVisible=true;
+  //  createVisibleChange(){
+  //   createVisible=!createVisible;
+  //   notifyListeners();
+  // }
+
+   Future<void> forgotPassword(context, {email}) async {
+    authService.passwordReset(email: email, context: context);
+  }
 
   void clearPhoneController() {
     phoneController.clear();
   }
 
-   void clearOtpController() {
+  void clearOtpController() {
     otpController.clear();
   }
-  
 
   void clearSignupControllers() {
     fullNameController.clear();
@@ -74,8 +90,6 @@ class LoginProvider extends ChangeNotifier {
     createPasswordController.clear();
     createAgeController.clear();
     phoneController.clear();
-
-
   }
 
   void clearLoginControllers() {
@@ -142,12 +156,15 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> togglePasswordVisibility() async {
-    showPassword = !showPassword;
-    notifyListeners();
-  }
+  // togglePasswordVisibility() async {
+  //   showPassword = !showPassword;
+  //   notifyListeners();
+  // }
 
-  
+  // obscureChange() {
+  //   obscureText = !obscureText;
+  //   notifyListeners();
+  // }
 
   Future<void> getOtp(context, phoneCon) async {
     await authService.getOtp(context, phoneCon);

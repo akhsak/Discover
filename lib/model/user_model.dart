@@ -1,11 +1,12 @@
 class UserModel {
   String? name;
-
+   String? age;
   String? email;
   String? phoneNumber;
 
   UserModel({
     this.email,
+    this.age,
     this.name,
     this.phoneNumber,
   });
@@ -14,6 +15,7 @@ class UserModel {
     return UserModel(
       email: json['email'],
       name: json['name'],
+      age: json['age'],
       phoneNumber: json['phoneNumber'],
     );
   }
@@ -21,6 +23,7 @@ class UserModel {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
+      'age':age,
       'email': email,
       'phoneNumber': phoneNumber,
     };

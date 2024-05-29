@@ -1,21 +1,18 @@
 
+import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/user/Login/create_account.dart';
 import 'package:discover/view/user/Login/forget_pswrd/new_password.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({super.key});
+class ForgotPasswordScreen extends StatelessWidget {
+ ForgotPasswordScreen({super.key});
 
-  @override
-  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
-}
-
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final forgetprovider=Provider.of<LoginProvider>(context,listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -30,7 +27,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: forgetprovider.forgotPasswordFormkey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -50,7 +47,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                controller: _emailController,
+                controller:forgetprovider.emailController ,
                 decoration: InputDecoration(
                   labelText: 'E-mail',
                  // hintText: 'jonhn.ux@gmail.com',
@@ -69,15 +66,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 },
               ),
               SizedBox(height: 10),
-              TextButton(
-                onPressed: () {
+              // TextButton(
+              //   onPressed: () {
                   // Handle reset with phone number
-                },
-                child: Text(
-                  'Reset with phone number',
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ),
+               // },
+                // child: Text(
+                //   'Reset with phone number',
+                //   style: TextStyle(color: Colors.blue),
+                // ),
+             // ),
               SizedBox(height: 20),
               Center(
                 child: SizedBox(
@@ -85,10 +82,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 62,
                   child: ElevatedButton(
                     onPressed: () {
-                      // if (_formKey.currentState!.validate()) {
+                        if (forgetprovider.forgotPasswordFormkey.currentState!
+                        .validate()) {
+                      forgetprovider.forgotPassword(context,
+                          email:
+                              forgetprovider.emailController.text.trim());
+                    }
+                      // if (_formKey
+                      //.currentState!.validate()) {
                       //   // Handle request code
                       // }
- Navigator.push(context, MaterialPageRoute(builder: (context)=>Createnewpassword()));
+ //Navigator.push(context, MaterialPageRoute(builder: (context)=>Createnewpassword()));
 
 
                     },
@@ -100,7 +104,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                      // padding: EdgeInsets.symmetric(horizontal: 40,),
                     ),
                     child: Text(
-                      'Request code',
+                     // 'Request code',
+                     'submit',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

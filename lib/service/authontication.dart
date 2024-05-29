@@ -166,6 +166,29 @@ class AuthService {
     return null;
   }
 
+    void passwordReset({required email, context}) async {
+    try {
+      log('start');
+      await firebaseAuth.sendPasswordResetEmail(email: email);
+      log('success');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Password reset email sent"),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      log('error occure');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.message.toString(),
+          ),
+        ),
+      );
+    }
+  }
+
+
   // Future<void> getOtp(String phoneNumber) async {
   //   try {
   //     await firebaseAuth.verifyPhoneNumber(
