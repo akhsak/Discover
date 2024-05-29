@@ -109,7 +109,7 @@ Widget phoneTextFormField(context) {
           return null;
         }
       },
-      maxLength: 13,
+      maxLength: 10,
       controller: authProvider.phoneController,
       onChanged: (value) {},
       keyboardType: TextInputType.phone,
