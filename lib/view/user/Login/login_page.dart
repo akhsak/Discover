@@ -13,7 +13,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<LoginProvider>(context, listen: false);
-    // Get the screen size
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
@@ -22,7 +21,7 @@ class LoginScreen extends StatelessWidget {
         padding: EdgeInsets.all(screenWidth * 0.04),
         child: SingleChildScrollView(
           child: Form(
-            key: GlobalKey<FormState>(),
+            key: authProvider.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -49,47 +48,46 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.05),
-                Consumer<LoginProvider>(
-                  builder: (context, authProvider, child) {
-                    return Column(
-                      children: [
-                        TextFormField(
-                          controller: authProvider.createEmailController,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email),
-                            labelText: 'Email',
-                            hintText: 'Enter your email address',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            errorText: authProvider.emailError,
-                          ),
-                          onChanged: authProvider.validateEmail,
+                Column(
+                  children: [
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: authProvider.emailController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.email),
+                        labelText: 'Email',
+                        hintText: 'Enter your email address',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        SizedBox(height: screenHeight * 0.02),
-                        TextFormField(
-                          controller: authProvider.createPasswordController,
-                          obscureText: authProvider.obscureText,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.lock),
-                            labelText: 'Password',
-                            hintText: 'Enter your password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(authProvider.obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: authProvider.togglePasswordVisibility,
-                            ),
-                            errorText: authProvider.passwordError,
+                        errorText: authProvider.emailError,
+                      ),
+                      onChanged: authProvider.validateEmail,
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    Consumer<LoginProvider>(
+                      builder: (context, value, child) => TextFormField(
+                        controller: authProvider.passwordController,
+                        obscureText: value.signInVisible,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.lock),
+                          labelText: 'Password',
+                          hintText: 'Enter your password',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          onChanged: authProvider.validatePassword,
+                          // suffixIcon: IconButton(
+                          //   icon: Icon(value.signInVisible
+                          //       ? Icons.visibility
+                          //       : Icons.visibility_off),
+                          //   onPressed: value.signInVisibleChange(),
+                          // ),
+                          errorText: authProvider.passwordError,
                         ),
-                      ],
-                    );
-                  },
+                        onChanged: authProvider.validatePassword,
+                      ),
+                    ),
+                  ],
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -114,10 +112,10 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (authProvider.formKey.currentState!.validate()) {
                       try {
-                        authProvider.signInWithEmail(
+                        await authProvider.signInWithEmail(
                             authProvider.emailController.text,
                             authProvider.passwordController.text);
 
@@ -134,13 +132,6 @@ class LoginScreen extends StatelessWidget {
                             context, 'Email or Password is incorrect');
                       }
                     }
-
-                    // final authProvider = context.read<AuthenProvider>();
-                    // if (authProvider.emailError == null &&
-                    //     authProvider.passwordError == null) {
-                    //   authProvider.signInWithEmailAndPassword(context);
-                    //   authProvider.clearCreate();
-                    // }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -191,8 +182,9 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     ElevatedButton.icon(
                       onPressed: () {
+                        authProvider.clearLoginControllers();
+
                         authProvider.googleSignIn(context);
-                        // Handle Google sign-in
                       },
                       icon: Image.asset(
                         'assets/Google.png',
@@ -215,12 +207,12 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(width: screenWidth * 0.04),
                     ElevatedButton.icon(
                       onPressed: () async {
+                        authProvider.clearLoginControllers();
+
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => PhoneScreen()));
-                        //  authProvider.
-                        // Handle phone sign-in
                       },
                       icon: Image.asset(
                         'assets/phonecall-img.png',
@@ -254,12 +246,11 @@ class LoginScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CreateAccount(),
-                            ),
-                          );
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateAccount()),
+                              (route) => false);
                         },
                         child: Text(
                           'Create Account',

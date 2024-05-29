@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '398146065972',
     projectId: 'discover-travel-app',
     storageBucket: 'discover-travel-app.appspot.com',
+    androidClientId: '398146065972-q3nqrf0akr492tm8ivddo19893pgpfj5.apps.googleusercontent.com',
     iosClientId: '398146065972-m9js9kilpnmd4vdquma9b4k9s19k2brs.apps.googleusercontent.com',
     iosBundleId: 'com.example.discover',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '398146065972',
     projectId: 'discover-travel-app',
     storageBucket: 'discover-travel-app.appspot.com',
+    androidClientId: '398146065972-q3nqrf0akr492tm8ivddo19893pgpfj5.apps.googleusercontent.com',
     iosClientId: '398146065972-r235emq7408143ud7b72gj6e2abptj5b.apps.googleusercontent.com',
     iosBundleId: 'com.example.discover.RunnerTests',
   );

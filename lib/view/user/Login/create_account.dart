@@ -2,7 +2,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/user/Login/login_page.dart';
-import 'package:discover/view/user/Login/success_create.dart';
+import 'package:discover/widgets/bottombar.dart';
 import 'package:discover/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +25,7 @@ class CreateAccount extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Form(
-            key: createprovider.formKey,
+            key: createprovider.createFormKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -54,7 +54,6 @@ class CreateAccount extends StatelessWidget {
                     return null;
                   },
                 ),
-
                 SizedBox(height: 10),
                 Row(
                   children: [
@@ -97,16 +96,16 @@ class CreateAccount extends StatelessWidget {
                             ),
                             border: OutlineInputBorder(),
                           ),
-                          
                         ),
                       ),
                     ),
                     SizedBox(width: 10),
                     Expanded(
                       child: TextFormField(
-                       // maxLines: 10,
-                       maxLength: 10,
-                        controller:createprovider.phoneController,
+                        keyboardType: TextInputType.phone,
+                        // maxLines: 10,
+                        //  maxLength: 10,
+                        controller: createprovider.phoneController,
                         decoration: InputDecoration(
                           labelText: 'Phone',
                           border: OutlineInputBorder(),
@@ -114,6 +113,8 @@ class CreateAccount extends StatelessWidget {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your phone number';
+                          } else if ( createprovider.phoneController.text.length>10 ||createprovider.phoneController.text.length<10) {
+                            return "enter 10 number";
                           }
                           return null;
                         },
@@ -123,8 +124,9 @@ class CreateAccount extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
+                  keyboardType: TextInputType.number,
                   maxLength: 2,
-                  controller:createprovider.ceateageController,
+                  controller: createprovider.createAgeController,
                   decoration: InputDecoration(
                     labelText: 'Age',
                     border: OutlineInputBorder(),
@@ -138,6 +140,7 @@ class CreateAccount extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   controller: createprovider.createEmailController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email),
@@ -155,28 +158,30 @@ class CreateAccount extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  controller: createprovider.createPasswordController,
-                  obscureText: createprovider.obscureText,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.lock),
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        createprovider.obscureText
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
-                      onPressed: createprovider.togglePasswordVisibility,
+                Consumer<LoginProvider>(
+                  builder: (context, value, child) => TextFormField(
+                    controller: createprovider.createPasswordController,
+                    obscureText: value.createVisible,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      labelText: 'Password',
+                      border: OutlineInputBorder(),
+                      // suffixIcon: IconButton(
+                      //   icon: Icon(
+                      //     value.createVisible
+                      //         ? Icons.visibility
+                      //         : Icons.visibility_off,
+                      //   ),
+                      //   onPressed: value.createVisibleChange(),
+                      // ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
                 ),
                 SizedBox(height: 50),
                 Center(
@@ -184,7 +189,8 @@ class CreateAccount extends StatelessWidget {
                     width: 350,
                     child: ElevatedButton(
                       onPressed: () async {
-                        if (createprovider.formKey.currentState!.validate()) {
+                        if (createprovider.createFormKey.currentState!
+                            .validate()) {
                           try {
                             {
                               await createprovider.signupUser(
@@ -194,7 +200,7 @@ class CreateAccount extends StatelessWidget {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SuccessAccount()));
+                                      builder: (context) => BottomScreen()));
 
                               createprovider.clearSignupControllers();
                               SnackBarWidget().showSuccessSnackbar(
@@ -205,12 +211,6 @@ class CreateAccount extends StatelessWidget {
                                 'Already existed E-mail or invalid E-mail');
                           }
                         }
-                        //if (
-                        // createprovider.formKey.currentState?.validate() ?? false
-                        // ) {
-                        // //   // Handle account creation logic
-                        //  }
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) =>SuccessAccount() )));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
@@ -227,7 +227,6 @@ class CreateAccount extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.only(left: 80),

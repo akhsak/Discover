@@ -1,6 +1,5 @@
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/user/Login/login_page.dart';
-import 'package:discover/view/welcome_screen1.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
