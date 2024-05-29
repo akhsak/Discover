@@ -1,4 +1,5 @@
 import 'package:discover/controller/authentication_provider.dart';
+import 'package:discover/view/authontication/otp_screen.dart';
 import 'package:discover/widgets/button.dart';
 import 'package:discover/widgets/normal_widget.dart';
 import 'package:discover/widgets/snackbar.dart';
@@ -44,6 +45,7 @@ class PhoneScreen extends StatelessWidget {
                     )),
                 ButtonWidgets().rectangleButton(size, name: 'GENERATE OTP',
                     onPressed: () async {
+
                   if (authProvider.otpFormKey.currentState!.validate()) {
                     try {
                       authProvider.getOtp(context,authProvider.phoneController.text);
@@ -55,6 +57,7 @@ class PhoneScreen extends StatelessWidget {
                           context, 'Please enter a valid mobile number');
                     }
                   }
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpScreen(verificationId:authProvider.otpController.text)));
                 })
               ],
             ),
