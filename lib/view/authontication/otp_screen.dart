@@ -45,7 +45,6 @@ class OtpScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Assuming you have a method in your authProvider to get the OTP TextFormField
                     otpTextFormField(context),
                     ButtonWidgets().rectangleButton(size, name: 'V E R I F Y',
                         onPressed: () async {

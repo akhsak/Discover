@@ -109,33 +109,33 @@ Widget phoneTextFormField(context) {
           return null;
         }
       },
-      maxLength: 10,
+     // maxLength: 10,
       controller: authProvider.phoneController,
       onChanged: (value) {},
       keyboardType: TextInputType.phone,
       decoration:  InputDecoration(
-        prefixIcon: Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
-          child: InkWell(
-            onTap: (){
-              showCountryPicker(context: context, 
-              countryListTheme: CountryListThemeData(
-               bottomSheetHeight: 500, 
-              ),
-              onSelect: (value) {
-               authProvider .selectCountry=value;
-              },);
-            },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(value.selectCountry.flagEmoji,style: TextStyle(fontSize: 20),),
-                SizedBox(width: 20,),
-                Text("+${value.selectCountry.phoneCode}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-              ],
-            ),
-          ),
-        ),
+        // prefixIcon: Container(
+        //   padding: EdgeInsets.symmetric(horizontal: 12),
+        //   child: InkWell(
+        //     onTap: (){
+        //       showCountryPicker(context: context, 
+        //       countryListTheme: CountryListThemeData(
+        //        bottomSheetHeight: 500, 
+        //       ),
+        //       onSelect: (value) {
+        //        authProvider .selectCountry=value;
+        //       },);
+        //     },
+        //     child: Row(
+        //       mainAxisSize: MainAxisSize.min,
+        //       children: [
+        //         Text(value.selectCountry.flagEmoji,style: TextStyle(fontSize: 20),),
+        //         SizedBox(width: 20,),
+        //         Text("+${value.selectCountry.phoneCode}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+        //       ],
+        //     ),
+        //   ),
+        // ),
         suffixIcon: Icon(Icons.phone_android_outlined),
         labelText: 'phone number',
         labelStyle: TextStyle(color: Colors.black),

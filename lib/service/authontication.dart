@@ -41,6 +41,7 @@ class AuthService {
       }
     } catch (e) {
       log('Error adding post :$e');
+      throw e;
     }
   }
 
@@ -136,11 +137,13 @@ class AuthService {
         verificationFailed: (FirebaseAuthException ex) {},
         codeSent: (String verificationId, int? resendtoken) {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => OtpScreen(
-                        verificationId: verificationId,
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => OtpScreen(
+                verificationId: verificationId,
+              ),
+            ),
+          );
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
         phoneNumber: phoneNumberCon);
@@ -163,10 +166,9 @@ class AuthService {
       log("verify otp error $e");
       return null;
     }
-    return null;
   }
 
-    void passwordReset({required email, context}) async {
+  void passwordReset({required email, context}) async {
     try {
       log('start');
       await firebaseAuth.sendPasswordResetEmail(email: email);
@@ -187,54 +189,4 @@ class AuthService {
       );
     }
   }
-
-
-  // Future<void> getOtp(String phoneNumber) async {
-  //   try {
-  //     await firebaseAuth.verifyPhoneNumber(
-  //       phoneNumber: phoneNumber,
-  //       verificationCompleted: (phoneAuthCredential) async {
-  //         await firebaseAuth.signInWithCredential(phoneAuthCredential);
-  //         User? user = FirebaseAuth.instance.currentUser;
-  //         if (user != null) {
-  //           await user.updatePhoneNumber(phoneAuthCredential);
-  //         }
-  //       },
-  //       verificationFailed: (error) {
-  //         log("verification failed error : $error");
-  //       },
-  //       codeSent: (verificationId, forceResendingToken) {
-  //         verificationid = verificationId;
-  //       },
-  //       codeAutoRetrievalTimeout: (verificationId) {
-  //         verificationid = verificationId;
-  //       },
-  //       timeout: const Duration(seconds: 60),
-  //     );
-  //   } catch (e) {
-  //     log("sign in error : $e");
-  //   }
-  // }
-
-  // Future<PhoneAuthCredential?> verifyOtp(String otp, context) async {
-  //   try {
-  //     if (verificationid == null) {
-  //       throw Exception('Verification ID is null');
-  //     }
-  //     PhoneAuthCredential credential = PhoneAuthProvider.credential(
-  //         verificationId: verificationid!, smsCode: otp);
-  //     await firebaseAuth.signInWithCredential(credential);
-  //     Navigator.pushAndRemoveUntil(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => BottomScreen()),
-  //       (route) => false,
-  //     );
-  //     PopupWidgets().showSuccessSnackbar(context, "OTP Validated");
-  //   } catch (e) {
-  //     PopupWidgets().showErrorSnackbar(context, "Invalid OTP");
-  //     log("verify otp error $e");
-  //     return null;
-  //   }
-  //   return null;
-  // }
 }

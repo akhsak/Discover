@@ -55,6 +55,7 @@ class PhoneScreen extends StatelessWidget {
                     } catch (e) {
                       SnackBarWidget().showErrorSnackbar(
                           context, 'Please enter a valid mobile number');
+                          
                     }
                   }
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpScreen(verificationId:authProvider.otpController.text)));
