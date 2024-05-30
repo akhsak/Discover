@@ -227,7 +227,7 @@ class CreateAccount extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.only(left: 80),
                   child: Row(

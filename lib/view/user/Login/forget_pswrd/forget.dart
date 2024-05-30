@@ -1,4 +1,3 @@
-
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/user/Login/create_account.dart';
 import 'package:discover/view/user/Login/forget_pswrd/new_password.dart';
@@ -6,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
- ForgotPasswordScreen({super.key});
+  ForgotPasswordScreen({super.key});
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final forgetprovider=Provider.of<LoginProvider>(context,listen: false);
+    final forgetprovider = Provider.of<LoginProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -47,10 +46,9 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextFormField(
-                controller:forgetprovider.emailController ,
+                controller: forgetprovider.emailController,
                 decoration: InputDecoration(
                   labelText: 'E-mail',
-                 // hintText: 'jonhn.ux@gmail.com',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -66,15 +64,6 @@ class ForgotPasswordScreen extends StatelessWidget {
                 },
               ),
               SizedBox(height: 10),
-              // TextButton(
-              //   onPressed: () {
-                  // Handle reset with phone number
-               // },
-                // child: Text(
-                //   'Reset with phone number',
-                //   style: TextStyle(color: Colors.blue),
-                // ),
-             // ),
               SizedBox(height: 20),
               Center(
                 child: SizedBox(
@@ -82,30 +71,28 @@ class ForgotPasswordScreen extends StatelessWidget {
                   height: 62,
                   child: ElevatedButton(
                     onPressed: () {
-                        if (forgetprovider.forgotPasswordFormkey.currentState!
-                        .validate()) {
-                      forgetprovider.forgotPassword(context,
-                          email:
-                              forgetprovider.emailController.text.trim());
-                    }
+                      if (forgetprovider.forgotPasswordFormkey.currentState!
+                          .validate()) {
+                        forgetprovider.forgotPassword(context,
+                            email: forgetprovider.emailController.text.trim());
+                      }
+                      forgetprovider.clearLoginControllers();
                       // if (_formKey
                       //.currentState!.validate()) {
                       //   // Handle request code
                       // }
- //Navigator.push(context, MaterialPageRoute(builder: (context)=>Createnewpassword()));
-
-
+                      //Navigator.push(context, MaterialPageRoute(builder: (context)=>Createnewpassword()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                     // padding: EdgeInsets.symmetric(horizontal: 40,),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      // padding: EdgeInsets.symmetric(horizontal: 40,),
                     ),
                     child: Text(
-                     // 'Request code',
-                     'submit',
+                      // 'Request code',
+                      'submit',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
