@@ -109,9 +109,9 @@ class LoginProvider extends ChangeNotifier {
     return await authService.signInWithEmail(email, password);
   }
 
-  Future<void> signOutWithEmail() async {
-    return await authService.signOutEmail();
-  }
+  // Future<void> signOutWithEmail() async {
+  //   return await authService.signOutEmail();
+  // }
 
   Future<void> googleSignIn(BuildContext context) async {
     try {

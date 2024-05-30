@@ -93,9 +93,9 @@ class AuthService {
     }
   }
 
-  Future<void> signOutEmail() async {
-    await firebaseAuth.signOut();
-  }
+  // Future<void> signOutEmail() async {
+  //   await firebaseAuth.signOut();
+  // }
 
   Future<User?> signInWithGoogle(BuildContext context) async {
     try {
@@ -164,8 +164,9 @@ class AuthService {
       SnackBarWidget().showSuccessSnackbar(context, "OTP validated");
     } catch (e) {
       log("verify otp error $e");
-      return null;
+      // return null;
     }
+    return null;
   }
 
   void passwordReset({required email, context}) async {

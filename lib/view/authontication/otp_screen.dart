@@ -57,7 +57,7 @@ class OtpScreen extends StatelessWidget {
                                       authProvider.otpController.text.trim());
                           await FirebaseAuth.instance
                               .signInWithCredential(credential);
-                           authProvider.clearOtpController();
+                          authProvider.clearOtpController();
 
                           Navigator.pushAndRemoveUntil(
                               context,

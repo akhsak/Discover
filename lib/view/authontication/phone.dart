@@ -45,20 +45,25 @@ class PhoneScreen extends StatelessWidget {
                     )),
                 ButtonWidgets().rectangleButton(size, name: 'GENERATE OTP',
                     onPressed: () async {
-
                   if (authProvider.otpFormKey.currentState!.validate()) {
                     try {
-                      authProvider.getOtp(context,authProvider.phoneController.text);
+                      authProvider.getOtp(
+                          context, authProvider.phoneController.text);
                       SnackBarWidget().showSuccessSnackbar(
                           context, 'OTP had send successfully');
                       authProvider.clearPhoneController();
                     } catch (e) {
                       SnackBarWidget().showErrorSnackbar(
                           context, 'Please enter a valid mobile number');
-                          
                     }
                   }
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpScreen(verificationId:authProvider.otpController.text)));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OtpScreen(
+                          verificationId: authProvider.otpController.text),
+                    ),
+                  );
                 })
               ],
             ),
