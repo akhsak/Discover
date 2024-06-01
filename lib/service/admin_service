@@ -13,7 +13,7 @@ class TravelService {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   Reference storage = FirebaseStorage.instance.ref();
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  DoctorService() {
+  TravelService() {
     travel = firebaseFirestore.collection(travelPackages).withConverter<AdminModel>(
         fromFirestore: (snapshot, options) {
       return AdminModel.fromJson(snapshot.id, snapshot.data()!);
@@ -40,7 +40,7 @@ class TravelService {
 
   Future<List<AdminModel>> getAllTravelPackage() async {
     final snapshot = await travelPackage.get();
-    return snapshot.docs.map((trip) => trip.data()).toList();
+    return snapshot.trips.map((trip) => trip.data()).toList();
   }
 
   Future<void> wishListClicked(String id, bool status) async {
