@@ -4,7 +4,6 @@
 // // import 'package:discover/view/user/wishlist.dart';
 // // import 'package:flutter/material.dart';
 
-
 // // class BottomScreen extends StatelessWidget {
 // //   BottomScreen({Key? key});
 
@@ -152,9 +151,9 @@ class BottomScreen extends StatelessWidget {
   BottomScreen({Key? key});
 
   final List<Widget> screens = [
-   Homepage(),
+    Homepage(),
     const WishList(),
-     const NotificationPage(),
+    const NotificationPage(),
     const UserProfileScreen(),
   ];
 
@@ -172,6 +171,7 @@ class BottomScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _BottomNavItem(Icons.home, 'ᴴᵒᵐᵉ', 0, context),
+            _BottomNavItem(Icons.favorite, 'ʷⁱˢʰˡⁱˢᵗ', 1, context),
             _BottomNavItem(Icons.notifications, 'ⁿᵒᵗⁱᶠⁱᶜᵃᵗⁱᵒⁿ', 2, context),
             _BottomNavItem(Icons.person, 'ᴾʳᵒᶠᶦˡᵉ', 3, context),
           ],

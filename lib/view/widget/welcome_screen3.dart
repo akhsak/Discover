@@ -1,5 +1,5 @@
 import 'package:discover/view/authontication/authontication_screen.dart';
-import 'package:discover/view/user/Login/login_page.dart';
+import 'package:discover/view/authontication/Login/login_page.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen3 extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:discover/controller/authentication_provider.dart';
-import 'package:discover/view/user/Login/create_account.dart';
-import 'package:discover/view/user/Login/forget_pswrd/new_password.dart';
+import 'package:discover/view/authontication/Login/create_account.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

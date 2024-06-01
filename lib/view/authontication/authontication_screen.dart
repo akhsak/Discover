@@ -1,4 +1,4 @@
-import 'package:discover/view/user/Login/login_page.dart';
+import 'package:discover/view/authontication/Login/login_page.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

@@ -2,7 +2,8 @@
 
 import 'package:country_picker/country_picker.dart';
 import 'package:discover/controller/authentication_provider.dart';
-import 'package:discover/view/user/Login/login_page.dart';
+import 'package:discover/view/authontication/Login/login_page.dart';
+import 'package:discover/view/authontication/Login/success_create.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:discover/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
@@ -201,7 +202,7 @@ class CreateAccount extends StatelessWidget {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => BottomScreen()));
+                                    builder: (context) => SuccessAccount()));
 
                             createprovider.clearSignupControllers();
                             SnackBarWidget().showSuccessSnackbar(
