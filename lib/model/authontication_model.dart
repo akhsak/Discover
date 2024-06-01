@@ -3,11 +3,13 @@ class UserModel {
   String? userName;
   String? email;
   String? phoneNumber;
+  String? age;
 
   UserModel({
     required this.uId,
     required this.userName,
     required this.email,
+    required this.age,
     required this.phoneNumber,
   });
 
@@ -15,6 +17,7 @@ class UserModel {
     return UserModel(
         uId: json['userId'],
         userName: json['name'],
+        age: json['age'],
         email: json['email'],
         phoneNumber: json['phoneNumber']);
   }
@@ -23,6 +26,7 @@ class UserModel {
     return {
       'userId': uId,
       'name': userName,
+      'age': age,
       'email': email,
       'phoneNumber': phoneNumber,
     };
