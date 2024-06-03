@@ -3,20 +3,23 @@ import 'dart:developer';
 import 'package:country_picker/country_picker.dart';
 import 'package:discover/model/authontication_model.dart';
 import 'package:discover/service/authontication.dart';
+import 'package:discover/widgets/admint_bottombar.dart';
+import 'package:discover/widgets/bottombar.dart';
+import 'package:discover/widgets/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginProvider extends ChangeNotifier {
   final AuthService authService = AuthService();
   TextEditingController userNameController = TextEditingController();
-  final fullNameController = TextEditingController();
+  final createFullNameController = TextEditingController();
   final createEmailController = TextEditingController();
   final createPasswordController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController loginPasswordController = TextEditingController();
   TextEditingController createAgeController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
@@ -69,7 +72,7 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void clearSignupControllers() {
-    fullNameController.clear();
+    createFullNameController.clear();
     createEmailController.clear();
     createPasswordController.clear();
     createAgeController.clear();
@@ -77,8 +80,8 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void clearLoginControllers() {
-    emailController.clear();
-    passwordController.clear();
+    loginEmailController.clear();
+    loginPasswordController.clear();
   }
 
   void validateEmail(String value) {
@@ -105,7 +108,7 @@ class LoginProvider extends ChangeNotifier {
     return await authService.signUpWithEmail(email, password);
   }
 
-  Future<UserCredential> signInWithEmail(String email, String password) async {
+  Future<UserCredential> loginWithEmail(String email, String password) async {
     return await authService.signInWithEmail(email, password);
   }
 
@@ -158,8 +161,8 @@ class LoginProvider extends ChangeNotifier {
 
   Future clearControllers() async {
     userNameController.clear();
-    emailController.clear();
-    passwordController.clear();
+    loginEmailController.clear();
+    loginPasswordController.clear();
     createAgeController.clear();
     phoneController.clear();
     otpController.clear();
@@ -169,5 +172,28 @@ class LoginProvider extends ChangeNotifier {
   onTabTapped(int index) {
     currentIndex = index;
     notifyListeners();
+  }
+
+  adminKey(context, SnackBarWidget snackBarWidget, {String? message}) async {
+    try {
+      if (loginEmailController.text == 'discover@gmail.com' &&
+          loginPasswordController.text == '12345') {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const AdminBottomBar()),
+            (route) => false);
+        clearControllers();
+      } else {
+        await loginWithEmail(
+            loginEmailController.text, loginPasswordController.text);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => UserBottomScreen()),
+            (route) => false);
+        clearControllers();
+      }
+    } catch (error) {
+      snackBarWidget.showErrorSnackbar(context, message!);
+    }
   }
 }

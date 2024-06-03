@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Duration(seconds: 2),
       );
       return Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => BottomScreen()));
+          context, MaterialPageRoute(builder: (context) => UserBottomScreen()));
     }
   }
 }

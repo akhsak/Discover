@@ -119,7 +119,7 @@ class AuthService {
       final User? guser = userCredential.user;
       log("User display Name: ${guser?.displayName}");
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => BottomScreen()));
+          context, MaterialPageRoute(builder: (context) => UserBottomScreen()));
       return guser;
     } catch (e) {
       log('Google Sign-In Error: $e');
@@ -158,7 +158,7 @@ class AuthService {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => BottomScreen(),
+            builder: (context) => UserBottomScreen(),
           ),
           (route) => false);
       SnackBarWidget().showSuccessSnackbar(context, "OTP validated");

@@ -1,20 +1,40 @@
+import 'package:discover/view/user/home_page.dart';
+import 'package:discover/view/user/notification_page.dart';
+import 'package:discover/view/user/profile/profile.dart';
+import 'package:discover/view/user/wishlist.dart';
 import 'package:flutter/material.dart';
 
 class BottomProvider extends ChangeNotifier {
+  int currentIndex = 0;
+  int initIndex = 0;
+  int adminCurrentIndex = 0;
 
-   int currentIndex = 0;
-   int initIndex=0;
-
-  void onTap( index) {
+  void onTap(index) {
     currentIndex = index;
     notifyListeners();
   }
 
-  void setInitIndex(int index) {
-    initIndex = index;
-    currentIndex=index;
+  void adminOnTap(int index) {
+    adminCurrentIndex = index;
     notifyListeners();
+
+    void setInitIndex(int index) {
+      initIndex = index;
+      currentIndex = index;
+      notifyListeners();
+    }
   }
-  
-  
+
+  final List<Widget> screens = [
+    Homepage(),
+    const WishList(),
+    const NotificationPage(),
+    const UserProfileScreen(),
+  ];
+
+  List adminScreens = [
+    // const AdminHomeScreen(),
+    // const DoctorAddingScreen(),
+    // const AdminProfileScreen(),
+  ];
 }

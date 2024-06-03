@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      controller: authProvider.emailController,
+                      controller: authProvider.loginEmailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
                         labelText: 'Email',
@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.02),
                     Consumer<LoginProvider>(
                       builder: (context, value, child) => TextFormField(
-                        controller: authProvider.passwordController,
+                        controller: authProvider.loginPasswordController,
                         obscureText: value.loginObscureText,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock),
@@ -76,9 +76,13 @@ class LoginScreen extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          suffixIcon: IconButton(onPressed: (){
-                               value.loginObscureTextchange();
-                          }, icon: Icon(value.loginObscureText?Icons.visibility_off:Icons.visibility)),
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                value.loginObscureTextchange();
+                              },
+                              icon: Icon(value.loginObscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility)),
 
                           // suffixIcon: IconButton(
                           //   icon: Icon(value.obscureText
@@ -119,14 +123,14 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () async {
                     if (authProvider.formKey.currentState!.validate()) {
                       try {
-                        await authProvider.signInWithEmail(
-                            authProvider.emailController.text,
-                            authProvider.passwordController.text);
+                        await authProvider.loginWithEmail(
+                            authProvider.loginEmailController.text,
+                            authProvider.loginPasswordController.text);
 
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BottomScreen()),
+                                builder: (context) => UserBottomScreen()),
                             (route) => false);
                         SnackBarWidget()
                             .showSuccessSnackbar(context, 'login successfull');

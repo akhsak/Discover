@@ -30,9 +30,11 @@ class BookingSucsess extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Spacer(flex: 2),
-            Image.asset('assets/icon_white.png',
-            height: 50,
-            width: 50,),
+            Image.asset(
+              'assets/icon_white.png',
+              height: 50,
+              width: 50,
+            ),
             // Icon(
             //   Icons.check_circle_outline,
             //   color: Colors.white,
@@ -61,7 +63,10 @@ class BookingSucsess extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserBottomScreen()));
                   // Navigate back to home or perform another action
                 },
                 style: ElevatedButton.styleFrom(
@@ -82,4 +87,3 @@ class BookingSucsess extends StatelessWidget {
     );
   }
 }
-

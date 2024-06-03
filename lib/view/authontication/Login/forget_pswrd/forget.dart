@@ -45,7 +45,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextFormField(
-                controller: forgetprovider.emailController,
+                controller: forgetprovider.loginEmailController,
                 decoration: InputDecoration(
                   labelText: 'E-mail',
                   border: OutlineInputBorder(
@@ -73,7 +73,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                       if (forgetprovider.forgotPasswordFormkey.currentState!
                           .validate()) {
                         forgetprovider.forgotPassword(context,
-                            email: forgetprovider.emailController.text.trim());
+                            email: forgetprovider.loginEmailController.text
+                                .trim());
                       }
                       forgetprovider.clearLoginControllers();
                       // if (_formKey

@@ -44,7 +44,7 @@ class CreateAccount extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: createprovider.fullNameController,
+                  controller: createprovider.createFullNameController,
                   decoration: InputDecoration(
                     labelText: 'Full name',
                     border: OutlineInputBorder(),

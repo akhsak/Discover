@@ -147,21 +147,14 @@ import 'package:discover/view/user/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BottomScreen extends StatelessWidget {
-  BottomScreen({Key? key});
-
-  final List<Widget> screens = [
-    Homepage(),
-    const WishList(),
-    const NotificationPage(),
-    const UserProfileScreen(),
-  ];
+class UserBottomScreen extends StatelessWidget {
+  UserBottomScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<BottomProvider>(
-        builder: (context, value, child) => screens[value.currentIndex],
+        builder: (context, value, child) => value.screens[value.currentIndex],
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,

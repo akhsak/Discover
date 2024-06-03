@@ -49,7 +49,10 @@ class SuccessAccount extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserBottomScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -71,5 +74,3 @@ class SuccessAccount extends StatelessWidget {
     );
   }
 }
-
-

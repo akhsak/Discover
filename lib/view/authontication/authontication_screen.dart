@@ -10,7 +10,7 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;
     return Scaffold(
-      body: currentUser != null ? BottomScreen() : const LoginScreen(),
+      body: currentUser != null ? UserBottomScreen() : const LoginScreen(),
     );
   }
 }

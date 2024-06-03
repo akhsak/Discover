@@ -62,7 +62,7 @@ class OtpScreen extends StatelessWidget {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BottomScreen()),
+                                  builder: (context) => UserBottomScreen()),
                               (route) => false);
                         } catch (e) {
                           log('Error during OTP verification: $e');
