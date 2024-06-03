@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class AdminProfieScreen extends StatelessWidget {
-  const AdminProfieScreen({super.key});
+class AdminProfileScreen extends StatelessWidget {
+  const AdminProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('profile'),
+      body: Center(child: Text('profile')),
     );
   }
 }

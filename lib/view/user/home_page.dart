@@ -170,12 +170,11 @@
 //   }
 // }
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:discover/view/user/booking/booking_page.dart';
 import 'package:discover/view/user/search/search.dart';
-import 'package:discover/widgets/category_card.dart';
+import 'package:discover/widgets/popular_package_card.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});

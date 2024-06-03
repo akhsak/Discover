@@ -2,6 +2,7 @@ import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/authontication/phone.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:discover/widgets/snackbar.dart';
+import 'package:discover/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'create_account.dart';
@@ -50,6 +51,16 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: screenHeight * 0.05),
                 Column(
                   children: [
+                    // Container(
+                    //   child: CustomTextFormField(
+                    //     controller: authProvider.loginEmailController,
+                    //     labelText: 'Email',
+                    //     prefixIcon: Icon(Icons.email),
+                    //     keyboardType: TextInputType.emailAddress,
+                    //     validateMsg: 'Enter your E-mail',
+                    //   ),
+                    // ),
+
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: authProvider.loginEmailController,
@@ -66,7 +77,22 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     Consumer<LoginProvider>(
-                      builder: (context, value, child) => TextFormField(
+                      builder: (context, value, child) =>
+                          // CustomTextFormField(
+                          //       controller: authProvider.loginPasswordController,
+                          //       labelText: 'Password',
+                          //       prefixIcon: Icon(Icons.lock, color: Colors.black),
+                          //       validateMsg: 'Enter your password',
+                          //       suffixIcon: IconButton(
+                          //         icon: Icon(value.obscureText
+                          //             ? Icons.visibility_off_outlined
+                          //             : Icons.visibility_outlined),
+                          //         onPressed: () {
+                          //           value.loginObscureTextchange();
+                          //         },
+                          //       ),
+                          //     )
+                          TextFormField(
                         controller: authProvider.loginPasswordController,
                         obscureText: value.loginObscureText,
                         decoration: InputDecoration(
@@ -122,23 +148,25 @@ class LoginScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     if (authProvider.formKey.currentState!.validate()) {
-                      try {
-                        await authProvider.loginWithEmail(
-                            authProvider.loginEmailController.text,
-                            authProvider.loginPasswordController.text);
+                      authProvider.adminKey(context, SnackBarWidget(),
+                          message: 'Incorrect email or password');
+                      // try {
+                      //     await authProvider.loginWithEmail(
+                      //         authProvider.loginEmailController.text,
+                      //         authProvider.loginPasswordController.text);
 
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UserBottomScreen()),
-                            (route) => false);
-                        SnackBarWidget()
-                            .showSuccessSnackbar(context, 'login successfull');
-                        authProvider.clearLoginControllers();
-                      } catch (e) {
-                        SnackBarWidget().showErrorSnackbar(
-                            context, 'Email or Password is incorrect');
-                      }
+                      //     Navigator.pushAndRemoveUntil(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => UserBottomScreen()),
+                      //         (route) => false);
+                      //     SnackBarWidget()
+                      //         .showSuccessSnackbar(context, 'login successfull');
+                      //     authProvider.clearLoginControllers();
+                      //   } catch (e) {
+                      //     SnackBarWidget().showErrorSnackbar(
+                      //         context, 'Email or Password is incorrect');
+                      //   }
                     }
                   },
                   style: ElevatedButton.styleFrom(
