@@ -266,8 +266,6 @@ class Homepage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return expandedTripCard(
                             context,
-                            'Destination $index',
-                            'assets/splash1.img.jpeg',
                           );
                         },
                       ),
@@ -322,8 +320,6 @@ class Homepage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return expandedTripCard(
                             context,
-                            'City $index',
-                            'assets/splash1.img.jpeg',
                           );
                         },
                       ),

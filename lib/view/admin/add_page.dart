@@ -560,7 +560,7 @@ class AdminAddpage extends StatelessWidget {
           await adminProvider.uploadImage(pickedImage, adminProvider.imageName);
 
       final travelPackage = AdminModel(
-        image: [],
+        image:),
         fullName: adminProvider.placeNameController.text,
         aboutTrip: adminProvider.placeAboutController.text,
         wishList: [],

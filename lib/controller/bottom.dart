@@ -1,5 +1,5 @@
 import 'package:discover/view/admin/add_page.dart';
-import 'package:discover/view/admin/home_page.dart';
+import 'package:discover/view/admin/admin_home_page.dart';
 import 'package:discover/view/admin/admin_profile.dart';
 import 'package:discover/view/user/home_page.dart';
 import 'package:discover/view/user/notification_page.dart';

@@ -121,6 +121,7 @@
 
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/view/admin/container_home.dart';
+import 'package:discover/widgets/popular_package_card.dart';
 import 'package:discover/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -183,31 +184,33 @@ class AdminHomeScreen extends StatelessWidget {
                     final doctors = allDoctors[index];
                     return Column(
                       children: [
-                        AllPlaceContainer(
-                            size: size,
-                            isAdmin: true,
-                            travelpackages: doctors,
-                            value: Value,
-                            circleAvatarRadius: circleAvatarRadius),
+                        // AllPlaceContainer(
+                        //     size: size,
+                        //     isAdmin: true,
+                        //     travelpackages: doctors,
+                        //     value: Value,
+                        //     circleAvatarRadius: circleAvatarRadius),
+                        expandedTripCard(context, trip: doctors),
+
                         SizedBox(height: size.height * .02),
                       ],
                     );
                   },
                 );
               } else {
-                return Center(child: Image.asset('assets/profile_avatar.jpg'));
+                return Center(child: Image.asset('assets/search_image.png'));
               }
             } else {
               return ListView.builder(
                 itemCount: Value.searchList.length,
                 itemBuilder: (context, index) {
-                  final doctor = Value.searchList[index];
+                  final travel = Value.searchList[index];
                   return Column(
                     children: [
                       AllPlaceContainer(
                           size: size,
                           isAdmin: true,
-                          travelpackages: doctor,
+                          travelpackages: travel,
                           value: Value,
                           circleAvatarRadius: circleAvatarRadius),
                       SizedBox(height: size.height * .02),

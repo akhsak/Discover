@@ -76,18 +76,18 @@ class AdminModel {
   String? duration;
   String? transportation;
   String? aboutTrip;
-  List wishList;
-  List image;
+  List? wishList;
+  List? image;
 
   AdminModel({
     this.id,
-    required this.image,
+    this.image,
     required this.fullName,
     this.location,
     this.duration,
     this.transportation,
     this.aboutTrip,
-    required this.wishList,
+    this.wishList,
   });
 
   factory AdminModel.fromJson(String id, Map<String, dynamic> json) {
