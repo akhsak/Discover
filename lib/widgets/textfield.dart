@@ -11,14 +11,18 @@ class CustomTextFormField extends StatelessWidget {
   final OutlineInputBorder? focusedBorder;
   final OutlineInputBorder? focusErrorBorder;
   final Widget? suffixIcon;
+  final String? hintText;
   final String? validateMsg;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final ValueChanged<String>? onChanged;
 
   const CustomTextFormField({
     super.key,
     required this.controller,
     required this.labelText,
+    this.hintText,
+    this.onChanged,
     this.obscureText,
     this.enabledBorder,
     this.focusedBorder,

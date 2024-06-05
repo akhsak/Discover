@@ -1,3 +1,4 @@
+import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
 // import 'package:discover/controller/login_provider.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           create: (context) => BottomProvider(),
         ),
         ChangeNotifierProvider(create: (context) => LoginProvider()),
-        ChangeNotifierProvider(create: (context) => LoginProvider())
+        ChangeNotifierProvider(create: (context) => AdminProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
