@@ -1,21 +1,16 @@
-// // // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, no_leading_underscores_for_local_identifiers, use_key_in_widget_constructors
-
 // // import 'dart:developer';
 // // import 'dart:io';
 
 // // import 'package:discover/controller/admin_provider.dart';
 // // import 'package:discover/model/admin_model.dart';
-// // import 'package:discover/widgets/admint_bottombar.dart';
 // // import 'package:discover/widgets/snackbar.dart';
 // // import 'package:discover/widgets/textfield.dart';
 // // import 'package:flutter/material.dart';
-// // import 'package:flutter/services.dart';
 // // import 'package:image_picker/image_picker.dart';
-// // import 'package:lottie/lottie.dart';
 // // import 'package:provider/provider.dart';
 
 // // class AdminAddpage extends StatelessWidget {
-// //   const AdminAddpage({Key? key});
+// //   const AdminAddpage({Key? key}) : super(key: key);
 
 // //   @override
 // //   Widget build(BuildContext context) {
@@ -94,96 +89,12 @@
 // //                   ),
 // //                 ),
 // //                 SizedBox(height: 20),
-// //                 // DropdownButtonFormField<String>(
-// //                 //   decoration: InputDecoration(
-// //                 //     hintText: "Select Item",
-// //                 //     border: OutlineInputBorder(),
-// //                 //   ),
-// //                 //   validator: (value) {
-// //                 //     if (value == null || value.isEmpty) {
-// //                 //       return 'value is Empty';
-// //                 //     } else {
-// //                 //       return null;
-// //                 //     }
-// //                 //  },
-// //                 //   dropdownColor: const Color.fromARGB(255, 208, 203, 203),
-// //                 //   isExpanded: true,
-// //                 //   onChanged: (String? newvalue) {
-// //                 //     addprovider.addvalue(newvalue);
-// //                 //   },
-// //                 //   items: const [
-// //                 //     DropdownMenuItem(
-// //                 //       value: "Medicines",
-// //                 //       child: Text(
-// //                 //         "Medicines",
-// //                 //         style:
-// //                 //             TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
-// //                 //       ),
-// //                 //     ),
-// //                 //     DropdownMenuItem(
-// //                 //       value: "Equipments",
-// //                 //       child: Text(
-// //                 //         "Equipments",
-// //                 //         style: TextStyle(color: Color.fromARGB(255, 7, 6, 6)),
-// //                 //       ),
-// //                 //     ),
-// //                 //     DropdownMenuItem(
-// //                 //       value: "Sanitizer",
-// //                 //       child: Text(
-// //                 //         "Sanitizer",
-// //                 //         style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
-// //                 //       ),
-// //                 //     ),
-// //                 //     DropdownMenuItem(
-// //                 //       value: "Others",
-// //                 //       child: Text(
-// //                 //         "Others",
-// //                 //         style:
-// //                 //             TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
-// //                 //       ),
-// //                 //     ),
-// //                 //   ],
-// //                 // ),
-// //                 SizedBox(height: 20),
-// //                 // Row(
-// //                 //   children: [
-// //                 //     Expanded(
-// //                 //       child: Container(
-// //                 //         child: CustomTextForm(
-// //                 //           labelText: 'selling price',
-// //                 //           controller: addprovider.sellingpriceController,
-// //                 //           inputFormatters: [
-// //                 //             FilteringTextInputFormatter.digitsOnly
-// //                 //           ],
-// //                 //           prefixText: '₹',
-// //                 //           keyboard: TextInputType.number,
-// //                 //         ),
-// //                 //       ),
-// //                 //     ),
-// //                 //     SizedBox(width: 10),
-// //                 //     Expanded(
-// //                 //       child: Container(
-// //                 //         child: CustomTextForm(
-// //                 //           labelText: 'Cost price',
-// //                 //           controller: addprovider.costpriceController,
-// //                 //           inputFormatters: [
-// //                 //             FilteringTextInputFormatter.digitsOnly
-// //                 //           ],
-// //                 //           prefixText: '₹',
-// //                 //           keyboard: TextInputType.number,
-// //                 //         ),
-// //                 //       ),
-// //                 //     ),
-// //                 //   ],
-// //                 // ),
-// //                 SizedBox(height: 20),
 // //                 Center(
 // //                   child: ElevatedButton(
 // //                     onPressed: () {
 // //                       if (addprovider.packageAddFormkey.currentState!
 // //                           .validate()) {
 // //                         addData(context, addprovider);
-// //                         //  onAddItemButtonClicked(context);
 // //                       }
 // //                     },
 // //                     child: Text('Save'),
@@ -204,18 +115,18 @@
 // //       final image = await adminProvider.uploadImage(
 // //           File(pickedImage.path), adminProvider.imageName);
 
-// //       final cars = AdminModel(
+// //       final travelPackage = AdminModel(
 // //         image: image,
 // //         fullName: adminProvider.placeNameController.text,
 // //         aboutTrip: adminProvider.placeAboutController.text,
 // //         wishList: [],
 // //       );
 
-// //       await adminProvider.addTravelPackage(cars);
+// //       await adminProvider.addTravelPackage(travelPackage);
 // //       adminProvider.clearDoctorAddingControllers();
 
 // //       SnackBarWidget()
-// //           .showSuccessSnackbar(context, 'Doctor Added Successfully');
+// //           .showSuccessSnackbar(context, 'Package Added Successfully');
 // //     } else {
 // //       SnackBarWidget()
 // //           .showSuccessSnackbar(context, 'Failed to Add try once more');
@@ -223,177 +134,158 @@
 // //     }
 // //     adminProvider.setLoading(false);
 // //   }
-// //   // Future<void> onAddItemButtonClicked(context) async {
-// //   //   final addprovider = Provider.of<AdminProvider>(context, listen: false);
-// //   //   if (addprovider.packageAddFormkey.currentState!.validate()) {
-// //   //     final _name = addprovider.placeNameController.text.trim();
-// //   //     final _about =addprovider.placeAboutController.text.trim();
-// //   // final _num = addprovider.numController.text.trim();
-// //   // final _item = addprovider.selectedValue;
-// //   // final _sellprice = addprovider.sellingpriceController.text.trim();
-// //   // final _costprice = addprovider.costpriceController.text.trim();
-
-// //   // final _addItem = AdminModel(fullName: _name,
-// //   // aboutTrip: _about,
-
-// //   // image:,
-// //   // name: _name,
-// //   // numbr: _num,
-// //   // item: _item,
-// //   // sellprice: _sellprice,
-// //   // costprice: _costprice,
-// //   // image: addprovider.picked?.path ?? '',
-// //   //     );
-// //   // Provider.of<AdminProvider>(context, listen: false).additems(_addItem);
-// //   // Navigator.pushAndRemoveUntil(
-// //   //     context,
-// //   //     MaterialPageRoute(builder: (context) => AdminBottomBar()),
-// //   //     (route) => false);
-// //   // addprovider.placeNameController.clear();
-// //   // addprovider.placeAboutController.clear();
-// //   // addprovider.numController.clear();
-// //   // addprovider.sellingpriceController.clear();
-// //   // addprovider.costpriceController.clear();
-// //   //addprovider.picked = null;
-// //   // }
-// //   //}
 // // }
 
-// import 'dart:developer';
-// import 'dart:io';
-
+// import 'package:authentication/controller/item_provider/item_provider.dart';
+// import 'package:authentication/model/itemmodel.dart';
+// import 'package:authentication/theme/colors.dart';
+// import 'package:authentication/view/bottom_bar/profile/my_products/widget/add_item/widget/add_widget.dart';
+// import 'package:authentication/widgets/navigator_widget.dart';
+// import 'package:authentication/widgets/snack_bar_widgets.dart';
+// import 'package:authentication/widgets/text_widget.dart';
 // import 'package:discover/controller/admin_provider.dart';
 // import 'package:discover/model/admin_model.dart';
-// import 'package:discover/widgets/snackbar.dart';
-// import 'package:discover/widgets/textfield.dart';
+// import 'package:enefty_icons/enefty_icons.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
+// import 'package:loading_animation_widget/loading_animation_widget.dart';
 // import 'package:provider/provider.dart';
 
-// class AdminAddpage extends StatelessWidget {
-//   const AdminAddpage({Key? key}) : super(key: key);
+// class AddItem extends StatelessWidget {
+//   AddItem({Key? key}) : super(key: key);
 
 //   @override
 //   Widget build(BuildContext context) {
-//     double screenWidth = MediaQuery.of(context).size.width;
-//     final addprovider = Provider.of<AdminProvider>(context, listen: false);
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         leading: IconButton(
-//           onPressed: () {
-//             Navigator.pop(context);
-//           },
-//           icon: Icon(Icons.arrow_back, color: Colors.white),
-//         ),
-//         title: Text('Add Items',
-//             style: TextStyle(
-//                 color: Color.fromRGBO(248, 248, 249, 1),
-//                 fontWeight: FontWeight.bold)),
-//         backgroundColor: Color.fromARGB(255, 43, 90, 152),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(20),
-//         child: SingleChildScrollView(
-//           child: Form(
-//             key: addprovider.packageAddFormkey,
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Center(
-//                   child: InkWell(
-//                     onTap: () {
-//                       addprovider.getImage(ImageSource.gallery);
-//                     },
-//                     child: Container(
-//                       margin: EdgeInsets.only(bottom: 20),
-//                       height: 200,
-//                       width: screenWidth,
-//                       decoration: BoxDecoration(
-//                         image: addprovider.travelImage != null
-//                             ? DecorationImage(
-//                                 image: FileImage(addprovider.travelImage!),
-//                                 fit: BoxFit.fill,
-//                               )
-//                             : null,
-//                         color: Colors.white,
-//                         borderRadius: BorderRadius.circular(25),
-//                         border: Border.all(color: Colors.grey),
-//                       ),
-//                       child: addprovider.travelImage == null
-//                           ? Center(
-//                               child: Image.asset('assets/profile_avatar.jpg'))
-//                           : null,
-//                     ),
-//                   ),
-//                 ),
-//                 SizedBox(height: 20),
-//                 Container(
-//                   child: CustomTextFormField(
-//                     prefixIcon: Icon(
-//                       Icons.place,
-//                       color: Colors.black,
-//                     ),
-//                     labelText: 'Placename',
-//                     controller: addprovider.placeNameController,
-//                   ),
-//                 ),
-//                 SizedBox(height: 20),
-//                 Container(
-//                   child: CustomTextFormField(
-//                     prefixIcon: Icon(
-//                       Icons.padding_outlined,
-//                       color: Colors.black,
-//                     ),
-//                     labelText: 'about',
-//                     controller: addprovider.placeAboutController,
-//                   ),
-//                 ),
-//                 SizedBox(height: 20),
-//                 Center(
-//                   child: ElevatedButton(
-//                     onPressed: () {
-//                       if (addprovider.packageAddFormkey.currentState!
-//                           .validate()) {
-//                         addData(context, addprovider);
-//                       }
-//                     },
-//                     child: Text('Save'),
-//                   ),
-//                 ),
-//               ],
+//     final pro = Provider.of<ItemProvider>(context);
+//     return pro.isLoading
+//         ? Scaffold(
+//             body: Center(
+//               child: LoadingAnimationWidget.threeArchedCircle(
+//                   color: colors().blue, size: 40),
 //             ),
-//           ),
-//         ),
-//       ),
-//     );
+//           )
+//         : Scaffold(
+//             appBar: AppBar(
+//               automaticallyImplyLeading: false,
+//               backgroundColor: Colors.transparent,
+//               elevation: 0,
+//               title: TextWidget().text(data: "Add Item", color: colors().black),
+//               centerTitle: true,
+//               leading: IconButton(
+//                 onPressed: () {
+//                   NavigatorHelper().pop(context: context);
+//                 },
+//                 icon: Icon(EneftyIcons.arrow_left_3_outline),
+//               ),
+//             ),
+//             body: Padding(
+//               padding: const EdgeInsets.all(16.0),
+//               child: SingleChildScrollView(
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     TextWidget().text(
+//                         data: "Add Product Images",
+//                         size: 18.0,
+//                         weight: FontWeight.bold),
+//                     SizedBox(height: 16),
+//                     Container(
+//                       height: 120,
+//                       child: Consumer<ItemProvider>(
+//                         builder: (context, value, child) => ListView.builder(
+//                           scrollDirection: Axis.horizontal,
+//                           itemCount: value.productImages.length + 1,
+//                           itemBuilder: (BuildContext context, int index) {
+//                             return GestureDetector(
+//                               onTap: () {
+//                                 if (index == value.productImages.length) {
+//                                   pro.getImage();
+//                                 }
+//                               },
+//                               child: Container(
+//                                 margin: EdgeInsets.only(right: 10),
+//                                 width: 120,
+//                                 height: 120,
+//                                 decoration: BoxDecoration(
+//                                   color: Colors.grey[300],
+//                                   borderRadius: BorderRadius.circular(10),
+//                                   image: index < value.productImages.length
+//                                       ? DecorationImage(
+//                                           image: FileImage(
+//                                             value.productImages[index],
+//                                           ),
+//                                           fit: BoxFit.cover,
+//                                         )
+//                                       : null,
+//                                 ),
+//                                 child: index == value.productImages.length
+//                                     ? Icon(
+//                                         Icons.add,
+//                                         size: 40,
+//                                         color: Colors.grey[600],
+//                                       )
+//                                     : null,
+//                               ),
+//                             );
+//                           },
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(height: 24),
+//                     AddWidget().textfields(context),
+//                     SizedBox(height: 24),
+//                     Center(
+//                       child: Container(
+//                         width: double.infinity,
+//                         child: FloatingActionButton.extended(
+//                           elevation: 0,
+//                           backgroundColor: colors().blue,
+//                           onPressed: () async {
+//                             await pro.startLoading(true);
+//                             await pro.uploadImages();
+//                             await addData(context);
+//                             await pro.startLoading(false);
+//                             snackBarWidget().topsnackBar(context,
+//                                 message:
+//                                     "Good job, your Item is Added Successfully");
+//                           },
+//                           label: TextWidget()
+//                               .text(data: "Add Item", color: Colors.white),
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           );
 //   }
 
-//   Future<void> addData(context, AdminProvider adminProvider) async {
-//     final pickedImage = adminProvider.travelImage;
-//     if (pickedImage != null) {
-//       adminProvider.setLoading(true);
-//       final image = await adminProvider.uploadImage(
-//           File(pickedImage.path), adminProvider.imageName);
+//   addData(context) async {
+//     final getProvider = Provider.of<AdminProvider>(context, listen: false);
+//     final user = FirebaseAuth.instance.currentUser;
+//     if (getProvider.pickedImage != null) {
+//       await getProvider.uploadImages();
 
-//       final travelPackage = AdminModel(
-//         image: image,
-//         fullName: adminProvider.placeNameController.text,
-//         aboutTrip: adminProvider.placeAboutController.text,
-//         wishList: [],
+//       final product = AdminModel(
+//         fullName: getProvider.name,
+//         aboutTrip: getProvider.
+//         // userName: user!.email ?? user.phoneNumber,
+//         // productname: getProvider.nameController.text,
+//         // description: getProvider.descriptionController.text,
+//         // price: int.tryParse(getProvider.priceController.text),
+//         // category: getProvider.selectedgroup,
+//         // wishlist: [],
+//         // image: getProvider.downloadUrls,
+//         // place: getProvider.placecontroller.text,
+//         // uid: FirebaseAuth.instance.currentUser!.uid,
 //       );
-
-//       await adminProvider.addTravelPackage(travelPackage);
-//       adminProvider.clearDoctorAddingControllers();
-
-//       SnackBarWidget()
-//           .showSuccessSnackbar(context, 'Package Added Successfully');
+//       getProvider.addProduct(product);
+//       getProvider.clearControllers();
+//       getProvider.productImages.clear();
 //     } else {
-//       SnackBarWidget()
-//           .showSuccessSnackbar(context, 'Failed to Add try once more');
-//       log('Error: pickedImage is null');
+//       print('Error: pickedImage is null');
 //     }
-//     adminProvider.setLoading(false);
 //   }
 // }
 
@@ -448,10 +340,10 @@ class AdminAddpage extends StatelessWidget {
                       height: 200,
                       width: screenWidth,
                       decoration: BoxDecoration(
-                        image: addprovider.travelImage != null
+                        image: addprovider.pickedImage != null
                             ? DecorationImage(
                                 image: FileImage(
-                                    File(addprovider.travelImage!.path)),
+                                    File(addprovider.pickedImage!.path)),
                                 fit: BoxFit.fill,
                               )
                             : null,
@@ -459,7 +351,7 @@ class AdminAddpage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.grey),
                       ),
-                      child: addprovider.travelImage == null
+                      child: addprovider.pickedImage == null
                           ? Center(
                               child: Image.asset('assets/profile_avatar.jpg'))
                           : null,
@@ -553,21 +445,25 @@ class AdminAddpage extends StatelessWidget {
   }
 
   Future<void> addData(context, AdminProvider adminProvider) async {
-    final pickedImage = adminProvider.travelImage;
+    final pickedImage = adminProvider.downloadUrls;
     if (pickedImage != null) {
       adminProvider.setLoading(true);
-      final image =
-          await adminProvider.uploadImage(pickedImage, adminProvider.imageName);
+      final image = await adminProvider.uploadImages();
 
+      // final travelPackage = AdminModel(
+      //   image:[];
+      //   fullName: adminProvider.placeNameController.text,
+      //   aboutTrip: adminProvider.placeAboutController.text,
+      //   wishList: [],
+      // );
       final travelPackage = AdminModel(
-        image:),
+        // image:adminProvider.imageName;
         fullName: adminProvider.placeNameController.text,
         aboutTrip: adminProvider.placeAboutController.text,
-        wishList: [],
       );
 
       await adminProvider.addTravelPackage(travelPackage);
-      adminProvider.clearDoctorAddingControllers();
+      adminProvider.clearTravelPackageAddingControllers();
 
       SnackBarWidget()
           .showSuccessSnackbar(context, 'Package Added Successfully');

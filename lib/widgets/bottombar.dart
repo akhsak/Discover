@@ -140,7 +140,7 @@
 // }
 
 import 'package:discover/controller/bottom.dart';
-import 'package:discover/view/user/home_page.dart';
+import 'package:discover/view/user/user_home_page.dart';
 import 'package:discover/view/user/notification_page.dart';
 import 'package:discover/view/user/profile/profile.dart';
 import 'package:discover/view/user/wishlist.dart';

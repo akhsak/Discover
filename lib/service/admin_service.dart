@@ -135,15 +135,33 @@ class TravelService {
     }
   }
 
-  Future<String?> uploadImage(File image, String? imageName) async {
+  // Future<String?> uploadImage(File image, String? imageName) async {
+  //   try {
+  //     final reference = storage.child('Travel/$imageName');
+  //     final uploadTask = reference.putFile(image);
+  //     final snapshot = await uploadTask;
+  //     return await snapshot.ref.getDownloadURL();
+  //   } catch (e) {
+  //     log('Error uploading image: $e');
+  //     return null;
+  //   }
+  // }
+
+  uploadImages(file, {String? filePath}) async {
+    String fileName = await DateTime.now().millisecondsSinceEpoch.toString();
     try {
-      final reference = storage.child('Travel/$imageName');
-      final uploadTask = reference.putFile(image);
-      final snapshot = await uploadTask;
-      return await snapshot.ref.getDownloadURL();
+      Reference fileFolder = storage.child('Item Image').child('$fileName');
+
+      if (filePath != null) {
+        Reference deletefile = storage.child(filePath);
+        await deletefile.delete();
+        log('The current file Successfully deleted from Firebase Storage.');
+      }
+      await fileFolder.putFile(file);
+      log('file successfully uploaded to Firebase Storage.');
+      return fileFolder;
     } catch (e) {
-      log('Error uploading image: $e');
-      return null;
+      throw 'Error in Update profile pic : $e';
     }
   }
 

@@ -247,6 +247,7 @@ import 'dart:io';
 
 import 'package:discover/model/admin_model.dart';
 import 'package:discover/service/admin_service.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -255,6 +256,8 @@ class AdminProvider extends ChangeNotifier {
 
   List<AdminModel> allPackageList = [];
   List<AdminModel> searchList = [];
+  List<String> downloadUrls = [];
+  List<String> imagePaths = [];
   bool isLoading = false;
 
   final TextEditingController searchController = TextEditingController();
@@ -262,8 +265,11 @@ class AdminProvider extends ChangeNotifier {
   final TextEditingController placeAboutController = TextEditingController();
   final GlobalKey<FormState> packageAddFormkey = GlobalKey<FormState>();
 
-  XFile? travelImage;
+  // XFile? travelImage;
   String? imageName;
+  File? pickedImage;
+  List<File> productImages = [];
+  Reference? reference;
 
   AdminProvider() {
     fetchAllDoctors();
@@ -274,16 +280,51 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Future<void> getImage(ImageSource source) async {
+  //   try {
+  //     final image = await travelService.imagePicker.pickImage(source: source);
+  //     if (image != null) {
+  //       travelImage = image;
+  //       imageName = image.name;
+  //       notifyListeners();
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
   Future<void> getImage(ImageSource source) async {
-    try {
-      final image = await travelService.imagePicker.pickImage(source: source);
-      if (image != null) {
-        travelImage = image;
-        imageName = image.name;
-        notifyListeners();
+    final picker = ImagePicker();
+    final pickedImages = await picker.pickMultiImage();
+    if (pickedImages.isNotEmpty) {
+      productImages.clear();
+      productImages.addAll(
+        pickedImages.map(
+          (image) => File(image.path),
+        ),
+      );
+      pickedImage = productImages.first;
+      notifyListeners();
+    }
+  }
+
+  uploadImages() async {
+    if (productImages.isNotEmpty) {
+      try {
+        for (final element in productImages) {
+          Reference videoReference = travelService.uploadImages(element);
+          String downloadUrl = await videoReference.getDownloadURL();
+          String Path = await videoReference.fullPath;
+          imagePaths.add(Path);
+          downloadUrls.add(downloadUrl);
+          log('File successfully uploaded to Firebase Storage. Download URL: $downloadUrl');
+        }
+        productImages.clear();
+      } catch (e) {
+        log('Error uploading files: $e');
       }
-    } catch (e) {
-      print(e);
+    } else {
+      log('No files selected.');
     }
   }
 
@@ -303,10 +344,10 @@ class AdminProvider extends ChangeNotifier {
     fetchAllDoctors();
   }
 
-  Future<String?> uploadImage(XFile image, String? imageName) async {
-    final File file = File(image.path);
-    return await travelService.uploadImage(file, imageName);
-  }
+  // Future<String?> uploadImage(XFile image, String? imageName) async {
+  //   final File file = File(image.path);
+  //   return await travelService.uploadImage(file, imageName);
+  // }
 
   Future<void> deleteTravelPackage(String id) async {
     log('start deleting');
@@ -335,10 +376,10 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearDoctorAddingControllers() {
+  void clearTravelPackageAddingControllers() {
     placeNameController.clear();
     placeAboutController.clear();
-    travelImage = null;
+    // travelImage = null;
     notifyListeners();
   }
 }
