@@ -29,7 +29,7 @@ class BottomProvider extends ChangeNotifier {
   }
 
   final List<Widget> screens = [
-    Homepage(),
+    UserHomepage(),
     WishList(),
     NotificationPage(),
     UserProfileScreen(),

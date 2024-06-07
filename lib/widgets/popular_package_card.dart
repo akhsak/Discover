@@ -133,7 +133,7 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
                 child: IconButton(
                   icon: const Icon(Icons.favorite_border),
                   onPressed: () {
-                    bottomProvider.onTap(1);
+                    bottomProvider.onTap(0);
                   },
                 ),
               ),

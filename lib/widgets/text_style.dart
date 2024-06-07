@@ -12,3 +12,19 @@ Widget textAbel({name, color, fontweight, double? fontsize}) {
       style: GoogleFonts.abel(
           color: color, fontWeight: fontweight, fontSize: fontsize));
 }
+
+class TextWidget {
+  text({data, size, weight, color, align, style}) {
+    return Text(
+      data,
+      style: GoogleFonts.aBeeZee(
+        fontSize: size,
+        fontWeight: weight,
+        color: color,
+        fontStyle: style,
+      ),
+      textAlign: align,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+}

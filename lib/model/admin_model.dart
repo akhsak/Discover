@@ -69,6 +69,52 @@
 //   }
 // }
 
+// class AdminModel {
+//   String? id;
+//   String? fullName;
+//   String? location;
+//   String? duration;
+//   String? transportation;
+//   String? aboutTrip;
+//   List? wishList;
+//   List? image;
+
+//   AdminModel({
+//     this.id,
+//     this.image,
+//     required this.fullName,
+//     this.location,
+//     this.duration,
+//     this.transportation,
+//     this.aboutTrip,
+//     this.wishList,
+//   });
+
+//   factory AdminModel.fromJson(String id, Map<String, dynamic> json) {
+//     return AdminModel(
+//       id: id,
+//       image: List<String>.from(json['image']),
+//       fullName: json['fullName'],
+//       duration: json['duration'],
+//       transportation: json['transportation'],
+//       location: json['location'],
+//       aboutTrip: json['aboutTrip'],
+//       wishList: List<String>.from(json['wishlist']),
+//     );
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'image': image,
+//       'fullName': fullName,
+//       'location': location,
+//       'duration': duration,
+//       'transportation': transportation,
+//       'aboutTrip': aboutTrip,
+//       'wishlist': wishList
+//     };
+//   }
+// }
 class AdminModel {
   String? id;
   String? fullName;
@@ -76,8 +122,8 @@ class AdminModel {
   String? duration;
   String? transportation;
   String? aboutTrip;
-  List? wishList;
-  List? image;
+  List<String>? wishList;
+  List<String>? image;
 
   AdminModel({
     this.id,
@@ -93,25 +139,30 @@ class AdminModel {
   factory AdminModel.fromJson(String id, Map<String, dynamic> json) {
     return AdminModel(
       id: id,
-      image: List<String>.from(json['image']),
-      fullName: json['fullName'],
-      duration: json['duration'],
-      transportation: json['transportation'],
-      location: json['location'],
-      aboutTrip: json['aboutTrip'],
-      wishList: List<String>.from(json['wishlist']),
+      image: (json['image'] as List<dynamic>?)
+          ?.map((item) => item as String)
+          .toList(),
+      fullName: json['fullName'] as String?,
+      duration: json['duration'] as String?,
+      transportation: json['transportation'] as String?,
+      location: json['location'] as String?,
+      aboutTrip: json['aboutTrip'] as String?,
+      wishList: (json['wishlist'] as List<dynamic>?)
+          ?.map((item) => item as String)
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'image': image,
       'fullName': fullName,
       'location': location,
       'duration': duration,
       'transportation': transportation,
       'aboutTrip': aboutTrip,
-      'wishlist': wishList
+      'wishlist': wishList,
     };
   }
 }
