@@ -8,114 +8,99 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class TravelService {
-  String travelPackages = 'Travel';
-  late CollectionReference<AdminModel> travel;
-  final ImagePicker imagePicker = ImagePicker();
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  Reference storage = FirebaseStorage.instance.ref();
+  String travelPackages = 'travel';
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  List<String> downloadUrls = [];
+  late CollectionReference<AdminModel> travel;
+  Reference storage = FirebaseStorage.instance.ref();
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final ImagePicker imagePicker = ImagePicker();
 
   TravelService() {
-    travel =
-        firebaseFirestore.collection(travelPackages).withConverter<AdminModel>(
-              fromFirestore: (snapshot, _) => AdminModel.fromJson(
-                snapshot.id,
-                snapshot.data()!,
-              ),
-              toFirestore: (model, _) => model.toJson(),
-            );
+    travel = firebaseFirestore
+        .collection(travelPackages)
+        .withConverter<AdminModel>(fromFirestore: (snapshot, options) {
+      return AdminModel.fromJson(snapshot.id, snapshot.data()!);
+    }, toFirestore: (value, options) {
+      return value.toJson();
+    });
   }
 
-  Future<void> addTravelPackage(AdminModel travelPackage) async {
+  Future<void> addTravelPackage(AdminModel data) async {
     try {
-      await travel.add(travelPackage);
+      await travel.add(data);
     } catch (e) {
-      log('Error adding travel package: $e');
+      log('Error while adding travel :$e');
     }
-  }
-
-  Future<List<AdminModel>> getAllTravelPackage() async {
-    final snapshot = await travel.get();
-    return snapshot.docs.map((trip) => trip.data()).toList();
   }
 
   Future<void> deleteTravelPackage(String id) async {
     try {
       await travel.doc(id).delete();
-    } catch (error) {
-      log('error during deleting travelPackage :$error');
-    }
-  }
-
-  // Future<String?> uploadImage(File image, String? imageName) async {
-  //   try {
-  //     final reference = storage.child('Travel/$imageName');
-  //     final uploadTask = reference.putFile(image);
-  //     final snapshot = await uploadTask;
-  //     return await snapshot.ref.getDownloadURL();
-  //   } catch (e) {
-  //     log('Error uploading image: $e');
-  //     return null;
-  //   }
-  // }
-
-  uploadImages(file, {String? filePath}) async {
-    String fileName = await DateTime.now().millisecondsSinceEpoch.toString();
-    try {
-      Reference fileFolder = storage.child('Item Image').child('$fileName');
-
-      if (filePath != null) {
-        Reference deletefile = storage.child(filePath);
-        await deletefile.delete();
-        log('The current file Successfully deleted from Firebase Storage.');
-      }
-      await fileFolder.putFile(file);
-      log('file successfully uploaded to Firebase Storage.');
-      return fileFolder;
     } catch (e) {
-      throw 'Error in Update profile pic : $e';
+      log('Error while deleting travel: $e');
     }
   }
 
-  //
-  Future<void> favListClicked(String id, bool status) async {
+  Future<List<AdminModel>> getAllTravelPackages() async {
+    final snapshot = await travel.get();
+    return snapshot.docs.map((doc) => doc.data()).toList();
+  }
+
+  Future<void> wishListClicked(String id, bool status) async {
     try {
       if (status == true) {
-        await travel.doc(id).update(
-          {
-            'wishlist': FieldValue.arrayUnion(
-              [
-                firebaseAuth.currentUser!.email ??
-                    firebaseAuth.currentUser!.phoneNumber
-              ],
-            )
-          },
-        );
+        await travel.doc(id).update({
+          'wishlist': FieldValue.arrayUnion([
+            firebaseAuth.currentUser!.email ??
+                firebaseAuth.currentUser!.phoneNumber
+          ])
+        });
       } else {
-        await travel.doc(id).update(
-          {
-            'wishlist': FieldValue.arrayRemove(
-              [
-                firebaseAuth.currentUser!.email ??
-                    firebaseAuth.currentUser!.phoneNumber
-              ],
-            )
-          },
-        );
+        await travel.doc(id).update({
+          'wishlist': FieldValue.arrayRemove([
+            firebaseAuth.currentUser!.email ??
+                firebaseAuth.currentUser!.phoneNumber
+          ])
+        });
       }
     } catch (e) {
-      log("error is $e");
+      log('got a error of :$e');
     }
   }
 
-  // Future<List<AdminModel>> fetchAllPackages() async {
+  // uploadImages(file, {String? filePath}) async {
+  //   String fileName = await DateTime.now().millisecondsSinceEpoch.toString();
   //   try {
-  //     final snapshot = await travel.get();
-  //     return snapshot.docs.map((e) => e.data()).toList();
+  //     Reference fileFolder = storage.child('Item Image').child('$fileName');
+
+  //     if (filePath != null) {
+  //       Reference deletefile = storage.child(filePath);
+  //       await deletefile.delete();
+  //       log('The current file Successfully deleted from Firebase Storage.');
+  //     }
+  //     await fileFolder.putFile(file);
+  //     log('file successfully uploaded to Firebase Storage.');
+  //     return fileFolder;
   //   } catch (e) {
-  //     log('Error fetching travel packages: $e');
-  //     return [];
+  //     throw 'Error in Update profile pic : $e';
   //   }
-  // }
+  // }/
+
+  Future<String> uploadImage(imageName, imageFile) async {
+    Reference imageFolder = storage.child('productImage');
+    Reference? uploadImage = imageFolder.child('$imageName.jpg');
+
+    await uploadImage.putFile(imageFile);
+    String downloadURL = await uploadImage.getDownloadURL();
+    log('Image successfully uploaded to Firebase Storage.');
+    return downloadURL;
+  }
+
+  Future<File?> pickImage(ImageSource source) async {
+    final pickedFile = await imagePicker.pickImage(source: source);
+    if (pickedFile != null) {
+      return File(pickedFile.path);
+    }
+    return null;
+  }
 }

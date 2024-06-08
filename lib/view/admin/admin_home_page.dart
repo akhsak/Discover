@@ -220,6 +220,7 @@
 
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/view/admin/container_home.dart';
+import 'package:discover/view/user/booking/booking_page.dart';
 import 'package:discover/view/user/profile/profile.dart';
 import 'package:discover/widgets/popular_package_card.dart';
 import 'package:discover/widgets/textfield.dart';
@@ -238,7 +239,7 @@ class AdminHomeScreen extends StatelessWidget {
 
     // Ensure the data is fetched when the screen is loaded
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      adminProvider.getAllTravelPackages();
+      adminProvider.getAllTravelPackage();
     });
 
     return Scaffold(
@@ -279,21 +280,29 @@ class AdminHomeScreen extends StatelessWidget {
                 ),
               );
             } else if (value.searchList.isEmpty) {
-              if (value.allPackageList.isNotEmpty) {
-                final allPackages = value.allPackageList;
+              if (value.allTravelList.isNotEmpty) {
+                final allPackages = value.allTravelList;
 
-                return ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: allPackages.length,
-                  itemBuilder: (context, index) {
-                    final doctors = allPackages[index];
-                    return Column(
-                      children: [
-                        expandedTripCard(context, trip: doctors),
-                        SizedBox(height: size.height * .02),
-                      ],
-                    );
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BookingDetailScreen()));
                   },
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: allPackages.length,
+                    itemBuilder: (context, index) {
+                      final doctors = allPackages[index];
+                      return Column(
+                        children: [
+                          expandedTripCard(context, trip: doctors),
+                          SizedBox(height: size.height * .02),
+                        ],
+                      );
+                    },
+                  ),
                 );
               } else {
                 return Center(child: Image.asset('assets/search_image.png'));
@@ -306,8 +315,7 @@ class AdminHomeScreen extends StatelessWidget {
                   final travel = value.searchList[index];
                   return Column(
                     children: [
-                      expandedTripCard(context),
-                      // AllPlaceContainer(
+                      expandedTripCard(context), // AllPlaceContainer(
                       //     size: size,
                       //     isAdmin: true,
                       //     travelpackages: travel,

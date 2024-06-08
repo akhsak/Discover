@@ -1,158 +1,3 @@
-// import 'dart:developer';
-// import 'dart:io';
-
-// import 'package:discover/model/admin_model.dart';
-// import 'package:discover/service/admin_service.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-
-// class AdminProvider extends ChangeNotifier {
-//   final TravelService travelService = TravelService();
-
-//   List<AdminModel> allPackageList = [];
-//   List<AdminModel> searchList = [];
-//   List<String> downloadUrls = [];
-//   List<String> imagePaths = [];
-//   bool isLoading = false;
-
-//   final TextEditingController searchController = TextEditingController();
-//   final TextEditingController placeNameController = TextEditingController();
-//   final TextEditingController placeAboutController = TextEditingController();
-//   final TextEditingController locationController = TextEditingController();
-
-//   final TextEditingController durationController = TextEditingController();
-//   final TextEditingController transportationController =
-//       TextEditingController();
-
-//   final GlobalKey<FormState> packageAddFormkey = GlobalKey<FormState>();
-
-//   String? imageName;
-//   File? pickedImage;
-//   List<File> travelImages = [];
-//   String imageNamePrefix = DateTime.now().microsecondsSinceEpoch.toString();
-//   Reference? reference;
-
-//   var wishlist;
-
-//   // AdminProvider() {
-//   //   fetchAllDoctors();
-//   // }
-
-//   void setLoading(bool value) {
-//     isLoading = value;
-//     notifyListeners();
-//   }
-
-//   Future<void> getImage(ImageSource source) async {
-//     final picker = ImagePicker();
-//     final pickedImages = await picker.pickMultiImage();
-//     if (pickedImages.isNotEmpty) {
-//       travelImages.clear();
-//       travelImages.addAll(
-//         pickedImages.map(
-//           (image) => File(image.path),
-//         ),
-//       );
-//       pickedImage = travelImages.first;
-//       notifyListeners();
-//     }
-//   }
-
-//   uploadImages() async {
-//     if (travelImages.isNotEmpty) {
-//       try {
-//         for (final element in travelImages) {
-//           Reference videoReference = travelService.uploadImages(element);
-//           String downloadUrl = await videoReference.getDownloadURL();
-//           String Path = await videoReference.fullPath;
-//           imagePaths.add(Path);
-//           downloadUrls.add(downloadUrl);
-//           log('File successfully uploaded to Firebase Storage. Download URL: $downloadUrl');
-//         }
-//         travelImages.clear();
-//       } catch (e) {
-//         log('Error uploading files: $e');
-//       }
-//     } else {
-//       log('No files selected.');
-//     }
-//   }
-
-//   void clearTravelPackageAddingControllers() {
-//     placeNameController.clear();
-//     placeAboutController.clear();
-//     durationController.clear();
-//     transportationController.clear();
-//     locationController.clear;
-//     searchController.clear();
-//     notifyListeners();
-//   }
-
-//   Future<void> favouritesClicked(String id, bool status) async {
-//     await travelService.favListClicked(id, status);
-//     notifyListeners();
-//     await getAllTravelPackage();
-//   }
-
-//   bool favListCheck(AdminModel product) {
-//     final currentuser = FirebaseAuth.instance.currentUser;
-//     final user = currentuser?.email ?? currentuser?.phoneNumber;
-//     return !product.wishList!.contains(user);
-//   }
-
-//   Future<void> fetchAllDoctors() async {
-//     setLoading(true);
-//     allPackageList = await travelService.fetchAllPackages();
-//     setLoading(false);
-//   }
-
-//   Future<void> addTravelPackage(AdminModel travelPackage) async {
-//     await travelService.addTravelPackage(travelPackage);
-//     fetchAllDoctors();
-//   }
-
-//   Future<void> getAllTravelPackage() async {
-//     allPackageList = await travelService.getAllTravelPackage();
-//     notifyListeners();
-//   }
-
-//   startLoading(value) {
-//     isLoading = value;
-//     notifyListeners();
-//   }
-
-//   Future<void> deleteTravelPackage(String id) async {
-//     log('start deleting');
-//     await travelService.deleteTravelPackage(id);
-//     log('end deleting');
-//     await getAllTravelPackage();
-//   }
-
-//   void search(String value) {
-//     searchList = allPackageList
-//         .where(
-//           (package) => package.fullName!.toLowerCase().contains(
-//                 value.toLowerCase(),
-//               ),
-//         )
-//         .toList();
-//     notifyListeners();
-//   }
-
-//   // void search(String value) {
-//   //   if (value.isEmpty) {
-//   //     searchList = [];
-//   //   } else {
-//   //     searchList = allPackageList
-//   //         .where((AdminModel package) =>
-//   //             package.fullName!.toLowerCase().contains(value.toLowerCase()))
-//   //         .toList();
-//   //   }
-//   //   notifyListeners();
-//   // }
-// }
 import 'dart:developer';
 import 'dart:io';
 
@@ -164,131 +9,120 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AdminProvider extends ChangeNotifier {
-  final TravelService travelService = TravelService();
-
-  List<AdminModel> allPackageList = [];
-  List<AdminModel> searchList = [];
-  List<String> downloadUrls = [];
-  List<String> imagePaths = [];
+  File? pickedImage;
+  String imageName = DateTime.now().microsecondsSinceEpoch.toString();
+  String? downloadUrls;
   bool isLoading = false;
+  bool isAddingData = false;
+
+  final GlobalKey<FormState> packageAddFormkey = GlobalKey<FormState>();
+
+  final TravelService travelService = TravelService();
+  final ImagePicker imagePicker = ImagePicker();
+  final FirebaseStorage storage = FirebaseStorage.instance;
 
   final TextEditingController searchController = TextEditingController();
   final TextEditingController placeNameController = TextEditingController();
-  final TextEditingController placeAboutController = TextEditingController();
+  final TextEditingController aboutController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController durationController = TextEditingController();
   final TextEditingController transportationController =
       TextEditingController();
 
-  final GlobalKey<FormState> packageAddFormkey = GlobalKey<FormState>();
+  List<AdminModel> searchList = [];
+  List<AdminModel> allTravelList = [];
+  // List<File> travelImages = [];
 
-  String? imageName;
-  File? pickedImage;
-  List<File> travelImages = [];
-  String imageNamePrefix = DateTime.now().microsecondsSinceEpoch.toString();
-  Reference? reference;
-
-  var wishlist;
-
-  void setLoading(bool value) {
-    isLoading = value;
+  void setIsAddingData(bool value) {
+    isAddingData = value;
     notifyListeners();
   }
 
-  Future<void> getImage(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedImages = await picker.pickMultiImage();
-    if (pickedImages.isNotEmpty) {
-      travelImages.clear();
-      travelImages.addAll(
-        pickedImages.map(
-          (image) => File(image.path),
-        ),
-      );
-      pickedImage = travelImages.first;
+  void clearTravelControllers() {
+    placeNameController.clear();
+    aboutController.clear();
+    locationController.clear();
+    durationController.clear();
+    transportationController.clear();
+    pickedImage = null;
+  }
+
+  void addTravelPackage(AdminModel data) async {
+    await travelService.addTravelPackage(data);
+
+    notifyListeners();
+    getAllTravelPackage();
+  }
+
+  void deleteTravelPackage(String id) async {
+    await travelService.deleteTravelPackage(id);
+    getAllTravelPackage();
+  }
+
+  void getAllTravelPackage() async {
+    isLoading = true;
+    allTravelList = await travelService.getAllTravelPackages();
+    isLoading = false;
+    notifyListeners();
+  }
+
+  Future<String> uploadImage(image, imageName) async {
+    try {
+      if (image != null) {
+        String downloadUrl = await travelService.uploadImage(imageName, image);
+        log(downloadUrl);
+        notifyListeners();
+        return downloadUrl;
+      } else {
+        log('image is null');
+        return '';
+      }
+    } catch (e) {
+      log('got an error of $e');
+      rethrow;
+    }
+  }
+
+  Future getImage(ImageSource source) async {
+    final pickedFile = await imagePicker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      pickedImage = File(pickedFile.path);
+      log("Image picked");
       notifyListeners();
     }
   }
 
-  Future<void> uploadImages() async {
-    if (travelImages.isNotEmpty) {
-      try {
-        for (final element in travelImages) {
-          final videoReference = await travelService.uploadImages(element);
-          final downloadUrl = await videoReference.getDownloadURL();
-          final path = await videoReference.fullPath;
-          imagePaths.add(path);
-          downloadUrls.add(downloadUrl);
-          log('File successfully uploaded to Firebase Storage. Download URL: $downloadUrl');
-        }
-        travelImages.clear();
-      } catch (e) {
-        log('Error uploading files: $e');
+  void search(String value) {
+    if (value.isEmpty) {
+      searchList = [];
+    } else {
+      searchList = allTravelList
+          .where((AdminModel travel) =>
+              travel.placeName!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    }
+    notifyListeners();
+  }
+
+  Future<void> wishlistClicked(String id, bool status) async {
+    await travelService.wishListClicked(id, status);
+    notifyListeners();
+  }
+
+  bool wishListCheck(AdminModel package) {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      final user = currentUser.email ?? currentUser.phoneNumber;
+      if (package.wishList!.contains(user)) {
+        getAllTravelPackage();
+        return false;
+      } else {
+        getAllTravelPackage();
+        return true;
       }
     } else {
-      log('No files selected.');
+      return true;
     }
-  }
-
-  void clearTravelPackageAddingControllers() {
-    placeNameController.clear();
-    placeAboutController.clear();
-    durationController.clear();
-    transportationController.clear();
-    locationController.clear();
-    searchController.clear();
-    notifyListeners();
-  }
-
-  Future<void> favouritesClicked(String id, bool status) async {
-    await travelService.favListClicked(id, status);
-    notifyListeners();
-    await getAllTravelPackages();
-  }
-
-  bool favListCheck(AdminModel product) {
-    final currentuser = FirebaseAuth.instance.currentUser;
-    final user = currentuser?.email ?? currentuser?.phoneNumber;
-    return !product.wishList!.contains(user);
-  }
-
-  // Future<void> fetchAllPackages() async {
-  //   setLoading(true);
-  //   allPackageList = await travelService.fetchAllPackages();
-  //   setLoading(false);
-  //   notifyListeners();
-  //}
-
-  Future<void> addTravelPackage(AdminModel travelPackage) async {
-    await travelService.addTravelPackage(travelPackage);
-    getAllTravelPackages();
-  }
-
-  Future<void> getAllTravelPackages() async {
-    allPackageList = await travelService.getAllTravelPackage();
-    notifyListeners();
-  }
-
-  startLoading(value) {
-    isLoading = value;
-    notifyListeners();
-  }
-
-  Future<void> deleteTravelPackage(String id) async {
-    log('start deleting');
-    await travelService.deleteTravelPackage(id);
-    log('end deleting');
-    await getAllTravelPackages();
-  }
-
-  void search(String value) {
-    searchList = allPackageList
-        .where(
-          (package) => package.fullName!.toLowerCase().contains(
-                value.toLowerCase(),
-              ),
-        )
-        .toList();
-    notifyListeners();
   }
 }

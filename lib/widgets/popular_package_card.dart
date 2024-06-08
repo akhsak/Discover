@@ -83,7 +83,7 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
-                  imageUrl,
+                  trip.image!,
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 120,
@@ -142,7 +142,7 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
         ),
         const SizedBox(height: 8),
         Text(
-          trip.fullName!,
+          trip.placeName!,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         const Text(

@@ -41,7 +41,7 @@ class AllPlaceContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      travelpackages.fullName!,
+                      travelpackages.placeName!,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
