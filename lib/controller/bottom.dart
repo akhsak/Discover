@@ -1,7 +1,7 @@
 import 'package:discover/view/admin/add_page.dart';
 import 'package:discover/view/admin/admin_home_page.dart';
 import 'package:discover/view/admin/admin_profile.dart';
-import 'package:discover/view/user/user_home_page.dart';
+import 'package:discover/view/user/home/user_home_page.dart';
 import 'package:discover/view/user/notification_page.dart';
 import 'package:discover/view/user/profile/profile.dart';
 import 'package:discover/view/user/wishlist.dart';

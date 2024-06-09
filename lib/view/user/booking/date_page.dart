@@ -1,4 +1,4 @@
-import 'package:discover/view/user/booking/detail_booking_page.dart';
+import 'package:discover/view/user/home/detail_booking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -59,20 +59,22 @@ class _DatePageState extends State<DatePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                   width: 180,
-                   height: 50,
+                  width: 180,
+                  height: 50,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(17),
-                          ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(17),
+                      ),
                       backgroundColor: Color.fromARGB(255, 244, 240, 240),
                     ),
-                    child: const Text('Back',style: TextStyle(color: Color.fromARGB(255, 133, 133, 133), fontWeight: FontWeight.bold)),
+                    child: const Text('Back',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 133, 133, 133),
+                            fontWeight: FontWeight.bold)),
                   ),
                 ),
                 SizedBox(
@@ -80,17 +82,23 @@ class _DatePageState extends State<DatePage> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=>DetalBooking()));
-
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetalBooking()));
                     },
                     style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(17),
-                          ),
-                      backgroundColor: Colors.blue, // Blue color for the next button
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(17),
+                      ),
+                      backgroundColor:
+                          Colors.blue, // Blue color for the next button
                     ),
-                    child: const Text('Next',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
+                    child: const Text(
+                      'Next',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],

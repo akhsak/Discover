@@ -27,6 +27,7 @@ class LoginProvider extends ChangeNotifier {
 
   final otpFormKey = GlobalKey<FormState>();
   final forgotPasswordFormkey = GlobalKey<FormState>();
+  bool isAdminHome = false;
 
   String? emailError;
   String? passwordError;

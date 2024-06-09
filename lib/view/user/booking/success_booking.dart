@@ -12,7 +12,7 @@
 //   }
 // }
 
-import 'package:discover/view/user/user_home_page.dart';
+import 'package:discover/view/user/home/user_home_page.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 

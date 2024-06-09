@@ -1,57 +1,9 @@
+import 'package:discover/controller/admin_provider.dart';
+import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
 import 'package:discover/model/admin_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-Widget popularPackageCard(
-    BuildContext context, String title, String imagePath) {
-  return Container(
-    width: 160,
-    margin: const EdgeInsets.only(right: 16),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                ),
-              ),
-              Positioned(
-                bottom: 10,
-                left: 8,
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ],
-    ),
-  );
-}
 
 Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
   if (trip == null) {
@@ -67,7 +19,9 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
     );
   }
 
-  final bottomProvider = Provider.of<BottomProvider>(context);
+  final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
+  final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+  final adminProvider = Provider.of<AdminProvider>(context, listen: false);
   final imageUrl =
       (trip.image != null && trip.image!.isNotEmpty) ? trip.image![0] : null;
 
@@ -125,29 +79,109 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
             Positioned(
               top: 8,
               right: 8,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  onPressed: () {
-                    bottomProvider.onTap(0);
-                  },
-                ),
-              ),
+              child: loginProvider.isAdminHome
+                  ? IconButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Delete Trip'),
+                            content: const Text(
+                                'Are you sure you want to delete this trip?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  adminProvider.deleteTravelPackage(trip.id!);
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Delete',
+                                    style: TextStyle(color: Colors.red)),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                    )
+                  : Consumer<AdminProvider>(
+                      builder: (context, value, child) {
+                        final wish = value.wishListCheck(trip);
+                        return IconButton(
+                          onPressed: () {
+                            value.wishlistClicked(trip.id!, wish);
+                          },
+                          icon: wish
+                              ? const Icon(Icons.favorite, color: Colors.red)
+                              : const Icon(Icons.favorite_border_outlined,
+                                  color: Colors.red),
+                        );
+                      },
+                    ),
             ),
           ],
         ),
         const SizedBox(height: 8),
         Text(
-          trip.placeName!,
+          trip.placeName ?? '',
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        const Text(
-          'Lorem ipsum dolor sit amet.',
-          style: TextStyle(color: Colors.grey),
+        Text(
+          trip.aboutTrip ?? '',
+          style: const TextStyle(color: Colors.grey),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget popularPackageCard(
+    BuildContext context, String title, String imagePath) {
+  return Container(
+    width: 160,
+    margin: const EdgeInsets.only(right: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+              ),
+              Positioned(
+                bottom: 10,
+                left: 8,
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ],
     ),
