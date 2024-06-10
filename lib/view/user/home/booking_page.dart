@@ -3,14 +3,34 @@ import 'package:discover/view/user/booking/widget/review.dart';
 import 'package:flutter/material.dart';
 
 class BookingDetailScreen extends StatelessWidget {
+  final placeName;
+  final aboutTrip;
+  final location;
+  final image;
+  final duration;
+  final transportation;
+
+  const BookingDetailScreen(
+      {super.key,
+      this.placeName,
+      this.aboutTrip,
+      this.location,
+      this.duration,
+      this.image,
+      this.transportation});
   // final String imageUrl =
   //     'assets/splash1.img.jpeg'; // Replace with your image URL
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Booking',style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          'Booking',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -22,30 +42,35 @@ class BookingDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/splash1.img.jpeg',
-              width: double.infinity,
-              height: 200,
-              fit: BoxFit.cover,
+            Container(
+              height: size.height * 0.4,
+              width: size.width * .8,
+              decoration: BoxDecoration(
+                  image: DecorationImage(image: image, fit: BoxFit.contain),
+                  color: Colors.white),
             ),
+            // Image.asset(
+            //   'assets/splash1.img.jpeg',
+            //   width: double.infinity,
+            //   height: 200,
+            //   fit: BoxFit.cover,
+            // ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Lovely Vacation Home',
+                    'About',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  Text(
-                    'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.',
-                    style: TextStyle(fontSize: 16),
+                  Text(aboutTrip),
+                  SizedBox(height: 40),
+                  Divider(
+                    color: Colors.grey,
                   ),
                   SizedBox(height: 40),
-                                    Divider(color: Colors.grey,),
-                  SizedBox(height: 40),
-
                   Text(
                     'What is included',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -57,54 +82,66 @@ class BookingDetailScreen extends StatelessWidget {
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           side: const BorderSide(
-                                    color: Color.fromARGB(255, 205, 198, 198),
-                                  ),
-                                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
+                            color: Color.fromARGB(255, 205, 198, 198),
+                          ),
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
                         ),
-                        icon: Icon(Icons.train,color: Colors.black),
-                        label: Text('Bus\nTransportaion',style: TextStyle(color: Colors.black),),
-                        
+                        icon: Icon(Icons.train, color: Colors.black),
+                        label: Text(
+                          'Bus\n${transportation}',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
-                      SizedBox(width: 25,),
+                      SizedBox(
+                        width: 25,
+                      ),
                       ElevatedButton.icon(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           side: const BorderSide(
-                                    color: Color.fromARGB(255, 205, 198, 198),
-                                  ),
-                                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
+                            color: Color.fromARGB(255, 205, 198, 198),
+                          ),
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
                         ),
-                        icon: Icon(Icons.punch_clock,color: Colors.black,),
-                        label: Text('2 days\n Duration',style: TextStyle(color: Colors.black),),
+                        icon: Icon(
+                          Icons.punch_clock,
+                          color: Colors.black,
+                        ),
+                        label: Text(
+                          '2 days\n${duration}',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
-                  SizedBox(width: 50,),
+                      SizedBox(
+                        width: 50,
+                      ),
 
-                  //     ElevatedButton.icon(
-                  //       onPressed: () {},
-                  //       style: ElevatedButton.styleFrom(
-                  //         side: const BorderSide(
-                  //                   color: Color.fromARGB(255, 205, 198, 198),
-                  //                 ),
-                  //                 backgroundColor: Colors.white,
-                  // shape: RoundedRectangleBorder(
-                  //   borderRadius: BorderRadius.circular(0),
-                  // ),
-                  //       ),
-                  //       icon: Icon(Icons.abc),
-                  //       label: Text('id'),
-                  //     ),
+                      //     ElevatedButton.icon(
+                      //       onPressed: () {},
+                      //       style: ElevatedButton.styleFrom(
+                      //         side: const BorderSide(
+                      //                   color: Color.fromARGB(255, 205, 198, 198),
+                      //                 ),
+                      //                 backgroundColor: Colors.white,
+                      // shape: RoundedRectangleBorder(
+                      //   borderRadius: BorderRadius.circular(0),
+                      // ),
+                      //       ),
+                      //       icon: Icon(Icons.abc),
+                      //       label: Text('id'),
+                      //     ),
                     ],
                   ),
-                                    SizedBox(height: 40),
-
-                                    Divider(color: Colors.grey,),
-
+                  SizedBox(height: 40),
+                  Divider(
+                    color: Colors.grey,
+                  ),
                   SizedBox(height: 40),
                   Text(
                     'Where will you stay',
@@ -117,7 +154,7 @@ class BookingDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'View the location on map',
+                          location,
                           style: TextStyle(color: Colors.grey),
                         ),
                         SizedBox(height: 10),

@@ -1,4 +1,6 @@
 import 'package:discover/controller/admin_provider.dart';
+import 'package:discover/view/admin/container_home.dart';
+import 'package:discover/view/user/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:discover/view/user/home/booking_page.dart';
@@ -118,6 +120,13 @@ class UserHomepage extends StatelessWidget {
                                   },
                                   child: Column(
                                     children: [
+                                      // AllPlaceContainer(
+                                      //     size: size,
+                                      //     isAdmin: true,
+                                      //     travelpackages: trip,
+                                      //     value: value,
+                                      //     circleAvatarRadius:
+                                      //         circleAvatarRadiusFraction),
                                       expandedTripCard(context, trip: trip),
                                       SizedBox(height: size.height * .02),
                                     ],
@@ -179,10 +188,10 @@ class UserHomepage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return popularPackageCard(
+                          return expandedTripCard(
                             context,
-                            'Package $index',
-                            'assets/splash1.img.jpeg',
+                            // 'Package $index',
+                            // 'assets/splash1.img.jpeg',
                           );
                         },
                       ),
