@@ -1,18 +1,3 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-
-// class BookingSucsess extends StatelessWidget {
-//   const BookingSucsess({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-
-//     );
-//   }
-// }
-
-import 'package:discover/view/user/home/user_home_page.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 

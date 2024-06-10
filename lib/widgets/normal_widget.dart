@@ -99,9 +99,8 @@ Widget profileContainerListTile(BuildContext context,
 
 Widget phoneTextFormField(context) {
   final authProvider = Provider.of<LoginProvider>(context, listen: false);
-  return Consumer<LoginProvider>(builder: (context, value, child) => 
-    TextFormField(
-      
+  return Consumer<LoginProvider>(
+    builder: (context, value, child) => TextFormField(
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'enter a phone number';
@@ -109,18 +108,18 @@ Widget phoneTextFormField(context) {
           return null;
         }
       },
-     // maxLength: 10,
+      // maxLength: 10,
       controller: authProvider.phoneController,
       onChanged: (value) {},
       keyboardType: TextInputType.phone,
-      decoration:  InputDecoration(
+      decoration: InputDecoration(
         // prefixIcon: Container(
         //   padding: EdgeInsets.symmetric(horizontal: 12),
         //   child: InkWell(
         //     onTap: (){
-        //       showCountryPicker(context: context, 
+        //       showCountryPicker(context: context,
         //       countryListTheme: CountryListThemeData(
-        //        bottomSheetHeight: 500, 
+        //        bottomSheetHeight: 500,
         //       ),
         //       onSelect: (value) {
         //        authProvider .selectCountry=value;

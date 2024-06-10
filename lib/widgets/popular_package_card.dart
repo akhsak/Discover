@@ -102,7 +102,7 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
-          trip.aboutTrip ?? '',
+          trip.location ?? '',
           style: const TextStyle(color: Colors.grey),
         ),
       ],
