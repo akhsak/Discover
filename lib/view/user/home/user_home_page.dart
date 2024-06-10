@@ -114,7 +114,15 @@ class UserHomepage extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            BookingDetailScreen(),
+                                            BookingDetailScreen(
+                                          placeName: trip.placeName!,
+                                          aboutTrip: trip.aboutTrip!,
+                                          location: trip.location!,
+                                          duration: trip.duration!,
+                                          image: NetworkImage(
+                                              trip.image.toString()),
+                                          transportation: trip.transportation!,
+                                        ),
                                       ),
                                     );
                                   },
@@ -149,8 +157,16 @@ class UserHomepage extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          BookingDetailScreen(),
+                                      builder: (context) => BookingDetailScreen(
+                                        placeName: trip.placeName.toString(),
+                                        aboutTrip: trip.aboutTrip.toString(),
+                                        location: trip.location.toString(),
+                                        duration: trip.duration.toString(),
+                                        image:
+                                            NetworkImage(trip.image.toString()),
+                                        transportation:
+                                            trip.transportation.toString(),
+                                      ),
                                     ),
                                   );
                                 },
@@ -180,7 +196,15 @@ class UserHomepage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BookingDetailScreen(),
+                            builder: (context) => BookingDetailScreen(
+                              placeName: 'Beautiful Beach',
+                              aboutTrip:
+                                  'A wonderful trip to a beautiful beach.',
+                              location: 'Beach City',
+                              duration: '2 days',
+                              image: AssetImage('assets/beach.jpg'),
+                              transportation: 'Bus',
+                            ),
                           ),
                         );
                       },
@@ -207,12 +231,12 @@ class UserHomepage extends StatelessWidget {
                     height: 250,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BookingDetailScreen(),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => BookingDetailScreen(),
+                        //   ),
+                        // );
                       },
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,

@@ -1,5 +1,6 @@
 import 'package:discover/view/user/booking/date_page.dart';
 import 'package:discover/view/user/booking/widget/review.dart';
+import 'package:discover/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
 class BookingDetailScreen extends StatelessWidget {
@@ -43,7 +44,7 @@ class BookingDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: size.height * 0.4,
+              height: size.height * 0.3,
               width: size.width * .8,
               decoration: BoxDecoration(
                   image: DecorationImage(image: image, fit: BoxFit.contain),
@@ -62,41 +63,53 @@ class BookingDetailScreen extends StatelessWidget {
                 children: [
                   Text(
                     'About',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  Text(aboutTrip),
+                  travelDetailsText(
+                      value: placeName.toString(),
+                      color: Color.fromARGB(255, 7, 7, 7),
+                      fontsize: 32,
+                      fontWeight: FontWeight.bold),
+                  // Text(aboutTrip),
                   SizedBox(height: 40),
                   Divider(
                     color: Colors.grey,
                   ),
-                  SizedBox(height: 40),
+                  SizedBox(height: 30),
                   Text(
                     'What is included',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 10),
                   Row(
                     children: [
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          side: const BorderSide(
-                            color: Color.fromARGB(255, 205, 198, 198),
+                      SizedBox(
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            side: const BorderSide(
+                              color: Color.fromARGB(255, 205, 198, 198),
+                            ),
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
                           ),
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(0),
-                          ),
-                        ),
-                        icon: Icon(Icons.train, color: Colors.black),
-                        label: Text(
-                          'Bus\n${transportation}',
-                          style: TextStyle(color: Colors.black),
+                          icon: Icon(Icons.train, color: Colors.black),
+                          label: travelDetailsText(
+                              value: 'Bus\n${transportation.toString()}',
+                              color: Color.fromARGB(255, 7, 7, 7),
+                              fontsize: 15,
+                              fontWeight: FontWeight.bold),
+                          //  Text(
+                          //   'Bus\n${transportation}',
+                          //   style: TextStyle(color: Colors.black),
+                          // ),
                         ),
                       ),
                       SizedBox(
-                        width: 25,
+                        width: size.width * 0.17,
                       ),
                       ElevatedButton.icon(
                         onPressed: () {},
@@ -113,10 +126,15 @@ class BookingDetailScreen extends StatelessWidget {
                           Icons.punch_clock,
                           color: Colors.black,
                         ),
-                        label: Text(
-                          '2 days\n${duration}',
-                          style: TextStyle(color: Colors.black),
-                        ),
+                        label: travelDetailsText(
+                            value: '${duration.toString()}\n\Duration',
+                            color: Color.fromARGB(255, 7, 7, 7),
+                            fontsize: 15,
+                            fontWeight: FontWeight.bold),
+                        //  Text(
+                        //   '2 days\n${duration}',
+                        //   style: TextStyle(color: Colors.black),
+                        // ),
                       ),
                       SizedBox(
                         width: 50,
@@ -154,7 +172,7 @@ class BookingDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          location,
+                          location.toString(),
                           style: TextStyle(color: Colors.grey),
                         ),
                         SizedBox(height: 10),

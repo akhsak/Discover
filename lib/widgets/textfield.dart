@@ -90,6 +90,22 @@ poppinsSmallText({text, color, fontWeight, textAlign}) {
           color: color ?? const Color(0xFF101828), fontSize: 12));
 }
 
+Widget travelDetailsText({String? value, double? fontsize, fontWeight, color}) {
+  return Row(
+    children: [
+      Text(
+        value!,
+        style: GoogleFonts.poppins(
+            fontSize: fontsize,
+            fontWeight: fontWeight,
+            color: color ?? Colors.black,
+            letterSpacing: 1),
+      ),
+    ],
+  );
+}
+
+
 // interHeadText({text}) {
 //   return Text(text,
 //       style: GoogleFonts.inter(

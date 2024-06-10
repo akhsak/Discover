@@ -1,14 +1,10 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
-import 'package:discover/view/admin/container_home.dart';
-import 'package:discover/view/authontication/Login/login_page.dart';
 import 'package:discover/view/user/home/booking_page.dart';
 import 'package:discover/view/user/profile/profile.dart';
 import 'package:discover/widgets/popular_package_card.dart';
-import 'package:discover/widgets/snackbar.dart';
 import 'package:discover/widgets/textfield.dart';
 import 'package:enefty_icons/enefty_icons.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,11 +17,6 @@ class AdminHomeScreen extends StatelessWidget {
     double circleAvatarRadius = size.shortestSide * circleAvatarRadiusFraction;
     final adminProvider = Provider.of<AdminProvider>(context);
     final authProvider = Provider.of<LoginProvider>(context);
-
-    // Ensure the data is fetched when the screen is loaded
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   adminProvider.getAllTravelPackage();
-    // });
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -64,54 +55,49 @@ class AdminHomeScreen extends StatelessWidget {
                   child: Center(child: Image.asset('assets/search_image.png')),
                 ),
               );
-            } else if (value.searchList.isEmpty) {
-              if (value.allTravelList.isNotEmpty) {
-                final allPackages = value.allTravelList;
-
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BookingDetailScreen()));
-                  },
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: allPackages.length,
-                    itemBuilder: (context, index) {
-                      final trips = allPackages[index];
-                      return Column(
-                        children: [
-                          expandedTripCard(context, trip: trips),
-                          SizedBox(height: size.height * .02),
-                        ],
-                      );
-                    },
+            } else if (value.searchList.isEmpty &&
+                value.allTravelList.isEmpty) {
+              return Center(
+                child: Text(
+                  'No data available',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.grey,
                   ),
-                );
-              } else {
-                return Center(child: Image.asset('assets/search_image.png'));
-              }
+                ),
+              );
             } else {
+              final allPackages = value.searchController.text.isEmpty
+                  ? value.allTravelList
+                  : value.searchList;
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: value.searchList.length,
+                itemCount: allPackages.length,
                 itemBuilder: (context, index) {
-                  final travel = value.searchList[index];
-                  return Column(
-                    children: [
-                      expandedTripCard(
+                  final trips = allPackages[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
                         context,
-                        trip: travel,
-                      ),
-                      // AllPlaceContainer(
-                      //     size: size,
-                      //     isAdmin: true,
-                      //     travelpackages: travel,
-                      //     value: value,
-                      //     circleAvatarRadius: circleAvatarRadius),
-                      SizedBox(height: size.height * .02),
-                    ],
+                        MaterialPageRoute(
+                          builder: (context) => BookingDetailScreen(
+                            placeName: trips.placeName,
+                            aboutTrip: trips.aboutTrip,
+                            location: trips.location,
+                            duration: trips.duration,
+                            image: NetworkImage(trips.image
+                                .toString()), // Use correct image path
+                            transportation: trips.transportation,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        expandedTripCard(context, trip: trips),
+                        SizedBox(height: size.height * .02),
+                      ],
+                    ),
                   );
                 },
               );
