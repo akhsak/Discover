@@ -79,36 +79,7 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
             Positioned(
               top: 8,
               right: 8,
-              child:
-                  //loginProvider.isAdminHome
-                  //     ? IconButton(
-                  //         onPressed: () {
-                  //           showDialog(
-                  //             context: context,
-                  //             builder: (context) => AlertDialog(
-                  //               title: const Text('Delete Trip'),
-                  //               content: const Text(
-                  //                   'Are you sure you want to delete this trip?'),
-                  //               actions: [
-                  //                 TextButton(
-                  //                   onPressed: () => Navigator.pop(context),
-                  //                   child: const Text('Cancel'),
-                  //                 ),
-                  //                 TextButton(
-                  //                   onPressed: () {
-                  //                     adminProvider.deleteTravelPackage(trip.id!);
-                  //                     Navigator.pop(context);
-                  //                   },
-                  //                   child: const Text('Delete',
-                  //                       style: TextStyle(color: Colors.red)),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           );
-                  //         },
-                  //         icon: const Icon(Icons.delete, color: Colors.red),
-                  //       )
-                  Consumer<AdminProvider>(
+              child: Consumer<AdminProvider>(
                 builder: (context, value, child) {
                   final wish = value.wishListCheck(trip);
                   return IconButton(

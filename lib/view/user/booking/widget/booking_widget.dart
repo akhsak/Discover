@@ -1,60 +1,120 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
+import 'package:discover/view/user/booking/widget/review.dart';
+import 'package:flutter/material.dart';
 
-// class FAQSection extends StatelessWidget {
-//   final String title;
-//   final List<FAQItem> faqs;
+class ReviewSection extends StatefulWidget {
+  const ReviewSection({Key? key}) : super(key: key);
 
-//   FAQSection({required this.title, required this.faqs});
+  @override
+  _ReviewSectionState createState() => _ReviewSectionState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Text(
-//           title,
-//           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//         ),
-//         SizedBox(height: 10),
-//         ...faqs.map((faq) => FAQCard(faq: faq)).toList(),
-//       ],
-//     );
-//   }
-// }
+class _ReviewSectionState extends State<ReviewSection> {
+  final List<Map<String, String>> reviews = [
+    {
+      'name': 'Jack Daniel',
+      'date': 'Dec 2021',
+      'review': 'Good Place',
+      'description': 'Something to review here',
+    },
+    {
+      'name': 'Jack Daniel',
+      'date': 'Dec 2021',
+      'review': 'Good Place',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    },
+  ];
 
-// class FAQItem {
-//   final String question;
-//   final String answer;
-  
+  void _addReview(String reviewText) {
+    setState(() {
+      reviews.add({
+        'name': 'New User',
+        'date': 'Jan 2022',
+        'review': reviewText,
+        'description': 'New review description',
+      });
+    });
+  }
 
-//   FAQItem({required this.question, required this.answer,});
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Reviews',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        Row(
+          children: [
+            Text('(200 reviews)', style: TextStyle(color: Colors.grey)),
+            Spacer(),
+            IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    TextEditingController reviewController =
+                        TextEditingController();
+                    return AlertDialog(
+                      title: Text('Add a Review'),
+                      content: TextField(
+                        controller: reviewController,
+                        decoration: InputDecoration(
+                          hintText: 'Write your review here',
+                        ),
+                        maxLines: 3,
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _addReview(reviewController.text);
+                            Navigator.pop(context);
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: Icon(Icons.message),
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        Column(
+          children: reviews.map((review) {
+            return ReviewCard(
+              name: review['name']!,
+              date: review['date']!,
+              review: review['review']!,
+              description: review['description']!,
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+}
 
-// class FAQCard extends StatelessWidget {
-//   final FAQItem faq;
-
-//   FAQCard({required this.faq});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       margin: const EdgeInsets.symmetric(vertical: 10),
-//       child: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(
-//               faq.question,
-//               style: TextStyle(fontWeight: FontWeight.bold),
-//             ),
-//             SizedBox(height: 5),
-//             Text(faq.answer),
-            
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+Widget travelDetailsText({
+  required String value,
+  required Color color,
+  required double fontsize,
+  required FontWeight fontWeight,
+}) {
+  return Text(
+    value,
+    style: TextStyle(
+      color: color,
+      fontSize: fontsize,
+      fontWeight: fontWeight,
+    ),
+  );
+}

@@ -115,13 +115,27 @@ class UserHomepage extends StatelessWidget {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             BookingDetailScreen(
-                                          placeName: trip.placeName!,
-                                          aboutTrip: trip.aboutTrip!,
-                                          location: trip.location!,
-                                          duration: trip.duration!,
-                                          image: NetworkImage(
-                                              trip.image.toString()),
-                                          transportation: trip.transportation!,
+                                          isAdmin: false,
+                                          tripId: trip.id ?? 'unknown id',
+                                          placeName:
+                                              trip.placeName ?? 'Unknown Place',
+                                          aboutTrip: trip.aboutTrip ??
+                                              'No description available',
+                                          location: trip.location ??
+                                              'Unknown location',
+                                          duration: trip.duration ??
+                                              'Unknown duration',
+                                          image: NetworkImage(trip.image ?? ''),
+                                          transportation: trip.transportation ??
+                                              'Unknown transportation',
+                                          // isAdmin: false,
+                                          // tripId: trip.id!,
+                                          // placeName: trip.placeName!,
+                                          // aboutTrip: trip.aboutTrip!,
+                                          // location: trip.location!,
+                                          // duration: trip.duration!,
+                                          // image: NetworkImage(
+                                          //     trip.image.toString()),
                                         ),
                                       ),
                                     );
@@ -158,6 +172,8 @@ class UserHomepage extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => BookingDetailScreen(
+                                        isAdmin: false,
+                                        tripId: trip.id.toString(),
                                         placeName: trip.placeName.toString(),
                                         aboutTrip: trip.aboutTrip.toString(),
                                         location: trip.location.toString(),
@@ -197,6 +213,8 @@ class UserHomepage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => BookingDetailScreen(
+                              isAdmin: false,
+                              tripId: 'aa',
                               placeName: 'Beautiful Beach',
                               aboutTrip:
                                   'A wonderful trip to a beautiful beach.',
