@@ -22,7 +22,7 @@ class AdminBottomBar extends StatelessWidget {
           children: [
             _BottomNavItem(Icons.home, 'Home', 0, context),
             _BottomNavItem(Icons.add, 'AddPage', 1, context),
-            _BottomNavItem(Icons.person, 'Profile', 2, context),
+            //  _BottomNavItem(Icons.person, 'Profile', 2, context),
           ],
         ),
       ),

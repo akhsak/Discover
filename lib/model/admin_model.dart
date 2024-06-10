@@ -1,5 +1,3 @@
-import 'package:discover/service/admin_service.dart';
-
 class AdminModel {
   String? id;
   String? placeName;

@@ -38,7 +38,7 @@ class BottomProvider extends ChangeNotifier {
   List adminScreens = [
     AdminHomeScreen(),
     AdminAddpage(),
-    AdminProfileScreen(),
+    //AdminProfileScreen(),
     // AdminProfileScreen()
   ];
 }
