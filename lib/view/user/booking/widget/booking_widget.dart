@@ -46,7 +46,7 @@ class _ReviewSectionState extends State<ReviewSection> {
         ),
         Row(
           children: [
-            Text('(200 reviews)', style: TextStyle(color: Colors.grey)),
+            Text('( reviews)', style: TextStyle(color: Colors.grey)),
             Spacer(),
             IconButton(
               onPressed: () {

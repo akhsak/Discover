@@ -155,13 +155,13 @@ class BookingDetailScreen extends StatelessWidget {
                             ),
                             icon: Icon(Icons.train, color: Colors.black),
                             label: travelDetailsText(
-                              value: 'Bus\n$transportation',
+                              value: '$transportation\nTransportation',
                               color: Color.fromARGB(255, 7, 7, 7),
                               fontsize: 15,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(width: size.width * 0.17),
+                          SizedBox(width: size.width * 0.03),
                           ElevatedButton.icon(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
@@ -194,7 +194,7 @@ class BookingDetailScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        location,
+                        placeName,
                         style: TextStyle(color: Colors.grey),
                       ),
                       SizedBox(height: 10),
@@ -204,7 +204,8 @@ class BookingDetailScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Angkor Masti Hotel\nNR6, Krong Siem Reap, Cambodia',
+                        location,
+                        // 'Angkor Masti Hotel\nNR6, Krong Siem Reap, Cambodia',
                         style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(height: 20),
@@ -241,7 +242,7 @@ class BookingDetailScreen extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              'See all 20 photos',
+                              'See all photos',
                               style: TextStyle(color: Colors.black),
                             ),
                           ),

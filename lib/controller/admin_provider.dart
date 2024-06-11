@@ -50,7 +50,7 @@ class AdminProvider extends ChangeNotifier {
   void addTravelPackage(AdminModel data) async {
     await travelService.addTravelPackage(data);
 
-    notifyListeners();
+    // notifyListeners();
     getAllTravelPackage();
   }
 
@@ -61,7 +61,9 @@ class AdminProvider extends ChangeNotifier {
 
   void getAllTravelPackage() async {
     isLoading = true;
+    notifyListeners();
     allTravelList = await travelService.getAllTravelPackages();
+    searchList = allTravelList;
     isLoading = false;
     notifyListeners();
   }
@@ -95,7 +97,7 @@ class AdminProvider extends ChangeNotifier {
 
   void search(String value) {
     if (value.isEmpty) {
-      searchList = [];
+      searchList = allTravelList;
     } else {
       searchList = allTravelList
           .where((AdminModel travel) =>
@@ -107,22 +109,27 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> wishlistClicked(String id, bool status) async {
     await travelService.wishListClicked(id, status);
-    notifyListeners();
+    getAllTravelPackage();
+    // notifyListeners();
   }
 
   bool wishListCheck(AdminModel package) {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null) {
       final user = currentUser.email ?? currentUser.phoneNumber;
-      if (package.wishList!.contains(user)) {
-        getAllTravelPackage();
-        return false;
-      } else {
-        getAllTravelPackage();
-        return true;
-      }
+      return !package.wishList!.contains(user);
     } else {
       return true;
     }
   }
+  //   if (package.wishList!.contains(user)) {
+  //     getAllTravelPackage();
+  //     return false;
+  //   } else {
+  //     getAllTravelPackage();
+  //     return true;
+  //   }
+  // } else {
+  //   return true;
+  // }
 }
