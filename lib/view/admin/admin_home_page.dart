@@ -4,8 +4,6 @@ import 'package:discover/view/authontication/Login/login_page.dart';
 import 'package:discover/view/user/home/booking_page.dart';
 import 'package:discover/widgets/expanded_trip_card.dart';
 import 'package:discover/widgets/snackbar.dart';
-import 'package:discover/widgets/textfield.dart';
-import 'package:enefty_icons/enefty_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,16 +18,13 @@ class AdminHomeScreen extends StatefulWidget {
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
   @override
   void initState() {
-    // TODO: implement initState
-
-    Provider.of<AdminProvider>(context, listen: false).getAllTravelPackage();
     super.initState();
+    Provider.of<AdminProvider>(context, listen: false).getAllTravelPackage();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final adminProvider = Provider.of<AdminProvider>(context, listen: false);
     final authProvider = Provider.of<LoginProvider>(context, listen: false);
 
     return Scaffold(
@@ -43,35 +38,22 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: TextField(
-                  onChanged: (value) {
-                    Provider.of<AdminProvider>(context, listen: false)
-                        .search(value);
+                child: Consumer<AdminProvider>(
+                  builder: (context, adminProvider, child) {
+                    return TextField(
+                      controller: adminProvider.searchController,
+                      onChanged: adminProvider.search,
+                      decoration: const InputDecoration(
+                        hintText: 'Search destination',
+                        border: InputBorder.none,
+                      ),
+                    );
                   },
-                  decoration: const InputDecoration(
-                    hintText: 'Search destination',
-                    border: InputBorder.none,
-                  ),
                 ),
               ),
               const Icon(Icons.search),
             ],
           ),
-          // child: CustomTextFormField(
-          //   labelText: 'search',
-          //   controller: adminProvider.searchController,
-          //   hintText: 'Search',
-          //   onChanged: (value) =>
-          //       adminProvider.search(adminProvider.searchController.text),
-          //   prefixIcon: const Icon(
-          //     EneftyIcons.search_normal_2_outline,
-          //     color: Color(0xFFB2BAC6),
-          //   ),
-          //   suffixIcon: const Icon(
-          //     EneftyIcons.firstline_outline,
-          //     color: Color.fromARGB(255, 76, 111, 208),
-          //   ),
-          // ),
         ),
         actions: [
           Padding(
@@ -112,19 +94,19 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Consumer<AdminProvider>(
-          builder: (context, value, child) {
-            if (value.isLoading) {
+          builder: (context, adminProvider, child) {
+            if (adminProvider.isLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (value.searchList.isEmpty &&
-                value.searchController.text.isNotEmpty) {
+            } else if (adminProvider.searchList.isEmpty &&
+                adminProvider.searchController.text.isNotEmpty) {
               return Center(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Center(child: Image.asset('assets/search_image.png')),
                 ),
               );
-            } else if (value.searchList.isEmpty &&
-                value.allTravelList.isEmpty) {
+            } else if (adminProvider.searchList.isEmpty &&
+                adminProvider.allTravelList.isEmpty) {
               return Center(
                 child: Text(
                   'No data available',
@@ -135,11 +117,11 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 ),
               );
             } else {
-              final allPackages = value.searchController.text.isEmpty
-                  ? value.allTravelList
-                  : value.searchList;
+              final allPackages = adminProvider.searchController.text.isEmpty
+                  ? adminProvider.allTravelList
+                  : adminProvider.searchList;
               return ListView.builder(
-                scrollDirection: Axis.horizontal, // Changed to vertical
+                scrollDirection: Axis.horizontal,
                 itemCount: allPackages.length,
                 itemBuilder: (context, index) {
                   final trips = allPackages[index];

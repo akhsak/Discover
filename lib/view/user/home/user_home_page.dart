@@ -250,8 +250,20 @@ import 'package:discover/widgets/expanded_trip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class UserHomepage extends StatelessWidget {
+class UserHomepage extends StatefulWidget {
   const UserHomepage({super.key});
+
+  @override
+  State<UserHomepage> createState() => _UserHomepageState();
+}
+
+class _UserHomepageState extends State<UserHomepage> {
+  void initState() {
+    // TODO: implement initState
+
+    Provider.of<AdminProvider>(context, listen: false).getAllTravelPackage();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
