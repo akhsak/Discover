@@ -1,3 +1,139 @@
+// // import 'dart:developer';
+// // import 'dart:io';
+
+// // import 'package:discover/model/admin_model.dart';
+// // import 'package:discover/service/admin_service.dart';
+// // import 'package:firebase_auth/firebase_auth.dart';
+// // import 'package:firebase_storage/firebase_storage.dart';
+// // import 'package:flutter/material.dart';
+// // import 'package:image_picker/image_picker.dart';
+
+// // class AdminProvider extends ChangeNotifier {
+// //   File? pickedImage;
+// //   String imageName = DateTime.now().microsecondsSinceEpoch.toString();
+// //   String? downloadUrls;
+// //   bool isLoading = false;
+// //   bool isAddingData = false;
+
+// //   final GlobalKey<FormState> packageAddFormkey = GlobalKey<FormState>();
+
+// //   final TravelService travelService = TravelService();
+// //   final ImagePicker imagePicker = ImagePicker();
+// //   final FirebaseStorage storage = FirebaseStorage.instance;
+
+// //   final TextEditingController searchController = TextEditingController();
+// //   final TextEditingController placeNameController = TextEditingController();
+// //   final TextEditingController aboutController = TextEditingController();
+// //   final TextEditingController locationController = TextEditingController();
+// //   final TextEditingController durationController = TextEditingController();
+// //   final TextEditingController transportationController =
+// //       TextEditingController();
+
+// //   List<AdminModel> searchList = [];
+// //   List<AdminModel> allTravelList = [];
+// //   // List<File> travelImages = [];
+
+// //   void setIsAddingData(bool value) {
+// //     isAddingData = value;
+// //     notifyListeners();
+// //   }
+
+// //   void clearTravelControllers() {
+// //     placeNameController.clear();
+// //     aboutController.clear();
+// //     locationController.clear();
+// //     durationController.clear();
+// //     transportationController.clear();
+// //     pickedImage = null;
+// //   }
+
+// //   void addTravelPackage(AdminModel data) async {
+// //     await travelService.addTravelPackage(data);
+
+// //     // notifyListeners();
+// //     getAllTravelPackage();
+// //   }
+
+// //   void deleteTravelPackage(String id) async {
+// //     await travelService.deleteTravelPackage(id);
+// //     getAllTravelPackage();
+// //   }
+
+// //   void getAllTravelPackage() async {
+// //     isLoading = true;
+// //     notifyListeners();
+// //     allTravelList = await travelService.getAllTravelPackages();
+// //     searchList = allTravelList;
+// //     isLoading = false;
+// //     notifyListeners();
+// //   }
+
+// //   Future<String> uploadImage(image, imageName) async {
+// //     try {
+// //       if (image != null) {
+// //         String downloadUrl = await travelService.uploadImage(imageName, image);
+// //         log(downloadUrl);
+// //         notifyListeners();
+// //         return downloadUrl;
+// //       } else {
+// //         log('image is null');
+// //         return '';
+// //       }
+// //     } catch (e) {
+// //       log('got an error of $e');
+// //       rethrow;
+// //     }
+// //   }
+
+// //   Future getImage(ImageSource source) async {
+// //     final pickedFile = await imagePicker.pickImage(source: source);
+
+// //     if (pickedFile != null) {
+// //       pickedImage = File(pickedFile.path);
+// //       log("Image picked");
+// //       notifyListeners();
+// //     }
+// //   }
+
+// //   void search(String value) {
+// //     if (value.isEmpty) {
+// //       searchList = allTravelList;
+// //     } else {
+// //       searchList = allTravelList
+// //           .where((AdminModel travel) =>
+// //               travel.placeName!.toLowerCase().contains(value.toLowerCase()))
+// //           .toList();
+// //     }
+// //     notifyListeners();
+// //   }
+
+// //   Future<void> wishlistClicked(String id, bool status) async {
+// //     await travelService.wishListClicked(id, status);
+// //     getAllTravelPackage();
+// //     // notifyListeners();
+// //   }
+
+// //   bool wishListCheck(AdminModel package) {
+// //     final currentUser = FirebaseAuth.instance.currentUser;
+// //     if (currentUser != null) {
+// //       final user = currentUser.email ?? currentUser.phoneNumber;
+// //       return !package.wishList!.contains(user);
+// //     } else {
+// //       return true;
+// //     }
+// //   }
+// //   //   if (package.wishList!.contains(user)) {
+// //   //     getAllTravelPackage();
+// //   //     return false;
+// //   //   } else {
+// //   //     getAllTravelPackage();
+// //   //     return true;
+// //   //   }
+// //   // } else {
+// //   //   return true;
+// //   // }
+// // }
+
 // import 'dart:developer';
 // import 'dart:io';
 
@@ -14,6 +150,7 @@
 //   String? downloadUrls;
 //   bool isLoading = false;
 //   bool isAddingData = false;
+//   bool isImagePickerActive = false;
 
 //   final GlobalKey<FormState> packageAddFormkey = GlobalKey<FormState>();
 
@@ -31,7 +168,6 @@
 
 //   List<AdminModel> searchList = [];
 //   List<AdminModel> allTravelList = [];
-//   // List<File> travelImages = [];
 
 //   void setIsAddingData(bool value) {
 //     isAddingData = value;
@@ -49,8 +185,6 @@
 
 //   void addTravelPackage(AdminModel data) async {
 //     await travelService.addTravelPackage(data);
-
-//     // notifyListeners();
 //     getAllTravelPackage();
 //   }
 
@@ -68,6 +202,32 @@
 //     notifyListeners();
 //   }
 
+//   // Future<String> uploadImage(image, imageName) async {
+//   //   try {
+//   //     if (image != null) {
+//   //       String downloadUrl = await travelService.uploadImage(imageName, image);
+//   //       log(downloadUrl);
+//   //       notifyListeners();
+//   //       return downloadUrl;
+//   //     } else {
+//   //       log('image is null');
+//   //       return '';
+//   //     }
+//   //   } catch (e) {
+//   //     log('got an error of $e');
+//   //     rethrow;
+//   //   }
+//   // }
+
+//   // Future getImage(ImageSource source) async {
+//   //   final pickedFile = await imagePicker.pickImage(source: source);
+
+//   //   if (pickedFile != null) {
+//   //     pickedImage = File(pickedFile.path);
+//   //     log("Image picked");
+//   //     notifyListeners();
+//   //   }
+//   // }
 //   Future<String> uploadImage(image, imageName) async {
 //     try {
 //       if (image != null) {
@@ -86,52 +246,53 @@
 //   }
 
 //   Future getImage(ImageSource source) async {
-//     final pickedFile = await imagePicker.pickImage(source: source);
+//     if (isImagePickerActive) {
+//       return; // Return immediately if the image picker is already active
+//     }
 
-//     if (pickedFile != null) {
-//       pickedImage = File(pickedFile.path);
-//       log("Image picked");
-//       notifyListeners();
+//     isImagePickerActive = true;
+
+//     try {
+//       final pickedFile = await imagePicker.pickImage(source: source);
+
+//       if (pickedFile != null) {
+//         pickedImage = File(pickedFile.path);
+//         log("Image picked");
+//         notifyListeners();
+//       }
+//     } catch (e) {
+//       log('Image picker error: $e');
+//     } finally {
+//       isImagePickerActive = false;
 //     }
 //   }
+// }
 
-//   void search(String value) {
-//     if (value.isEmpty) {
-//       searchList = allTravelList;
-//     } else {
-//       searchList = allTravelList
-//           .where((AdminModel travel) =>
-//               travel.placeName!.toLowerCase().contains(value.toLowerCase()))
-//           .toList();
-//     }
-//     notifyListeners();
+// void search(String value) {
+//   if (value.isEmpty) {
+//     searchList = allTravelList;
+//   } else {
+//     searchList = allTravelList
+//         .where((AdminModel travel) =>
+//             travel.placeName!.toLowerCase().contains(value.toLowerCase()))
+//         .toList();
 //   }
+//   notifyListeners();
+// }
 
-//   Future<void> wishlistClicked(String id, bool status) async {
-//     await travelService.wishListClicked(id, status);
-//     getAllTravelPackage();
-//     // notifyListeners();
-//   }
+// Future<void> wishlistClicked(String id, bool status) async {
+//   await travelService.wishListClicked(id, status);
+//   getAllTravelPackage();
+// }
 
-//   bool wishListCheck(AdminModel package) {
-//     final currentUser = FirebaseAuth.instance.currentUser;
-//     if (currentUser != null) {
-//       final user = currentUser.email ?? currentUser.phoneNumber;
-//       return !package.wishList!.contains(user);
-//     } else {
-//       return true;
-//     }
+// bool wishListCheck(AdminModel package) {
+//   final currentUser = FirebaseAuth.instance.currentUser;
+//   if (currentUser != null) {
+//     final user = currentUser.email ?? currentUser.phoneNumber;
+//     return !package.wishList!.contains(user);
+//   } else {
+//     return true;
 //   }
-//   //   if (package.wishList!.contains(user)) {
-//   //     getAllTravelPackage();
-//   //     return false;
-//   //   } else {
-//   //     getAllTravelPackage();
-//   //     return true;
-//   //   }
-//   // } else {
-//   //   return true;
-//   // }
 // }
 
 import 'dart:developer';
@@ -150,6 +311,7 @@ class AdminProvider extends ChangeNotifier {
   String? downloadUrls;
   bool isLoading = false;
   bool isAddingData = false;
+  bool isImagePickerActive = false;
 
   final GlobalKey<FormState> packageAddFormkey = GlobalKey<FormState>();
 
@@ -182,17 +344,17 @@ class AdminProvider extends ChangeNotifier {
     pickedImage = null;
   }
 
-  void addTravelPackage(AdminModel data) async {
+  Future<void> addTravelPackage(AdminModel data) async {
     await travelService.addTravelPackage(data);
     getAllTravelPackage();
   }
 
-  void deleteTravelPackage(String id) async {
+  Future<void> deleteTravelPackage(String id) async {
     await travelService.deleteTravelPackage(id);
     getAllTravelPackage();
   }
 
-  void getAllTravelPackage() async {
+  Future<void> getAllTravelPackage() async {
     isLoading = true;
     notifyListeners();
     allTravelList = await travelService.getAllTravelPackages();
@@ -201,7 +363,7 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String> uploadImage(image, imageName) async {
+  Future<String> uploadImage(File image, String imageName) async {
     try {
       if (image != null) {
         String downloadUrl = await travelService.uploadImage(imageName, image);
@@ -218,13 +380,25 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
-  Future getImage(ImageSource source) async {
-    final pickedFile = await imagePicker.pickImage(source: source);
+  Future<void> getImage(ImageSource source) async {
+    if (isImagePickerActive) {
+      return; // Return immediately if the image picker is already active
+    }
 
-    if (pickedFile != null) {
-      pickedImage = File(pickedFile.path);
-      log("Image picked");
-      notifyListeners();
+    isImagePickerActive = true;
+
+    try {
+      final pickedFile = await imagePicker.pickImage(source: source);
+
+      if (pickedFile != null) {
+        pickedImage = File(pickedFile.path);
+        log("Image picked");
+        notifyListeners();
+      }
+    } catch (e) {
+      log('Image picker error: $e');
+    } finally {
+      isImagePickerActive = false;
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
+import 'package:discover/model/admin_model.dart';
 import 'package:discover/view/authontication/Login/login_page.dart';
 import 'package:discover/view/user/booking/my_booking.dart';
 import 'package:discover/view/user/profile/widget_prfl.dart';
@@ -87,14 +88,22 @@ class UserProfileScreen extends StatelessWidget {
                     onPressed: () {
                       // final adminProvider =
                       //     Provider.of<AdminProvider>(context, listen: false);
-                      // final tripPackage = adminProvider.allTravelList.first;
+                      // final tripPackage = adminProvider.allTravelList.isNotEmpty
+                      //     ? adminProvider.allTravelList.first
+                      //     : AdminModel(
+                      //         image: 'assets/splash 3.img.jpeg',
+                      //         placeName: 'Sample Place',
+                      //         location: 'Sample Location',
+                      //         duration: '3 days',
+                      //         wishList: [],
+                      //       );
+
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WishList(
-                                  // travelpackage: tripPackage,
-                                  // tripvalue: adminProvider,
-                                  )));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WishList(),
+                        ),
+                      );
                     },
                     icon: const Icon(Icons.arrow_forward_ios),
                   ),

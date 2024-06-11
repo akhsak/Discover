@@ -1,5 +1,5 @@
 import 'package:discover/view/user/booking/date_page.dart';
-import 'package:discover/view/user/booking/widget/booking_widget.dart';
+import 'package:discover/view/user/booking/widget/reviewsection_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:discover/controller/admin_provider.dart';
