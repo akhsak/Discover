@@ -1,3 +1,4 @@
+import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
 import 'package:discover/view/authontication/Login/login_page.dart';
@@ -84,8 +85,16 @@ class UserProfileScreen extends StatelessWidget {
                   title: const Text('Wishlist'),
                   trailing: IconButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => WishList()));
+                      // final adminProvider =
+                      //     Provider.of<AdminProvider>(context, listen: false);
+                      // final tripPackage = adminProvider.allTravelList.first;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WishList(
+                                  // travelpackage: tripPackage,
+                                  // tripvalue: adminProvider,
+                                  )));
                     },
                     icon: const Icon(Icons.arrow_forward_ios),
                   ),

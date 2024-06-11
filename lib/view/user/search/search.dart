@@ -1,12 +1,14 @@
+import 'package:discover/controller/admin_provider.dart';
+import 'package:discover/model/admin_model.dart';
 import 'package:discover/view/user/wishlist.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -34,8 +36,7 @@ class SearchPage extends StatelessWidget {
               // contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
               suffixIcon: Icon(Icons.search),
             ),
-            onSubmitted: (value) {
-            },
+            onSubmitted: (value) {},
           ),
         ),
       ),
@@ -67,16 +68,12 @@ class SearchPage extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
+                  recommendedCard(context, 'Long-Tail Boat Charter',
+                      'assets/splash1.img.jpeg'),
                   recommendedCard(
-                    context,
-                      'Long-Tail Boat Charter', 'assets/splash1.img.jpeg'),
+                      context, 'Koh Rong Samloem', 'assets/splash1.img.jpeg'),
                   recommendedCard(
-                    context,
-
-                      'Koh Rong Samloem', 'assets/splash1.img.jpeg'),
-                  recommendedCard(
-                    context
-                    ,'Tokyo, Japan', 'assets/splash1.img.jpeg'),
+                      context, 'Tokyo, Japan', 'assets/splash1.img.jpeg'),
                 ],
               ),
             ),
@@ -86,7 +83,7 @@ class SearchPage extends StatelessWidget {
     );
   }
 
-  Widget recommendedCard(BuildContext context,String title, String imagePath) {
+  Widget recommendedCard(BuildContext context, String title, String imagePath) {
     return Container(
       margin: EdgeInsets.only(bottom: 16),
       child: Column(
@@ -114,8 +111,16 @@ class SearchPage extends StatelessWidget {
                   child: IconButton(
                     icon: Icon(Icons.favorite_border),
                     onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=> WishList()));
-
+                      final adminProvider =
+                          Provider.of<AdminProvider>(context, listen: false);
+                      final tripPackage = adminProvider.allTravelList.first;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WishList(
+                                    travelpackage: tripPackage,
+                                    tripvalue: adminProvider,
+                                  )));
                     },
                   ),
                 ),
