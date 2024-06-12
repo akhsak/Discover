@@ -104,52 +104,70 @@ Widget expandedTripCard(BuildContext context, {AdminModel? trip}) {
   );
 }
 
-// Widget popularPackageCard(
-//     BuildContext context, String title, String imagePath) {
-//   return Container(
-//     width: 160,
-//     margin: const EdgeInsets.only(right: 16),
-//     child: Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Expanded(
-//           child: Stack(
-//             children: [
-//               ClipRRect(
-//                 borderRadius: BorderRadius.circular(8),
-//                 child: Image.asset(
-//                   imagePath,
-//                   fit: BoxFit.cover,
-//                   width: double.infinity,
-//                 ),
-//               ),
-//               Positioned(
-//                 bottom: 10,
-//                 left: 8,
-//                 child: Container(
-//                   padding: const EdgeInsets.all(8),
-//                   decoration: BoxDecoration(
-//                     color: Colors.black.withOpacity(0.5),
-//                     borderRadius: BorderRadius.circular(8),
-//                   ),
-//                   child: Text(
-//                     title,
-//                     style: const TextStyle(
-//                       color: Colors.white,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//         const SizedBox(height: 8),
-//         Text(
-//           title,
-//           style: const TextStyle(fontWeight: FontWeight.bold),
-//         ),
-//       ],
-//     ),
-//   );
-// }
+Widget popularPackageCard(BuildContext context, {AdminModel? trip}) {
+  if (trip == null) {
+    return Container(
+      width: 160,
+      margin: const EdgeInsets.only(right: 16),
+      child: Center(
+        child: Image.asset(
+          'assets/splash 3.img.jpeg',
+          fit: BoxFit.cover,
+          width: double.infinity,
+        ),
+        // child: Text(
+        //   'No trip data available',
+        //   style: TextStyle(color: Colors.grey),
+        // ),
+      ),
+    );
+  }
+
+  //final imageUrl = trip.image;
+  return Container(
+    width: 160,
+    margin: const EdgeInsets.only(right: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  'assets/splash 3.img.jpeg',
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+              ),
+              Positioned(
+                bottom: 10,
+                left: 8,
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'package',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'package',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ],
+    ),
+  );
+}

@@ -79,7 +79,7 @@ class UserHomepage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 250,
+                    height: 200,
                     child: Consumer<AdminProvider>(
                       builder: (context, value, child) {
                         if (value.isLoading) {
@@ -173,7 +173,7 @@ class UserHomepage extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  // const SizedBox(height: 20),
                   const Text(
                     'Expanding your trip around the world',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -204,26 +204,8 @@ class UserHomepage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return expandedTripCard(context);
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Travel beyond the boundary',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 250,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return expandedTripCard(context);
+                          return popularPackageCard(context);
+                          //expandedTripCard(context);
                         },
                       ),
                     ),

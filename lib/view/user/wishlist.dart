@@ -1,5 +1,6 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/model/admin_model.dart';
+import 'package:discover/view/user/home/details_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -67,11 +68,31 @@ class WishList extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  item.placeName ?? 'Unknown',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BookingDetailScreen(
+                                                    placeName: item.placeName!,
+                                                    aboutTrip: item.aboutTrip!,
+                                                    location: item.location!,
+                                                    image: NetworkImage(
+                                                        item.image.toString()),
+                                                    duration: item.duration!,
+                                                    transportation:
+                                                        item.transportation!,
+                                                    tripId:
+                                                        item.transportation!,
+                                                    isAdmin: false)));
+                                  },
+                                  child: Text(
+                                    item.placeName ?? 'Unknown',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(height: size.height * 0.01),
