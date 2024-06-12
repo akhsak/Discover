@@ -1,6 +1,7 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/bottom.dart';
+import 'package:discover/controller/revie_controller.dart';
 // import 'package:discover/controller/login_provider.dart';
 import 'package:discover/firebase_options.dart';
 import 'package:discover/view/splash_second.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
           create: (context) => BottomProvider(),
         ),
         ChangeNotifierProvider(create: (context) => LoginProvider()),
-        ChangeNotifierProvider(create: (context) => AdminProvider())
+        ChangeNotifierProvider(create: (context) => AdminProvider()),
+        ChangeNotifierProvider(create: (context) => ReviewState())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

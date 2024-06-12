@@ -91,8 +91,7 @@ class _DatePageState extends State<DatePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(17),
                       ),
-                      backgroundColor:
-                          Colors.blue, // Blue color for the next button
+                      backgroundColor: Colors.blue,
                     ),
                     child: const Text(
                       'Next',
@@ -125,7 +124,6 @@ class _DatePageState extends State<DatePage> {
             ),
             TextButton(
               onPressed: () {
-                // Add your booking logic here
                 Navigator.of(context).pop();
               },
               child: Text('Book'),
