@@ -1,31 +1,22 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/authontication/Login/login_page.dart';
-import 'package:discover/view/user/home/booking_page.dart';
+import 'package:discover/view/user/home/details_page.dart';
 import 'package:discover/widgets/expanded_trip_card.dart';
 import 'package:discover/widgets/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AdminHomeScreen extends StatefulWidget {
+class AdminHomeScreen extends StatelessWidget {
   const AdminHomeScreen({super.key});
-
-  @override
-  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
-}
-
-class _AdminHomeScreenState extends State<AdminHomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<AdminProvider>(context, listen: false).getAllTravelPackage();
-  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final authProvider = Provider.of<LoginProvider>(context, listen: false);
+
+    Provider.of<AdminProvider>(context, listen: false).getAllTravelPackage();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),

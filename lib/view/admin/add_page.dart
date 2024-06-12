@@ -169,6 +169,7 @@ class AdminAddpage extends StatelessWidget {
         aboutTrip: getprovider.aboutController.text,
         duration: getprovider.durationController.text,
         transportation: getprovider.transportationController.text,
+        location: getprovider.locationController.text,
         image: image,
         wishList: [],
       );
@@ -178,10 +179,10 @@ class AdminAddpage extends StatelessWidget {
       getprovider.clearTravelControllers();
 
       SnackBarWidget()
-          .showSuccessSnackbar(context, 'travelpackage Added Successfully');
+          .showSuccessSnackbar(context, 'Travel Package Added Successfully');
     } else {
       SnackBarWidget()
-          .showSuccessSnackbar(context, 'Failed to Add try once more');
+          .showSuccessSnackbar(context, 'Failed to Add, try once more');
       log('Error: pickedImage is null');
     }
     getprovider.setIsAddingData(false);

@@ -12,13 +12,13 @@ class WishList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('WishList'),
+        title: Text(''),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(10.0),
             child: Text(
               'WishList',
               style: TextStyle(

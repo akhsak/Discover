@@ -87,7 +87,7 @@ poppinsSmallText({text, color, fontWeight, textAlign}) {
       // overflow: TextOverflow.ellipsis,
       textAlign: textAlign,
       style: GoogleFonts.poppins(
-          color: color ?? const Color(0xFF101828), fontSize: 12));
+          color: color ?? Color.fromARGB(255, 11, 11, 11), fontSize: 12));
 }
 
 Widget travelDetailsText({String? value, double? fontsize, fontWeight, color}) {

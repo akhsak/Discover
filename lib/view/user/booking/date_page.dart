@@ -1,4 +1,4 @@
-import 'package:discover/view/user/home/detail_booking_page.dart';
+import 'package:discover/view/user/home/booking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
