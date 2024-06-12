@@ -28,75 +28,122 @@ class UserHomepage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 100),
-                  const Text(
-                    'Explore the world today',
-                    style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 100),
+                    const Text(
+                      'Explore the world today',
+                      style: TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'Discover - take your travel to the next level',
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
+                    const SizedBox(height: 4),
+                    const Text(
+                      'Discover - take your travel to the next level',
+                      style: TextStyle(fontSize: 17, color: Colors.white),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            onChanged: (value) {
-                              Provider.of<AdminProvider>(context, listen: false)
-                                  .search(value);
-                            },
-                            decoration: const InputDecoration(
-                              hintText: 'Search destination',
-                              border: InputBorder.none,
+                    const SizedBox(height: 20),
+                    Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              onChanged: (value) {
+                                Provider.of<AdminProvider>(context,
+                                        listen: false)
+                                    .search(value);
+                              },
+                              decoration: const InputDecoration(
+                                hintText: 'Search destination',
+                                border: InputBorder.none,
+                              ),
                             ),
                           ),
-                        ),
-                        const Icon(Icons.search),
-                      ],
+                          const Icon(Icons.search),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 60),
-                  const Text(
-                    'Popular Packages in Asia',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 200,
-                    child: Consumer<AdminProvider>(
-                      builder: (context, value, child) {
-                        if (value.isLoading) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (value.searchList.isEmpty &&
-                            value.searchController.text.isNotEmpty) {
-                          return Center(
-                              child: Image.asset('assets/search_image.png'));
-                        } else if (value.searchList.isEmpty) {
-                          if (value.allTravelList.isNotEmpty) {
-                            final allPackages = value.allTravelList;
+                    const SizedBox(height: 60),
+                    const Text(
+                      'Popular Packages in Asia',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 200,
+                      child: Consumer<AdminProvider>(
+                        builder: (context, value, child) {
+                          if (value.isLoading) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else if (value.searchList.isEmpty &&
+                              value.searchController.text.isNotEmpty) {
+                            return Center(child: Text('No items in your '));
+                          } else if (value.searchList.isEmpty) {
+                            if (value.allTravelList.isNotEmpty) {
+                              final allPackages = value.allTravelList;
+                              return ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: allPackages.length,
+                                itemBuilder: (context, index) {
+                                  final trip = allPackages[index];
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              BookingDetailScreen(
+                                            isAdmin: false,
+                                            tripId: trip.id ?? 'unknown id',
+                                            placeName: trip.placeName ??
+                                                'Unknown Place',
+                                            aboutTrip: trip.aboutTrip ??
+                                                'No description available',
+                                            location: trip.location ??
+                                                'Unknown location',
+                                            duration: trip.duration ??
+                                                'Unknown duration',
+                                            image:
+                                                NetworkImage(trip.image ?? ''),
+                                            transportation:
+                                                trip.transportation ??
+                                                    'Unknown transportation',
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Column(
+                                      children: [
+                                        expandedTripCard(context, trip: trip),
+                                        SizedBox(height: size.height * .05),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            } else {
+                              return Center(child: Text('No items in your '));
+                            }
+                          } else {
                             return ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: allPackages.length,
+                              itemCount: value.searchList.length,
                               itemBuilder: (context, index) {
-                                final trip = allPackages[index];
+                                final trip = value.searchList[index];
                                 return GestureDetector(
                                   onTap: () {
                                     Navigator.push(
@@ -105,18 +152,15 @@ class UserHomepage extends StatelessWidget {
                                         builder: (context) =>
                                             BookingDetailScreen(
                                           isAdmin: false,
-                                          tripId: trip.id ?? 'unknown id',
-                                          placeName:
-                                              trip.placeName ?? 'Unknown Place',
-                                          aboutTrip: trip.aboutTrip ??
-                                              'No description available',
-                                          location: trip.location ??
-                                              'Unknown location',
-                                          duration: trip.duration ??
-                                              'Unknown duration',
-                                          image: NetworkImage(trip.image ?? ''),
-                                          transportation: trip.transportation ??
-                                              'Unknown transportation',
+                                          tripId: trip.id.toString(),
+                                          placeName: trip.placeName.toString(),
+                                          aboutTrip: trip.aboutTrip.toString(),
+                                          location: trip.location.toString(),
+                                          duration: trip.duration.toString(),
+                                          image: NetworkImage(
+                                              trip.image.toString()),
+                                          transportation:
+                                              trip.transportation.toString(),
                                         ),
                                       ),
                                     );
@@ -124,93 +168,56 @@ class UserHomepage extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       expandedTripCard(context, trip: trip),
-                                      SizedBox(height: size.height * .02),
+                                      SizedBox(height: size.height * .0),
                                     ],
                                   ),
                                 );
                               },
                             );
-                          } else {
-                            return Center(
-                                child: Image.asset('assets/search_image.png'));
                           }
-                        } else {
-                          return ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: value.searchList.length,
-                            itemBuilder: (context, index) {
-                              final trip = value.searchList[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => BookingDetailScreen(
-                                        isAdmin: false,
-                                        tripId: trip.id.toString(),
-                                        placeName: trip.placeName.toString(),
-                                        aboutTrip: trip.aboutTrip.toString(),
-                                        location: trip.location.toString(),
-                                        duration: trip.duration.toString(),
-                                        image:
-                                            NetworkImage(trip.image.toString()),
-                                        transportation:
-                                            trip.transportation.toString(),
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Column(
-                                  children: [
-                                    expandedTripCard(context, trip: trip),
-                                    SizedBox(height: size.height * .02),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                  // const SizedBox(height: 20),
-                  const Text(
-                    'Expanding your trip around the world',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 200,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BookingDetailScreen(
-                              isAdmin: false,
-                              tripId: 'aa',
-                              placeName: 'Beautiful Beach',
-                              aboutTrip:
-                                  'A wonderful trip to a beautiful beach.',
-                              location: 'Beach City',
-                              duration: '2 days',
-                              image: AssetImage('assets/splash 3.img.jpeg'),
-                              transportation: 'Bus',
-                            ),
-                          ),
-                        );
-                      },
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return popularPackageCard(context);
-                          //expandedTripCard(context);
                         },
                       ),
                     ),
-                  ),
-                ],
+                    // const SizedBox(height: 20),
+                    const Text(
+                      'Expanding your trip around the world',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 200,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookingDetailScreen(
+                                isAdmin: false,
+                                tripId: 'aa',
+                                placeName: 'Beautiful Beach',
+                                aboutTrip:
+                                    'A wonderful trip to a beautiful beach.',
+                                location: 'Beach City',
+                                duration: '2 days',
+                                image: AssetImage('assets/splash 3.img.jpeg'),
+                                transportation: 'Bus',
+                              ),
+                            ),
+                          );
+                        },
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return popularPackageCard(context);
+                            //expandedTripCard(context);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

@@ -91,10 +91,7 @@ class AdminHomeScreen extends StatelessWidget {
             } else if (adminProvider.searchList.isEmpty &&
                 adminProvider.searchController.text.isNotEmpty) {
               return Center(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Center(child: Image.asset('assets/search_image.png')),
-                ),
+                child: Center(child: Text('No items found')),
               );
             } else if (adminProvider.searchList.isEmpty &&
                 adminProvider.allTravelList.isEmpty) {

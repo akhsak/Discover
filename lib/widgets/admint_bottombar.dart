@@ -20,8 +20,8 @@ class AdminBottomBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _BottomNavItem(Icons.home, 'Home', 0, context),
-            _BottomNavItem(Icons.add, 'AddPage', 1, context),
+            _BottomNavItem(Icons.home, 'ᴴᵒᵐᵉ', 0, context),
+            _BottomNavItem(Icons.add, 'ᴬᵈᵈᵖᵃᵍᵉ', 1, context),
             //  _BottomNavItem(Icons.person, 'Profile', 2, context),
           ],
         ),
