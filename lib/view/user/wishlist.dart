@@ -342,8 +342,8 @@ class WishList extends StatelessWidget {
                                   },
                                   icon: Icon(
                                     wish
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
+                                        ? Icons.favorite_border
+                                        : Icons.favorite,
                                     color: Colors.red,
                                   ),
                                 );
