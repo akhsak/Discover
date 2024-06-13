@@ -17,7 +17,7 @@ class AdminAddpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final addProvider = Provider.of<AdminProvider>(context);
+    final addProvider = Provider.of<AdminProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -32,7 +32,6 @@ class AdminAddpage extends StatelessWidget {
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
             } else {
-              // Handle the scenario where there's no route to pop
               print('No route to pop');
             }
           },

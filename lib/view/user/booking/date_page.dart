@@ -8,8 +8,8 @@ class DatePage extends StatefulWidget {
 }
 
 class _DatePageState extends State<DatePage> {
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+  DateTime focusedDay = DateTime.now();
+  DateTime? selectedDay;
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +36,20 @@ class _DatePageState extends State<DatePage> {
             child: TableCalendar(
               firstDay: DateTime.utc(2020, 1, 1),
               lastDay: DateTime.utc(2030, 12, 31),
-              focusedDay: _focusedDay,
+              focusedDay: focusedDay,
               selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
+                return isSameDay(selectedDay, day);
               },
               onDaySelected: (selectedDay, focusedDay) {
                 setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
+                  selectedDay = selectedDay;
+                  focusedDay = focusedDay;
                 });
-                _showBookingDialog(context, selectedDay);
+                showBookingDialog(context, selectedDay);
               },
               calendarFormat: CalendarFormat.month,
               onPageChanged: (focusedDay) {
-                _focusedDay = focusedDay;
+                focusedDay = focusedDay;
               },
             ),
           ),
@@ -108,7 +108,7 @@ class _DatePageState extends State<DatePage> {
     );
   }
 
-  void _showBookingDialog(BuildContext context, DateTime selectedDay) {
+  void showBookingDialog(BuildContext context, DateTime selectedDay) {
     showDialog(
       context: context,
       builder: (context) {

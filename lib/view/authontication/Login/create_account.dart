@@ -4,17 +4,16 @@ import 'package:country_picker/country_picker.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/authontication/Login/login_page.dart';
 import 'package:discover/view/authontication/Login/success_create.dart';
-import 'package:discover/widgets/bottombar.dart';
 import 'package:discover/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccount extends StatelessWidget {
-  bool isLoading = false;
+  // bool isLoading = false;
 
   CreateAccount({super.key});
 
-  final formKey = GlobalKey<FormState>();
+  //final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

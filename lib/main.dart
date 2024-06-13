@@ -1,5 +1,6 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
+import 'package:discover/controller/booking_provider.dart';
 import 'package:discover/controller/bottom.dart';
 import 'package:discover/controller/revie_controller.dart';
 // import 'package:discover/controller/login_provider.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(create: (context) => LoginProvider()),
         ChangeNotifierProvider(create: (context) => AdminProvider()),
-        ChangeNotifierProvider(create: (context) => ReviewState())
+        ChangeNotifierProvider(create: (context) => ReviewState()),
+        ChangeNotifierProvider(create: (context) => BookingProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

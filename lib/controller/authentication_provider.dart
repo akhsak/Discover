@@ -31,7 +31,7 @@ class LoginProvider extends ChangeNotifier {
 
   String? emailError;
   String? passwordError;
-  bool obscureText = true;
+  // bool obscureText = true;
   int currentIndex = 0;
   UserModel? currentUser;
   bool showPassword = true;

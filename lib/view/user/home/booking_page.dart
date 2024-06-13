@@ -1,38 +1,19 @@
+import 'package:discover/controller/booking_provider.dart';
 import 'package:discover/view/user/booking/conform_payment.dart';
 import 'package:discover/view/user/booking/success_booking.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
-class DetalBooking extends StatefulWidget {
+class DetalBooking extends StatelessWidget {
   const DetalBooking({super.key});
 
   @override
-  _DetalBookingState createState() => _DetalBookingState();
-}
-
-class _DetalBookingState extends State<DetalBooking> {
-  final _formKey = GlobalKey<FormState>();
-  final _guestNameController = TextEditingController();
-  final _guestNumberController = TextEditingController();
-  final _countryCodeController = TextEditingController(text: '+91');
-  final _phoneController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _idNumberController = TextEditingController();
-
-  bool _obscureText = true;
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // Get screen size
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    final detailbookprovider =
+        Provider.of<BookingProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +29,7 @@ class _DetalBookingState extends State<DetalBooking> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Form(
-            key: _formKey,
+            key: detailbookprovider.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -67,7 +48,7 @@ class _DetalBookingState extends State<DetalBooking> {
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 TextFormField(
-                  controller: _guestNameController,
+                  controller: detailbookprovider.guestNameController,
                   decoration: InputDecoration(
                     labelText: 'Guest name',
                     border: OutlineInputBorder(),
@@ -81,7 +62,7 @@ class _DetalBookingState extends State<DetalBooking> {
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 TextFormField(
-                  controller: _guestNumberController,
+                  controller: detailbookprovider.guestNumberController,
                   decoration: InputDecoration(
                     labelText: 'Guest number',
                     border: OutlineInputBorder(),
@@ -99,7 +80,7 @@ class _DetalBookingState extends State<DetalBooking> {
                     Container(
                       width: screenWidth * 0.2,
                       child: TextFormField(
-                        controller: _countryCodeController,
+                        controller: detailbookprovider.countryCodeController,
                         decoration: InputDecoration(
                           prefixText: '',
                           border: OutlineInputBorder(),
@@ -115,7 +96,7 @@ class _DetalBookingState extends State<DetalBooking> {
                     SizedBox(width: screenWidth * 0.02),
                     Expanded(
                       child: TextFormField(
-                        controller: _phoneController,
+                        controller: detailbookprovider.phoneController,
                         decoration: InputDecoration(
                           labelText: 'Phone',
                           border: OutlineInputBorder(),
@@ -136,7 +117,7 @@ class _DetalBookingState extends State<DetalBooking> {
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 TextFormField(
-                  controller: _emailController,
+                  controller: detailbookprovider.emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
@@ -149,25 +130,29 @@ class _DetalBookingState extends State<DetalBooking> {
                   },
                 ),
                 SizedBox(height: screenHeight * 0.02),
-                TextFormField(
-                  controller: _idNumberController,
-                  obscureText: _obscureText,
-                  decoration: InputDecoration(
-                    labelText: 'ID Number',
-                    border: OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                Consumer<BookingProvider>(
+                  builder: (context, value, child) => TextFormField(
+                    controller: detailbookprovider.idNumberController,
+                    obscureText: value.obscureText,
+                    decoration: InputDecoration(
+                      labelText: 'ID Number',
+                      border: OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          value.obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: value.idPasswordVisibility(),
                       ),
-                      onPressed: _togglePasswordVisibility,
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter ID number';
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter ID number';
-                    }
-                    return null;
-                  },
                 ),
                 SizedBox(height: screenHeight * 0.2),
                 Row(
@@ -185,12 +170,12 @@ class _DetalBookingState extends State<DetalBooking> {
                       width: screenWidth * 0.4,
                       child: ElevatedButton(
                         onPressed: () {
-                        //   if (_formKey.currentState?.validate() ?? false) { 
-                        // }
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ConformPayment()));
+                          //   if (_formKey.currentState?.validate() ?? false) {
+                          // }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConformPayment()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
