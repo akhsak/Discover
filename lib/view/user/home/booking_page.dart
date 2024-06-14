@@ -138,13 +138,14 @@ class DetalBooking extends StatelessWidget {
                       labelText: 'ID Number',
                       border: OutlineInputBorder(),
                       suffixIcon: IconButton(
-                        icon: Icon(
-                          value.obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: value.idPasswordVisibility(),
-                      ),
+                          icon: Icon(
+                            value.obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            value.idPasswordVisibility();
+                          }),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
