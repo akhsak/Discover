@@ -51,16 +51,6 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: screenHeight * 0.05),
                 Column(
                   children: [
-                    // Container(
-                    //   child: CustomTextFormField(
-                    //     controller: authProvider.loginEmailController,
-                    //     labelText: 'Email',
-                    //     prefixIcon: Icon(Icons.email),
-                    //     keyboardType: TextInputType.emailAddress,
-                    //     validateMsg: 'Enter your E-mail',
-                    //   ),
-                    // ),
-
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: authProvider.loginEmailController,
@@ -77,22 +67,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     Consumer<LoginProvider>(
-                      builder: (context, value, child) =>
-                          // CustomTextFormField(
-                          //       controller: authProvider.loginPasswordController,
-                          //       labelText: 'Password',
-                          //       prefixIcon: Icon(Icons.lock, color: Colors.black),
-                          //       validateMsg: 'Enter your password',
-                          //       suffixIcon: IconButton(
-                          //         icon: Icon(value.obscureText
-                          //             ? Icons.visibility_off_outlined
-                          //             : Icons.visibility_outlined),
-                          //         onPressed: () {
-                          //           value.loginObscureTextchange();
-                          //         },
-                          //       ),
-                          //     )
-                          TextFormField(
+                      builder: (context, value, child) => TextFormField(
                         controller: authProvider.loginPasswordController,
                         obscureText: value.loginObscureText,
                         decoration: InputDecoration(
@@ -109,13 +84,6 @@ class LoginScreen extends StatelessWidget {
                               icon: Icon(value.loginObscureText
                                   ? Icons.visibility_off
                                   : Icons.visibility)),
-
-                          // suffixIcon: IconButton(
-                          //   icon: Icon(value.obscureText
-                          //       ? Icons.visibility
-                          //       : Icons.visibility_off),
-                          //   onPressed: value.obscureChange(),
-                          // ),
                           errorText: authProvider.passwordError,
                         ),
                         onChanged: authProvider.validatePassword,
@@ -270,7 +238,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: screenHeight * 0.02),
+                SizedBox(height: screenHeight * 0.07),
                 Padding(
                   padding: const EdgeInsets.only(),
                   child: Row(

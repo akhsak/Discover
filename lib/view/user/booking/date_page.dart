@@ -10,7 +10,7 @@ class DatePage extends StatefulWidget {
 class _DatePageState extends State<DatePage> {
   DateTime focusedDay = DateTime.now();
   DateTime? selectedDay;
-/////
+
   DateTime? rangeStart;
   DateTime? rangeEnd;
 
@@ -35,6 +35,8 @@ class _DatePageState extends State<DatePage> {
       focusedDay = focusedDay;
       rangeStart = start;
       rangeEnd = end;
+      print(rangeStart);
+      print(rangeEnd);
     });
   }
 
@@ -115,7 +117,7 @@ class _DatePageState extends State<DatePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DetalBooking()));
+                              builder: (context) => DetailBooking()));
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
