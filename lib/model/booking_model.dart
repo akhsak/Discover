@@ -1,33 +1,36 @@
 import 'package:discover/model/admin_model.dart';
 
-class AppointmentModel {
+class BookingModel {
   String? id;
   String? uId;
   String? travelId;
   String? date;
   String? name;
+  String? gestNo;
   String? email;
   String? phoneNumber;
 
   AdminModel? travel;
 
-  AppointmentModel(
+  BookingModel(
       {this.id,
       this.uId,
       this.travelId,
       required this.date,
       required this.name,
       this.email,
+      this.gestNo,
       required this.phoneNumber,
       this.travel});
 
-  factory AppointmentModel.fromJson(String id, Map<String, dynamic> json) {
-    return AppointmentModel(
+  factory BookingModel.fromJson(String id, Map<String, dynamic> json) {
+    return BookingModel(
       id: id,
       uId: json['userId'],
       travelId: json['docId'],
       date: json['date'],
       name: json['name'],
+      gestNo: json['gestNo'],
       email: json['email'],
       phoneNumber: json['phoneNumber'],
       travel: null,
@@ -41,6 +44,7 @@ class AppointmentModel {
       'id': id,
       'date': date,
       'name': name,
+      'gestNo': gestNo,
       'email': email,
       'phoneNumber': phoneNumber,
     };

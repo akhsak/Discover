@@ -344,21 +344,22 @@ class _DatePageState extends State<DatePage> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ConfirmPayment(
-                            name: 'Guest Name', // Replace with actual data
-                            email:
-                                'guest@example.com', // Replace with actual data
-                            gestno: 'Guest No', // Replace with actual data
-                            phonenumber:
-                                '1234567890', // Replace with actual data
-                            // bookingDate: selectedDay,
-                            // amount: '500',
-                          ),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => ConfirmPayment(
+                      //       bookingData:,
+                      // name: 'Guest Name', // Replace with actual data
+                      // email:
+                      //     'guest@example.com', // Replace with actual data
+                      // gestno: 'Guest No', // Replace with actual data
+                      // phonenumber:
+                      //     '1234567890', // Replace with actual data
+                      // bookingDate: selectedDay,
+                      // amount: '500',
+                      //     ),
+                      //   ),
+                      // );
                     },
                     child: Text('Book'),
                   ),
