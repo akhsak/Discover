@@ -151,6 +151,7 @@
 // }
 
 import 'dart:developer';
+import 'package:booking_calendar/booking_calendar.dart';
 import 'package:discover/service/booking_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -174,7 +175,8 @@ class BookingProvider extends ChangeNotifier {
 
   bool obscureText = true;
 
-  final BookingService bookingService = BookingService();
+  // final BookingService bookingService = BookingService();
+  final BookingPageService bookingService = BookingPageService();
 
   final appointmentFormKey = GlobalKey<FormState>();
 

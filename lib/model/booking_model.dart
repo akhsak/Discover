@@ -16,11 +16,11 @@ class BookingModel {
       {this.id,
       this.uId,
       this.travelId,
-      required this.date,
-      required this.name,
+      this.date,
+      this.name,
       this.email,
       this.gestNo,
-      required this.phoneNumber,
+      this.phoneNumber,
       this.travel});
 
   factory BookingModel.fromJson(String id, Map<String, dynamic> json) {

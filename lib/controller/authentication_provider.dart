@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:country_picker/country_picker.dart';
-import 'package:discover/model/authontication_model.dart';
+import 'package:discover/model/user_model.dart';
 import 'package:discover/service/authontication.dart';
 import 'package:discover/widgets/admint_bottombar.dart';
 import 'package:discover/widgets/bottombar.dart';

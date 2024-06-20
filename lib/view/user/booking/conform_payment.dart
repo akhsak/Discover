@@ -148,6 +148,7 @@
 // }
 
 import 'package:discover/model/booking_model.dart';
+import 'package:discover/view/user/payment/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -220,22 +221,33 @@ class ConfirmPayment extends StatelessWidget {
               ),
             ),
             SizedBox(height: screenHeight * 0.01),
-            Text(
-              'Booking Amount: 500 ₹',
-              style: TextStyle(
-                fontSize: screenHeight * 0.02,
-              ),
-            ),
+            // Text(
+            //   'Booking Amount: 500 ₹',
+            //   style: TextStyle(
+            //     fontSize: screenHeight * 0.02,
+            //   ),
+            // ),
             SizedBox(height: screenHeight * 0.02),
-            ElevatedButton(
-              onPressed: () {
-                // Add your payment integration here
-                // For now, we'll just display a confirmation message
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Payment confirmed!')),
-                );
-              },
-              child: Text('Confirm Payment'),
+            Row(
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Go Back')),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PaymentScreen()));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Payment confirmed!')),
+                    );
+                  },
+                  child: Text('Confirm Payment'),
+                ),
+              ],
             ),
           ],
         ),

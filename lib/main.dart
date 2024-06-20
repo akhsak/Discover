@@ -3,6 +3,7 @@ import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/controller/booking_provider.dart';
 import 'package:discover/controller/bottom.dart';
 import 'package:discover/controller/revie_controller.dart';
+import 'package:discover/controller/review_provider.dart';
 // import 'package:discover/controller/login_provider.dart';
 import 'package:discover/firebase_options.dart';
 import 'package:discover/view/splash_second.dart';
@@ -39,7 +40,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => LoginProvider()),
         ChangeNotifierProvider(create: (context) => AdminProvider()),
         ChangeNotifierProvider(create: (context) => ReviewState()),
-        ChangeNotifierProvider(create: (context) => BookingProvider())
+        ChangeNotifierProvider(create: (context) => BookingProvider()),
+        ChangeNotifierProvider(create: (context) => ReviewController()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

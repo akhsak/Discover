@@ -37,3 +37,34 @@ class ReviewCard extends StatelessWidget {
     );
   }
 }
+// import 'package:flutter/material.dart';
+
+// class ReviewCard extends StatelessWidget {
+//   final String name;
+//   final String date;
+//   final String review;
+
+//   const ReviewCard({
+//     Key? key,
+//     required this.name,
+//     required this.date,
+//     required this.review,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       child: ListTile(
+//         title: Text(name),
+//         subtitle: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text(date, style: TextStyle(fontSize: 12, color: Colors.grey)),
+//             SizedBox(height: 5),
+//             Text(review),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

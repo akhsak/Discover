@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:discover/model/authontication_model.dart';
+import 'package:discover/model/user_model.dart';
 import 'package:discover/view/authontication/otp_screen.dart';
 import 'package:discover/widgets/bottombar.dart';
 import 'package:discover/widgets/snackbar.dart';
@@ -17,20 +17,20 @@ class AuthService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   late CollectionReference<UserModel> user;
 
-  AuthService() {
-    user = FirebaseFirestore.instance
-        .collection(collection)
-        .withConverter<UserModel>(
-      fromFirestore: (snapshot, options) {
-        return UserModel.fromJson(
-          snapshot.data()!,
-        );
-      },
-      toFirestore: (value, options) {
-        return value.toJson();
-      },
-    );
-  }
+  // AuthService() {
+  //   user = FirebaseFirestore.instance
+  //       .collection(collection)
+  //       .withConverter<UserModel>(
+  //     fromFirestore: (snapshot, options) {
+  //       return UserModel.fromJson(
+  //         snapshot.data()!,
+  //       );
+  //     },
+  //     toFirestore: (value, options) {
+  //       return value.toJson();
+  //     },
+  //   );
+  // }
 
   Future<void> addUser(UserModel data) async {
     try {
