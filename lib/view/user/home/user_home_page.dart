@@ -1,5 +1,5 @@
 import 'package:discover/controller/admin_provider.dart';
-import 'package:discover/view/user/home/details_page.dart';
+import 'package:discover/view/user/home/booking_details_page.dart';
 import 'package:discover/widgets/expanded_trip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

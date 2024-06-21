@@ -1,7 +1,7 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/controller/authentication_provider.dart';
 import 'package:discover/view/authontication/Login/login_page.dart';
-import 'package:discover/view/user/home/details_page.dart';
+import 'package:discover/view/user/home/booking_details_page.dart';
 import 'package:discover/widgets/expanded_trip_card.dart';
 import 'package:discover/widgets/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';

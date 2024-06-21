@@ -1,6 +1,6 @@
 import 'package:discover/controller/admin_provider.dart';
 import 'package:discover/model/admin_model.dart';
-import 'package:discover/view/user/home/details_page.dart';
+import 'package:discover/view/user/home/booking_details_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

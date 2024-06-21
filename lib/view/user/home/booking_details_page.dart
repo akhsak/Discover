@@ -210,6 +210,9 @@ class BookingDetailScreen extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
+                            //   child: Image(image: image,
+                            // ),
+
                             child: Image.asset(
                               'assets/splash1.img.jpeg',
                               fit: BoxFit.cover,
@@ -217,6 +220,8 @@ class BookingDetailScreen extends StatelessWidget {
                           ),
                           SizedBox(width: 10),
                           Expanded(
+                            // child: Image(image: image),
+
                             child: Image.asset(
                               'assets/splash1.img.jpeg',
                               fit: BoxFit.cover,
@@ -253,7 +258,8 @@ class BookingDetailScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '\$600/Person',
+                              //'\$600/Person',
+                              '₹600 Amount',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

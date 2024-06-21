@@ -159,12 +159,31 @@ class DetailBooking extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '\$1200/2 Person',
-                      style: TextStyle(
-                        fontSize: screenHeight * 0.023,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                    // Text(
+                    //   '\$1200/2 Person',
+                    //   style: TextStyle(
+                    //     fontSize: screenHeight * 0.023,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: Colors.blue,
+                    //   ),
+                    // ),
+                    SizedBox(
+                      width: 190,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(17),
+                          ),
+                          backgroundColor: Color.fromARGB(255, 244, 240, 240),
+                        ),
+                        child: const Text('Back',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 133, 133, 133),
+                                fontWeight: FontWeight.bold)),
                       ),
                     ),
                     SizedBox(

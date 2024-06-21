@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -22,9 +21,7 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // title: Text('notification'),
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -53,7 +50,8 @@ class NotificationPage extends StatelessWidget {
                         CircleAvatar(
                           radius: 30,
                           backgroundColor: Colors.grey[300],
-                          child: const Icon(Icons.notifications, color: Colors.white),
+                          child: const Icon(Icons.notifications,
+                              color: Colors.white),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -106,4 +104,3 @@ class NotificationPage extends StatelessWidget {
     );
   }
 }
-

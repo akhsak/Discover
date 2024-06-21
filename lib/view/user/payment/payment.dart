@@ -1,6 +1,3 @@
-// // key_id,key_secret
-// // rzp_test_CYrnTOG3W2cDCB,Zq01KM6L54ebO4XpZyghHcRA
-
 import 'dart:developer';
 
 import 'package:discover/widgets/colors.dart';
@@ -17,7 +14,7 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   late Razorpay _razorpay;
-  TextEditingController _amountController = TextEditingController();
+  final int _fixedAmount = 600;
 
   void openRazorpayPayment(int amount) async {
     amount = amount * 100;
@@ -30,7 +27,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         'email': 'test@gmail.com',
       },
       'external': {
-        'wallets': ['paytm,googlepay'],
+        'wallets': ['paytm', 'googlepay'],
       },
     };
 
@@ -92,10 +89,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: TextWidget().text(
-            data: "Enter Amount",
-            color: Colors.white,
-            size: 24.0,
-            weight: FontWeight.bold),
+          data: "Payment",
+          color: Colors.white,
+          size: 24.0,
+          weight: FontWeight.bold,
+        ),
         backgroundColor: colors().blue,
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -109,64 +107,35 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blue.shade50, Colors.blue.shade200],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        padding: EdgeInsets.all(50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Enter Amount',
-                labelStyle: TextStyle(
-                    color: Colors.blueGrey, fontWeight: FontWeight.bold),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide(color: colors().blue),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide(color: colors().blue, width: 2.0),
-                ),
-                prefixIcon: Icon(Icons.attach_money, color: colors().blue),
-                filled: true,
-                fillColor: Colors.white,
+            Text(
+              'Amount: ₹600',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
-              style: TextStyle(color: Colors.black, fontSize: 18),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter the amount";
-                }
-                return null;
-              },
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 try {
-                  if (_amountController.text.isNotEmpty) {
-                    int amount = int.parse(_amountController.text);
-                    openRazorpayPayment(amount);
-                    log('Entered Amount: $amount');
-                  }
+                  openRazorpayPayment(_fixedAmount);
+                  log('Fixed Amount: $_fixedAmount');
                 } catch (e) {
                   log("Error: $e");
                 }
               },
               child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
-                  child: TextWidget().text(
-                    data: "Proceed to Payment",
-                    size: 18.0,
-                  )),
+                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+                child: TextWidget().text(
+                  data: "Proceed to Payment",
+                  size: 18.0,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),

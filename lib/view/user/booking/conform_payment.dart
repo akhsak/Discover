@@ -1,251 +1,104 @@
-// import 'package:flutter/material.dart';
-
-// // class ConformPayment extends StatelessWidget {
-// //   // const ConformPayment({super.key});
-
-// //   String name, email, phonenumber, gestno;
-// //   ConformPayment(
-// //       {required this.name,
-// //       required this.email,
-// //       required this.gestno,
-// //       required this.phonenumber});
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     // Dummy data for payment confirmation
-// //     // final paymentData = {
-// //     //   'Name': 'Akhsa',
-// //     //   'Amount': '\$100.00',
-// //     //   'Date': '21 May 2024',
-// //     //   'Payment Method': 'Credit Card',
-// //     // };
-
-// //     return Scaffold(
-// //       appBar: AppBar(
-// //         title: const Text('Conform Booking'),
-// //       ),
-// //       body: Padding(
-// //         padding: const EdgeInsets.all(16.0),
-// //         child: Column(
-// //           crossAxisAlignment: CrossAxisAlignment.start,
-// //           children: [
-// //             const Text(
-// //               'Payment Details:',
-// //               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-// //             ),
-// //             const SizedBox(height: 10),
-// //             Text('Name ${name}'),
-// //             Text('email ${email}'),
-// //             Text('gestNo ${gestno}'),
-// //             Text('phoneNumber${phonenumber}'),
-// //             // ...paymentData.entries.map((entry) {
-// //             //   return Padding(
-// //             //     padding: const EdgeInsets.symmetric(vertical: 4.0),
-// //             //     child: Row(
-// //             //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-// //             //       children: [
-// //             //         Text(
-// //             //           entry.key,
-// //             //           style: const TextStyle(fontSize: 16),
-// //             //         ),
-// //             //         Text(
-// //             //           entry.value,
-// //             //           style: const TextStyle(fontSize: 16),
-// //             //         ),
-// //             //       ],
-// //             //     ),
-// //             //   );
-// //             // }).toList(),
-// //             SizedBox(height: 20),
-// //             Row(
-// //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-// //               children: [
-// //                 ElevatedButton(
-// //                   onPressed: () {
-// //                     Navigator.pop(context);
-// //                   },
-// //                   child: const Text('Go Back'),
-// //                 ),
-// //                 ElevatedButton(
-// //                   onPressed: () {
-// //                     // Action to confirm the payment
-// //                     ScaffoldMessenger.of(context).showSnackBar(
-// //                       SnackBar(
-// //                         content: const Text('Payment Confirmed!'),
-// //                       ),
-// //                     );
-// //                     // Add your payment confirmation logic here
-// //                   },
-// //                   child: const Text('Confirm'),
-// //                 ),
-// //               ],
-// //             ),
-// //           ],
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
-
-// class ConfirmPayment extends StatelessWidget {
-//   final String name, email, phonenumber, gestno;
-
-//   ConfirmPayment(
-//       {required this.name,
-//       required this.email,
-//       required this.gestno,
-//       required this.phonenumber});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Confirm Booking'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             const Text(
-//               'Payment Details:',
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//             const SizedBox(height: 10),
-//             Text('Name: $name'),
-//             Text('Email: $email'),
-//             Text('Guest No: $gestno'),
-//             Text('Phone Number: $phonenumber'),
-//             SizedBox(height: 20),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: [
-//                 ElevatedButton(
-//                   onPressed: () {
-//                     Navigator.pop(context);
-//                   },
-//                   child: const Text('Go Back'),
-//                 ),
-//                 ElevatedButton(
-//                   onPressed: () {
-//                     // Action to confirm the payment
-//                     ScaffoldMessenger.of(context).showSnackBar(
-//                       SnackBar(
-//                         content: const Text('Payment Confirmed!'),
-//                       ),
-//                     );
-//                     // Add your payment confirmation logic here
-//                   },
-//                   child: const Text('Confirm'),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-import 'package:discover/model/booking_model.dart';
 import 'package:discover/view/user/payment/payment.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:discover/model/booking_model.dart';
 
 class ConfirmPayment extends StatelessWidget {
   final BookingModel bookingData;
 
-  const ConfirmPayment({Key? key, required this.bookingData}) : super(key: key);
+  ConfirmPayment({required this.bookingData});
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Confirm Payment'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(screenWidth * 0.04),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Confirm your payment details',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: screenHeight * 0.03,
-              ),
+              'Confirm Your Booking Details',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            Gap(screenHeight * 0.02),
+            SizedBox(height: 20),
             Text(
-              'Guest Name: ${bookingData.name}',
-              style: TextStyle(
-                fontSize: screenHeight * 0.02,
-              ),
+              'Name: ${bookingData.name}',
+              style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: screenHeight * 0.01),
-            Text(
-              'Guest Number: ${bookingData.gestNo}',
-              style: TextStyle(
-                fontSize: screenHeight * 0.02,
-              ),
-            ),
-            SizedBox(height: screenHeight * 0.01),
-            Text(
-              'Phone: ${bookingData.phoneNumber}',
-              style: TextStyle(
-                fontSize: screenHeight * 0.02,
-              ),
-            ),
-            SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: 10),
             Text(
               'Email: ${bookingData.email}',
-              style: TextStyle(
-                fontSize: screenHeight * 0.02,
-              ),
+              style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: 10),
             Text(
-              'ID Number: ${bookingData.travelId}',
-              style: TextStyle(
-                fontSize: screenHeight * 0.02,
-              ),
+              'Guest No: ${bookingData.gestNo}',
+              style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: 10),
             Text(
-              'Booking Date: ${bookingData.date}',
-              style: TextStyle(
-                fontSize: screenHeight * 0.02,
-              ),
+              'Phone Number: ${bookingData.phoneNumber}',
+              style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: screenHeight * 0.01),
-            // Text(
-            //   'Booking Amount: 500 ₹',
-            //   style: TextStyle(
-            //     fontSize: screenHeight * 0.02,
-            //   ),
-            // ),
-            SizedBox(height: screenHeight * 0.02),
+            SizedBox(height: 10),
+            Text(
+              'Booking Date: ${bookingData.date}', // Ensure date is correctly passed and displayed
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: screenHeight * .5),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(
+                SizedBox(
+                  width: 190,
+                  height: 50,
+                  child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('Go Back')),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PaymentScreen()));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Payment confirmed!')),
-                    );
-                  },
-                  child: Text('Confirm Payment'),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(17),
+                      ),
+                      backgroundColor: Color.fromARGB(255, 244, 240, 240),
+                    ),
+                    child: const Text('Back',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 133, 133, 133),
+                            fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                //  child: Text('Go Back')),
+                SizedBox(
+                  width: screenWidth * .4,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentScreen()));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Payment confirmed!')),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: EdgeInsets.symmetric(
+                        vertical: screenHeight * 0.02,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: Text(
+                      'Confirm',
+                      style: TextStyle(fontSize: 13, color: Colors.white),
+                    ),
+                  ),
                 ),
               ],
             ),
