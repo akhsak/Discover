@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:discover/model/admin_model.dart';
 import 'package:discover/service/admin_service.dart';
+import 'package:discover/service/noti_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class AdminProvider extends ChangeNotifier {
   final TextEditingController durationController = TextEditingController();
   final TextEditingController transportationController =
       TextEditingController();
-
+  NotificationService notificationService = NotificationService();
   List<AdminModel> searchList = [];
   List<AdminModel> allTravelList = [];
 
@@ -49,6 +50,11 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> addTravelPackage(AdminModel data) async {
     await travelService.addTravelPackage(data);
+    notifyListeners();
+    await notificationService.showNotification(
+      body: ' New Trip is Available',
+      title: 'New Trip Unlocked',
+    );
     getAllTravelPackage();
   }
 
